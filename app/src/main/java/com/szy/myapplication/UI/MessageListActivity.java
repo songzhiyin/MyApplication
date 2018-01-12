@@ -22,6 +22,8 @@ import java.util.List;
  */
 public class MessageListActivity extends BaseActivity {
     private ItemMessageAdapter adapter;
+    private String[] urls = new String[]{"http://hbimg.b0.upaiyun.com/79feb630cc2d5bc06117f1ab6a993130842221766e64f-xlKRBG_fw658", "http://hbimg.b0.upaiyun.com/fb38748dc9cd276e7a8b22c486a275c8c1fd937454415-B6bNRr_fw658"
+            , "http://p5.so.qhimgs1.com/t01bd88726cccc5f66b.jpg", "http://p1.so.qhimgs1.com/bdr/_240_/t01d7df8156075bd6e1.jpg"};
 
 
     @Override
@@ -53,7 +55,7 @@ public class MessageListActivity extends BaseActivity {
         super.initdatas();
         List<MessageEntity> messageEntities = new ArrayList<>();
         for (int i = 0; i < 10; i++) {
-            messageEntities.add(new MessageEntity("标题" + (i + 1), "明天休息", "2018-01-10", 0));
+            messageEntities.add(new MessageEntity("标题" + (i + 1), "明天休息", "2018-01-10", urls[i % 4]));
         }
         adapter.addBottonDatas(messageEntities);
     }
@@ -83,7 +85,7 @@ public class MessageListActivity extends BaseActivity {
                     return;
                 }
                 onLoadDataSucceed();
-                adapter.addBottonData(new MessageEntity("标题" + (adapter.getItemCount() + 1), "这是自动加载新增的", new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date())));
+                adapter.addBottonData(new MessageEntity("标题" + (adapter.getItemCount() + 1), "这是自动加载新增的", new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()), "http://p5.so.qhimgs1.com/t01bd88726cccc5f66b.jpg"));
             }
         }, 600);
     }

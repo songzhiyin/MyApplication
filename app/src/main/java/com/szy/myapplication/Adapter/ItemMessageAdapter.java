@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.lib.szy.pullrefresh.PullreFresh.BaseRecyAdapter;
+import com.szy.lib.network.Glide.GlideHelper;
 import com.szy.myapplication.Entity.MessageEntity;
 import com.szy.myapplication.R;
 
@@ -33,6 +34,7 @@ public class ItemMessageAdapter extends BaseRecyAdapter<ItemMessageAdapter.ViewH
         viewHoder.tv_time.setText(entity.getTime());
         viewHoder.tv_title.setText(entity.getTitle());
         viewHoder.tv_content.setText(entity.getContent());
+        GlideHelper.showImage(mContext, entity.getUrl(), viewHoder.img_icon, R.mipmap.ic_launcher);
 
 
     }

@@ -9,7 +9,7 @@ public class MessageEntity {
     private String title;
     private String content;
     private String time;
-    private int url;
+    private String url;
 
     public MessageEntity(String title, String content, String time) {
         this.title = title;
@@ -17,7 +17,7 @@ public class MessageEntity {
         this.time = time;
     }
 
-    public MessageEntity(String title, String content, String time, int url) {
+    public MessageEntity(String title, String content, String time, String url) {
         this.title = title;
         this.content = content;
         this.time = time;
@@ -51,11 +51,11 @@ public class MessageEntity {
         this.time = time;
     }
 
-    public int getUrl() {
+    public String getUrl() {
         return url;
     }
 
-    public void setUrl(int url) {
+    public void setUrl(String url) {
         this.url = url;
     }
 }

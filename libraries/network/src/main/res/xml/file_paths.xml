@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <paths>
+        <!--<external-path name="download" path=""></external-path>-->
+        <external-path
+            name="my"
+            path=""></external-path>
+
+    </paths>
+</resources>
