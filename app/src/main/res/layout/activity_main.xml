@@ -25,6 +25,10 @@
                 android:id="@+id/tv_main_recyview"
                 style="@style/text_main_layout"
                 android:text="recyview" />
+            <TextView
+                android:id="@+id/tv_main_retrofit"
+                style="@style/text_main_layout"
+                android:text="retrofit" />
         </LinearLayout>
     </ScrollView>
 

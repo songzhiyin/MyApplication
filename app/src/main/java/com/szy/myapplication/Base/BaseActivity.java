@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.lib.szy.pullrefresh.PullreFresh.PullRecyclerView;
 import com.szy.myapplication.R;
+import com.szy.myapplication.Retrofit.HttpModel;
 import com.szy.myapplication.Utils.NetWorkUtils;
 import com.szy.myapplication.Utils.SystemBarUtils;
 
@@ -44,7 +45,7 @@ public abstract class BaseActivity extends Activity {
     protected int pageSize = 10;//每页数据条数
     protected boolean isFirstLoadck = true;//是否是首次加载，默认是true
     protected boolean isLoadDataFinishck = false;//数据是否加载完毕，默认是false
-
+    protected HttpModel httpModel;
 
 
     @LayoutRes
@@ -170,13 +171,14 @@ public abstract class BaseActivity extends Activity {
             }
         });
     }
+
     /**
      * 下拉刷新重新加载数据
      */
     protected void onRefreshData() {
         pageNumber = 1;
         isLoadDataFinishck = false;
-        if(recyclerView!=null){
+        if (recyclerView != null) {
             //当用户重新加载数据时，先隐藏底部自动加载的布局
             recyclerView.setVisibleLoadingData();
         }
@@ -267,6 +269,7 @@ public abstract class BaseActivity extends Activity {
 //        }, 2000);
 
     }
+
     /**
      * 隐藏网络异常的提示
      */
@@ -313,6 +316,7 @@ public abstract class BaseActivity extends Activity {
             });
         }
     }
+
     /**
      * 初始化view
      */

@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.szy.myapplication.UI.NetWorkActivity">
+
+    <include layout="@layout/include_layout_view_statusbar"></include>
+
+    <include layout="@layout/include_layout_view_title_layout"></include>
+
+    <TextView
+        android:id="@+id/tv_network_post"
+        style="@style/text_main_layout"
+        android:layout_marginTop="100dp"
+        android:text="POST请求" />
+
+    <TextView
+        android:id="@+id/tv_network_get"
+        style="@style/text_main_layout"
+        android:layout_marginTop="100dp"
+        android:text="GET请求" />
+
+    <TextView
+        android:id="@+id/tv_network_file"
+        style="@style/text_main_layout"
+        android:layout_marginTop="100dp"
+        android:text="上传文件" />
+</LinearLayout>

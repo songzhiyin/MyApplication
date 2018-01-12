@@ -85,7 +85,7 @@ public class MessageListActivity extends BaseActivity {
                     return;
                 }
                 onLoadDataSucceed();
-                adapter.addBottonData(new MessageEntity("标题" + (adapter.getItemCount() + 1), "这是自动加载新增的", new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()), "http://p5.so.qhimgs1.com/t01bd88726cccc5f66b.jpg"));
+                adapter.addBottonData(new MessageEntity("标题" + (adapter.getItemCount() + 1), "这是自动加载新增的", new SimpleDateFormat("yyyy-MM-dd hh:mm:ss").format(new Date()), "https://repair.flyoil.cn/repairapi/upload/system/bx_login_bg_811.png"));
             }
         }, 600);
     }
