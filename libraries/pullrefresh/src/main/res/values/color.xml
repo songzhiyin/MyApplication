@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="main_color">#d63737</color>
+
+    <color name="color_00">#8A000000</color>
+    <!--引导性符号、品牌视觉符号、功能性文字图标控件-->
+    <color name="cyanine_color">#35b6b6</color>
+
+    <!--辅助色、视觉点亮小面积应用-->
+    <color name="azarin_color">#ee2e24</color>
+
+    <!--系统控件颜色-->
+    <color name="blue_color">#0095ff</color>
+
+    <!--引导性符号、品牌视觉符号、功能性文字图标控件-->
+    <color name="caesious_color">#96a4ae</color>
+
+    <!--主要应用文章标题阅读后颜色辅助文字颜色-->
+    <color name="grayish_color">#c0c6c9</color>
+
+    <!--提示时文字用色、标题选中后用色功能性控件选中后用色其他界面辅助点缀文字信息-->
+    <color name="mediumGrey_color">#aaaaaa</color>
+
+    <!--分割线颜色小面积应用-->
+    <color name="lightGray1_color">#d8d8d8</color>
+
+    <!--首页tab默认用色、选中用色、分割线颜色-->
+    <color name="lightGray2_color">#efefef</color>
+
+    <!--应用主要背景色图集里文字颜色-->
+    <color name="white_color">#ffffff</color>
+
+    <!--全局主要文字内容使用色图集背景色-->
+    <color name="black_color">#000000</color>
+</resources>

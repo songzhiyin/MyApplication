@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="4dp">
+
+    <ImageView
+        android:id="@+id/img_item_message_icon"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:scaleType="centerInside"
+        android:src="@mipmap/ic_launcher" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="4dp"
+        android:orientation="vertical"
+        android:paddingRight="4dp">
+
+        <TextView
+            android:id="@+id/tv_item_message_title"
+            style="@style/text_item_message_adapter"
+            android:text="标题"
+            android:textColor="@color/tv_black" />
+
+        <TextView
+            android:id="@+id/tv_item_message_conten"
+            style="@style/text_item_message_adapter"
+            android:text="简介" />
+
+        <TextView
+            android:id="@+id/tv_item_message_time"
+            style="@style/text_item_message_adapter"
+            android:text="2018-01-10" />
+    </LinearLayout>
+</LinearLayout>

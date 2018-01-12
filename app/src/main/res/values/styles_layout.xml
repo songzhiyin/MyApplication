@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?><!--APP布局中控件的常用样式-->
+<resources>
+
+
+
+    <!--标题栏返回按钮的样式-->
+    <style name="img_back">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">19dp</item>
+        <item name="android:paddingTop">12dp</item>
+        <item name="android:paddingBottom">12dp</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+
+    <!--标题栏右边的图标的样式-->
+    <style name="img_title_right">
+        <item name="android:layout_width">40dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:paddingLeft">13dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:paddingTop">10dp</item>
+        <item name="android:paddingBottom">10dp</item>
+        <item name="android:scaleType">centerInside</item>
+    </style>
+
+    <!--1像素的分割线-->
+    <style name="line_horization_style">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">@dimen/dimen_0.5dip</item>
+        <item name="android:background">@color/main_line_color</item>
+    </style>
+
+</resources>

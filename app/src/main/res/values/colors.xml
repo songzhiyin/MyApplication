@@ -4,4 +4,68 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="homeColor">#FF4081</color>
+    <!--标题栏状态栏渐变色值-->
+    <color name="title_startColor">#e64239</color>
+    <color name="title_endColor">#e64239</color>
+    <color name="viewstatus_startColor">#e64239</color>
+    <color name="viewstatus_endColor">#e64239</color>
+    <!--搜索界面状态栏的颜色-->
+    <color name="search_layout_status_d9d9d9">#d9d9d9</color>
+    <!--首页底部菜单选中的颜色-->
+    <color name="menu_text_color_normal">#e64239</color>
+    <!--首页底部菜单默认的颜色-->
+    <color name="menu_text_color_gray">#4d4d4d</color>
+    <!--APP的界面默认颜色-->
+    <color name="activity_backgroud">#f0f0f0</color>
+
+    <!--分割线的颜色-->
+    <color name="main_line_color">#f0f0f0</color>
+    <!--透明度背景-->
+    <color name="activity_backgroud_lucency">#4c000000</color>
+    <!--白色-->
+    <color name="white">#ffffff</color>
+    <color name="user_org_color">#ffdedf</color>
+    <!--APP的主题颜色-->
+    <color name="home_color">#e64239</color>
+    <!--灰色-->
+    <color name="gray_666">#ff666666</color>
+    <color name="gray_ccc">#ffcccccc</color>
+    <color name="gray_333">#ff333333</color>
+    <!--按钮选择器颜色值-->
+    <color name="button_backgroud_red_show">#e64239</color><!--按钮默认时红色颜色-->
+    <color name="button_backgroud_red_click">#de3931</color><!--按钮选中时红色颜色-->
+    <color name="button_backgroud_white_show">#ffffff</color><!--按钮默认时白色颜色-->
+    <color name="button_backgroud_white_click">#e5e5e5</color><!--按钮选中时白色颜色-->
+    <color name="button_backgroud_yellow_show">#fff8ed</color><!--按钮默认时黄色颜色-->
+    <color name="button_backgroud_yellow_click">#ffedcc</color><!--按钮选中时黄色颜色-->
+    <!--APP升级更新弹框按钮的背景-->
+    <color name="TextProgressBar_color">#ffedeff0</color>
+    <color name="gry_4d4d">#4d4d4d</color>
+    <color name="tv_black">#1a1a1a</color>
+    <color name="black">#000000</color>
+    <!--我的消息item布局标题的颜色-->
+    <color name="tv_item_message_title">#3d3f40</color>
+    <!--我的消息item布局时间的颜色-->
+    <color name="tv_item_message_time">#999999</color>
+    <!--数据加载提示的文本颜色-->
+    <color name="tv_hint_data_color">#999999</color>
+    <!--输入框提示文本颜色-->
+    <color name="edt_hint_color">#a6a6a6</color>
+    <!--登录界面下划线的颜色-->
+    <color name="line_login_color">#66ffffff</color>
+    <!--统计界面折线的颜色-->
+    <color name="statics_line_color">#80ceff</color>
+    <!--统计界面折线的填充颜色-->
+    <color name="statics_line_fill_color">#80ceff</color>
+    <color name="blue_app_color">#80ceff</color>
+    <!--自定义日期选择器默认颜色-->
+    <color name="dete_view_text_color_default">#999999</color>
+    <!--自定义日期选择器选中时的颜色-->
+    <color name="dete_view_text_color_select">#000000</color>
+    <!--柱状图1的颜色-->
+    <color name="bardata1">#80ceff</color>
+    <!--柱状图2的颜色-->
+    <color name="bardata2">#ffcb80</color>
+    <!--柱状图3的颜色-->
+    <color name="bardata3">#ff845e</color>
 </resources>

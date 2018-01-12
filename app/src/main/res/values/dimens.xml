@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--标题栏的高度-->
+    <dimen name="titlebar_height">44dp</dimen>
+    <!--标题栏文字的大小-->
+    <dimen name="title_text_size">16sp</dimen>
+    <dimen name="home_menu_text_size">12sp</dimen>
+    <!--底部导航栏的高度-->
+    <dimen name="home_menu_height">4dp</dimen>
+    <!--布局距离界面左右边框的具体-->
+    <dimen name="margin_activity">12dp</dimen>
+    <!--用户头像的大小-->
+    <dimen name="user_icon_height">4dp</dimen>
+    <!--自定义按钮的圆角度数-->
+    <dimen name="shape_radius">4dp</dimen>
+    <!--按钮的高度-->
+    <dimen name="button_height">44dp</dimen>
+    <!--个人中心界面，列表的高度-->
+    <dimen name="line_user_layout_height">50dp</dimen>
+    <!--修改密码界面，列表的高度-->
+    <dimen name="line_pwd_layout_height">50dp</dimen>
+    <!--设置界面，列表的高度-->
+    <dimen name="line_set_layout_height">50dp</dimen>
+
+    <dimen name="line_marginBottom">50dp</dimen>
+    <dimen name="line_margintop">50dp</dimen>
+    <!--item布局上边距-->
+    <dimen name="item_margintop">12dp</dimen>
+    <!--item布局下边距-->
+    <dimen name="item_marginbottom">10dp</dimen>
+    <!--item的图标的宽度-->
+    <dimen name="item_img_width">15dp</dimen>
+    <!--item的图标的高度-->
+    <dimen name="item_img_height">15dp</dimen>
+    <dimen name="item_img_margtop_height">2dp</dimen>
+    <!--流程列表item左边距-->
+    <dimen name="item_img_course_paddlift">38dp</dimen>
+    <dimen name="line_course_certain_width">30dp</dimen>
+    <dimen name="line_course_certain_height">2dp</dimen>
+    <!--布局位于中间位置向上偏移的距离，在数据提示布局中使用-->
+    <dimen name="line_centre_marg_botton">40dp</dimen>
+    <!--登录界面账号、密码的布局的左右边距-->
+    <dimen name="line_marg_login">50dp</dimen>
+    <!--单据详情界面左右文本之间的间距-->
+    <dimen name="order_message_text_marg">6dp</dimen>
+    <!--单据详情界面左边文本的宽度-->
+    <dimen name="order_message_text_lift_width">96dp</dimen>
+    <!--描边的宽度-->
+    <dimen name="stroke_width">0.6dp</dimen>
+</resources>
