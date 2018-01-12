@@ -46,53 +46,6 @@ public class ServiceGenerator {
         builder.baseUrl((base_url != null && base_url.length() > 0) ? base_url : BASE_URL);
         BASE_URL = base_url;//当获取到新的域名时，将就域名进行修改
     }
-
-
-    public static OkHttpClient.Builder getHttpClient() {
-        return httpClient;
-    }
-
-    /**
-     * @param base_url
-     */
-    public static void setBase_url(String base_url) {
-        ServiceGenerator.base_url = base_url;
-    }
-
-    /**
-     * @param converterFactory
-     */
-    public static void setConverterFactory(Converter.Factory converterFactory) {
-        ServiceGenerator.converterFactory = converterFactory;
-    }
-
-    /**
-     * @param interceptor
-     */
-    public static void setInterceptor(Interceptor interceptor) {
-        ServiceGenerator.interceptor = interceptor;
-    }
-
-    /**
-     * @param callFactory
-     */
-    public static void setCallFactory(CallAdapter.Factory callFactory) {
-        ServiceGenerator.callFactory = callFactory;
-    }
-
-    /**
-     * @param serviceClass
-     * @return
-     */
-    public static <S> S createService(Class<S> serviceClass) {
-        return createService(serviceClass, null, null);
-    }
-
-    private static String sessionId = "";
-
-    public static void setAuthToken(String sessionId) {
-        ServiceGenerator.sessionId = (sessionId == null ? "" : sessionId);
-    }
     /**
      * @param serviceClass
      * @param authToken
