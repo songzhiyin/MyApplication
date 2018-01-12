@@ -2,6 +2,7 @@ package com.szy.myapplication.Retrofit;
 
 import com.szy.myapplication.Base.BaseEntity;
 import com.szy.myapplication.Entity.LoginEntity;
+import com.szy.myapplication.Entity.NetMessageEntity;
 
 import java.util.Map;
 
@@ -38,5 +39,5 @@ public interface RetrofitApiSerivce {
      * 获取我的消息列表
      */
     @GET("/message/page")
-    Observable<BaseEntity> getMessageList(@QueryMap Map<String, Object> fields);
+    Observable<NetMessageEntity> getMessageList(@QueryMap Map<String, Object> fields);
 }

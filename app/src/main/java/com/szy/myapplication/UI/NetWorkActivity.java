@@ -1,7 +1,5 @@
 package com.szy.myapplication.UI;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
@@ -9,6 +7,7 @@ import com.szy.lib.network.Retrofit.Util.Dialog_util;
 import com.szy.lib.network.Retrofit.Util.RequestBody_Util;
 import com.szy.myapplication.Base.BaseActivity;
 import com.szy.myapplication.Base.BaseEntity;
+import com.szy.myapplication.Entity.NetMessageEntity;
 import com.szy.myapplication.R;
 import com.szy.myapplication.Retrofit.HttpModel;
 import com.szy.myapplication.Retrofit.OnObserverRetrofitResetCallBack;
@@ -28,7 +27,7 @@ public class NetWorkActivity extends BaseActivity {
 
     @Override
     protected int getContentViewResId() {
-        return R.layout.activity_login;
+        return R.layout.activity_network;
     }
 
     @Override
@@ -115,7 +114,19 @@ public class NetWorkActivity extends BaseActivity {
         map.put("pageNumber", pageNumber);
         map.put("pageSize", pageSize);
         map.put("sessionId", sessionId);
-        httpModel.getMessageList(map, new OnObserverRetrofitResetCallBack() {
+        httpModel.getMessageList(map, new OnObserverRetrofitResetCallBack<BaseEntity>() {
+            @Override
+            public void onSuccess(BaseEntity model) {
+                super.onSuccess(model);
+                NetMessageEntity entity = null;
+                if (model instanceof NetMessageEntity) {
+                    entity = (NetMessageEntity) model;
+                }
+                if (entity != null && entity.getData().getList() != null) {
+                    ToastUtils.show_toast("获取到的消息数量:" + entity.getData().getList().size());
+                }
+            }
+
             @Override
             public void onFailure(String msg) {
 

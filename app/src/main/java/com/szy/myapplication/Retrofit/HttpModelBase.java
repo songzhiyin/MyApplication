@@ -35,9 +35,7 @@ public class HttpModelBase {
         return virtualbxApiSerivce;
     }
 
-    public HttpModelBase() {
-        ServiceGenerator.setAuthToken("");
-    }
+
 
     /**
      * 将serivce服务进行重置，将域名进行更换
