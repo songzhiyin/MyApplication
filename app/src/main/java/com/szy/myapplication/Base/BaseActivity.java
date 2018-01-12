@@ -2,19 +2,23 @@ package com.szy.myapplication.Base;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.RequiresPermission;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.lib.szy.pullrefresh.PullreFresh.PullRecyclerView;
 import com.szy.myapplication.R;
+import com.szy.myapplication.Utils.NetWorkUtils;
 import com.szy.myapplication.Utils.SystemBarUtils;
 
 /**
@@ -33,6 +37,15 @@ public abstract class BaseActivity extends Activity {
     protected TextView tv_title, tv_right;
     //返回按钮、右边图片按钮
     private ImageView img_lift, img_right;
+    protected PullRecyclerView recyclerView;
+    protected View line_network;//网络异常的提示
+    private boolean remove_network = false;//是否要移除网络提示框
+    protected int pageNumber = 1;//当前页数，默认页数是1
+    protected int pageSize = 10;//每页数据条数
+    protected boolean isFirstLoadck = true;//是否是首次加载，默认是true
+    protected boolean isLoadDataFinishck = false;//数据是否加载完毕，默认是false
+
+
 
     @LayoutRes
     protected abstract int getContentViewResId();
@@ -119,7 +132,187 @@ public abstract class BaseActivity extends Activity {
         });
     }
 
+    /**
+     * 设置recyview的上下拉加载监
+     *
+     * @param mEnableAutoLoading 是否可以进行自动加载
+     */
+    protected void setOnRefreshListener(boolean mEnableAutoLoading) {
+        if (recyclerView == null) {
+            return;
+        }
+        recyclerView.setmEnableAutoLoading(mEnableAutoLoading);
+        recyclerView.setPullRefreshEnable(true);
+        recyclerView.setOnRefreshListener(new PullRecyclerView.OnRefreshListener() {
+            @Override
+            public void onRefresh() {
+                //下拉刷新数据
+                if (NetWorkUtils.isNetworkAvailable(mContext) == 0) {
+                    onRefreshDataNetworkError();
+                } else {
+                    onRefreshData();
+                }
 
+            }
+
+            @Override
+            public void onLoadMore() {
+                //自动加载数据
+                if (NetWorkUtils.isNetworkAvailable(mContext) == 0) {
+                    onLoadDataNetworkError();
+                } else {
+                    if (isLoadDataFinishck) {//判断数据是否已经加载完毕
+                        onLoadDataFinish();
+                        return;
+                    }
+                    onLoadData();
+                }
+            }
+        });
+    }
+    /**
+     * 下拉刷新重新加载数据
+     */
+    protected void onRefreshData() {
+        pageNumber = 1;
+        isLoadDataFinishck = false;
+        if(recyclerView!=null){
+            //当用户重新加载数据时，先隐藏底部自动加载的布局
+            recyclerView.setVisibleLoadingData();
+        }
+    }
+
+    /**
+     * 下拉刷新数据，数据加载成功
+     */
+    protected void onRefreshDataSucceed() {
+        //结束刷新
+        if (recyclerView == null) {
+            return;
+        }
+        recyclerView.refreshDataSucced();
+        hide_network_hint();
+    }
+
+    /**
+     * 下拉刷新数据，数据加载失败
+     */
+    protected void onRefreshDataError() {
+        if (recyclerView == null) {
+            return;
+        }
+        recyclerView.refreshDataError();
+        hide_network_hint();
+    }
+
+
+    /**
+     * 下拉刷新，网络异常数据加载失败
+     */
+    protected void onRefreshDataNetworkError() {
+        if (recyclerView != null) {
+            recyclerView.refreshDataError();
+            show_network_hint();
+        }
+
+    }
+
+    /**
+     * 自动加载数据的方法
+     */
+    protected void onLoadData() {
+
+    }
+
+    /**
+     * 自动加载数据，数据加载成功
+     */
+    protected void onLoadDataSucceed() {
+        if (recyclerView == null) {
+            return;
+        }
+        recyclerView.autoLoadingSucceed();
+    }
+
+    /**
+     * 自动加载数据成功，并且数据加载完毕
+     */
+    protected void onLoadDataFinish() {
+        if (recyclerView == null) {
+            return;
+        }
+        recyclerView.autoLoadingFinish();
+    }
+
+    /**
+     * 自动加载数据，数据加载失败
+     */
+    protected void onLoadDataError() {
+        if (recyclerView == null) {
+            return;
+        }
+        recyclerView.autoLoadingError();
+    }
+
+    /**
+     * 自动加载数据，网络异常
+     */
+    protected void onLoadDataNetworkError() {
+        recyclerView.autoLoadingNetwork();
+//        new Handler().postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+//
+//            }
+//        }, 2000);
+
+    }
+    /**
+     * 隐藏网络异常的提示
+     */
+    private void hide_network_hint() {
+        if (line_network != null) {
+            if (remove_network) {
+                recyclerView.removeHeaderView(line_network);
+                recyclerView.notifyDataSetChanged();
+                line_network = null;
+            } else {
+                line_network.setVisibility(View.GONE);
+            }
+
+        }
+    }
+
+    /**
+     * 显示网络异常的提示
+     */
+    private void show_network_hint() {
+        if (line_network != null) {
+            line_network.setVisibility(View.VISIBLE);
+        } else {
+            remove_network = true;
+            line_network = LayoutInflater.from(mContext).inflate(R.layout.include_network_hint_layout, null);
+            line_network.setVisibility(View.VISIBLE);
+            recyclerView.addHeaderView(line_network);
+        }
+        if (line_network != null) {
+            line_network.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent;
+                    if (android.os.Build.VERSION.SDK_INT > 10) {
+                        intent = new Intent(android.provider.Settings.ACTION_WIRELESS_SETTINGS);
+                    } else {
+                        intent = new Intent();
+                        ComponentName component = new ComponentName("com.android.settings", "com.android.settings.WirelessSettings");
+                        intent.setComponent(component);
+                        intent.setAction("android.intent.action.VIEW");
+                    }
+                    startActivity(intent);
+                }
+            });
+        }
+    }
     /**
      * 初始化view
      */
