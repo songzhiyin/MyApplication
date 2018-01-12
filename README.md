@@ -1,0 +1,2 @@
+# MyApplication
+这个项目是用来整理所有的android知识点的app
