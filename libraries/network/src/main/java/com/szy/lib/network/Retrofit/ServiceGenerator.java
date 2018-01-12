@@ -45,11 +45,7 @@ public class ServiceGenerator {
         BASE_URL = base_url;//当获取到新的域名时，将就域名进行修改
     }
 
-    public static <S> S createService(Class<S> serviceClass, String sessionId, String version) {
-
-        if (sessionId != null) {
-            LogUtil.i("sessionId--", sessionId);
-        }
+    public static <S> S createService(Class<S> serviceClass) {
         httpClientBuilder.addNetworkInterceptor(new InterceptorAd());//添加自定义Interceptor
         httpClientBuilder.connectTimeout(15, TimeUnit.SECONDS)
                 .readTimeout(15, TimeUnit.SECONDS);//设置超时时间

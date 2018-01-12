@@ -28,13 +28,12 @@ public class HttpModelBase {
         if (virtualbxApiSerivce == null) {
             synchronized (HttpModelBase.class) {
                 if (virtualbxApiSerivce == null) {
-                    virtualbxApiSerivce = ServiceGenerator.createService(RetrofitApiSerivce.class, "", "1.0.3");
+                    virtualbxApiSerivce = ServiceGenerator.createService(RetrofitApiSerivce.class);
                 }
             }
         }
         return virtualbxApiSerivce;
     }
-
 
 
     /**
