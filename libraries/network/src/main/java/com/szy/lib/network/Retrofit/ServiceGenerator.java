@@ -31,9 +31,6 @@ public class ServiceGenerator {
     private static String base_url = null;
     private static OkHttpClient.Builder httpClientBuilder = NetWorkUtils.getUnsafeOkHttpClient();
     private static Retrofit.Builder builder = new Retrofit.Builder();
-    private static Converter.Factory converterFactory = null;
-    private static CallAdapter.Factory callFactory;
-    private static Interceptor interceptor;
 
     /**
      * 修改域名
