@@ -85,7 +85,7 @@ public class BezierDemoActivity extends BaseActivity {
             goods.setImageDrawable(imgview.getDrawable());
             RelativeLayout.LayoutParams params = new RelativeLayout.LayoutParams(100, 100);
             relativeLayout.addView(goods, params);
-            //5、获取起始点的坐标和终点的坐标
+            //5、获取起始点的坐标和终点的坐标，计划坐标时根据布局的层数做响应的变化
             float startX = startLoc[0];
             float startY = startLoc[1] - parent[1];
             float toX = endLoc[0];
