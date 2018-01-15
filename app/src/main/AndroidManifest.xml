@@ -64,7 +64,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".UI.MessageListActivity" />
-        <activity android:name=".UI.NetWorkActivity"></activity>
+        <activity android:name=".UI.NetWorkActivity" />
+        <activity android:name=".UI.EventBusTestActivity"></activity>
     </application>
 
 </manifest>

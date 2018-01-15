@@ -13,6 +13,7 @@ import com.szy.myapplication.R;
 public class MainActivity extends BaseActivity {
     private TextView tv_recyview;
     private TextView tv_retrofit;
+    private TextView tv_EventBus;
 
     @Override
     protected int getContentViewResId() {
@@ -24,6 +25,7 @@ public class MainActivity extends BaseActivity {
         super.initViews();
         tv_recyview = $(R.id.tv_main_recyview);
         tv_retrofit = $(R.id.tv_main_retrofit);
+        tv_EventBus = $(R.id.tv_main_EventBus);
     }
 
     @Override
@@ -31,6 +33,7 @@ public class MainActivity extends BaseActivity {
         super.initEvents();
         tv_recyview.setOnClickListener(onClickListener);
         tv_retrofit.setOnClickListener(onClickListener);
+        tv_EventBus.setOnClickListener(onClickListener);
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -42,6 +45,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.tv_main_retrofit:
                     startActivity(new Intent(mContext, NetWorkActivity.class));
+                    break;
+                case R.id.tv_main_EventBus:
+                    startActivity(new Intent(mContext, EventBusTestActivity.class));
                     break;
             }
         }
