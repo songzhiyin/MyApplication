@@ -34,6 +34,7 @@ public class EventBusTestActivity extends BaseActivity {
         tv_btn3 = $(R.id.tv_test1_button3);
         tv_btn4 = $(R.id.tv_test1_button4);
         tv_btn5 = $(R.id.tv_test1_button5);
+        setTextTitleName("EventBus");
     }
 
     @Override
@@ -45,6 +46,7 @@ public class EventBusTestActivity extends BaseActivity {
         tv_btn3.setOnClickListener(onClickListener);
         tv_btn4.setOnClickListener(onClickListener);
         tv_btn5.setOnClickListener(onClickListener);
+        setBackOnclickListner(mContext);
     }
 
     //2、构造接受消息的方法，该方法的修饰符必须是public

@@ -65,7 +65,8 @@
         </activity>
         <activity android:name=".UI.MessageListActivity" />
         <activity android:name=".UI.NetWorkActivity" />
-        <activity android:name=".UI.EventBusTestActivity"></activity>
+        <activity android:name=".UI.EventBusTestActivity" />
+        <activity android:name=".UI.BezierDemoActivity"></activity>
     </application>
 
 </manifest>
