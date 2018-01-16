@@ -15,6 +15,7 @@ public class MainActivity extends BaseActivity {
     private TextView tv_retrofit;
     private TextView tv_EventBus;
     private TextView tv_bezier;//贝塞尔曲线
+    private TextView tv_ScrollView;//滑动悬浮框
 
     @Override
     protected int getContentViewResId() {
@@ -28,6 +29,7 @@ public class MainActivity extends BaseActivity {
         tv_retrofit = $(R.id.tv_main_retrofit);
         tv_EventBus = $(R.id.tv_main_EventBus);
         tv_bezier = $(R.id.tv_main_bezier);
+        tv_ScrollView = $(R.id.tv_main_ScrollView);
     }
 
     @Override
@@ -37,6 +39,7 @@ public class MainActivity extends BaseActivity {
         tv_retrofit.setOnClickListener(onClickListener);
         tv_EventBus.setOnClickListener(onClickListener);
         tv_bezier.setOnClickListener(onClickListener);
+        tv_ScrollView.setOnClickListener(onClickListener);
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -54,6 +57,9 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.tv_main_bezier://贝塞尔曲线
                     startActivity(new Intent(mContext, BezierDemoActivity.class));
+                    break;
+                case R.id.tv_main_ScrollView://滑动悬浮框
+                    startActivity(new Intent(mContext, ScrollViewActivity.class));
                     break;
             }
         }

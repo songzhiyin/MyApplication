@@ -12,6 +12,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.animation.DecelerateInterpolator;
+import android.widget.AbsListView;
 import android.widget.LinearLayout;
 import android.widget.Scroller;
 
@@ -632,6 +633,8 @@ public class PullRecyclerView extends RecyclerView {
         mOnRefreshListener = onRefreshListener;
 
     }
+
+
 
     /**
      * 刷新接口,

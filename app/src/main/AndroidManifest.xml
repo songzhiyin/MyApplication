@@ -66,7 +66,8 @@
         <activity android:name=".UI.MessageListActivity" />
         <activity android:name=".UI.NetWorkActivity" />
         <activity android:name=".UI.EventBusTestActivity" />
-        <activity android:name=".UI.BezierDemoActivity"></activity>
+        <activity android:name=".UI.BezierDemoActivity" />
+        <activity android:name=".UI.ScrollViewActivity"></activity>
     </application>
 
 </manifest>

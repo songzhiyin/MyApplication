@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.szy.myapplication.UI.ScrollViewActivity">
+
+    <include layout="@layout/include_layout_view_statusbar"></include>
+
+    <include layout="@layout/include_layout_view_title_layout"></include>
+
+    <RelativeLayout
+        android:id="@+id/rela_scroll_layout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ScrollView
+            android:id="@+id/scrview_scroll"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/banner" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="时就擦拭库存超级卡市场时间长卡市场寄生虫卡市场几十块参数茶山村卡市场经济可采集卡时间长快烦死离开公司法律快来试试看电视是打开V领是的看 刻度V领是的吧看到绿色的 " />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/banner2" />
+
+                <TextView
+                    android:id="@+id/tv_scroll_btn"
+                    android:layout_width="match_parent"
+                    android:layout_height="50dp"
+                    android:background="@color/gray_ccc"
+                    android:gravity="center"
+                    android:text="世界那么大，哪里有家好！"
+                    android:textColor="@color/homeColor"
+                    android:textSize="15sp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="10dp"
+                    android:text="几十块参数基础考试吃就是插卡式基础考试甲壳虫安上数据参考超级卡死数据插卡式检测卡是差生基础考试基础考试 擦拭即可差上看出安上是超级卡死吃爱上课程
+是超级卡死上传接口三 是超级卡死数据参考开了个大润发快乐番薯的首都克里斯丁发布考虑到v模式的肯德基老师的看过没事的开工利是多个开始打
+解放顾客递四方速递开发类似的看过了水电费看到两个没事的开公司登录过圣诞快乐十多个sad看电视格拉苏蒂快递公司的快捷登录沙发斯蒂芬马库斯的f
+代付款圣诞快乐放你的开发类似的打开了公司的的到了法国开发类似的吗看过了圣诞节公司的都看过了就是带
+高科技山东理工快速登录国家上都没开个连锁店看到了国剧盛典， 东哥克里斯丁的第六课" />
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:scaleType="centerCrop"
+                    android:src="@mipmap/banner3" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="800dp"
+                    android:padding="10dp"
+                    android:text="几十块参数基础考试吃就是插卡式基础考试甲壳虫安上数据参考超级卡死数据插卡式检测卡是差生基础考试基础考试 擦拭即可差上看出安上是超级卡死吃爱上课程
+是超级卡死上传接口三 是超级卡死数据参考开了个大润发快乐番薯的首都克里斯丁发布考虑到v模式的肯德基老师的看过没事的开工利是多个开始打
+解放顾客递四方速递开发类似的看过了水电费看到两个没事的开公司登录过圣诞快乐十多个sad看电视格拉苏蒂快递公司的快捷登录沙发斯蒂芬马库斯的f
+代付款圣诞快乐放你的开发类似的打开了公司的的到了法国开发类似的吗看过了圣诞节公司的都看过了就是带
+高科技山东理工快速登录国家上都没开个连锁店看到了国剧盛典， 东哥克里斯丁的第六课" />
+            </LinearLayout>
+        </ScrollView>
+
+        <TextView
+            android:id="@+id/tv_scroll_btn_gone"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:background="@color/gray_ccc"
+            android:gravity="center"
+            android:text="世界那么大，哪里有家好！"
+            android:textColor="@color/homeColor"
+            android:textSize="15sp"
+            android:visibility="gone" />
+    </RelativeLayout>
+</LinearLayout>
