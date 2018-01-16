@@ -29,7 +29,7 @@ import com.szy.myapplication.Utils.SystemBarUtils;
 public abstract class BaseActivity extends Activity {
     protected Activity mContext;
     protected int requestedOrientation = 1111;//屏幕横竖的值
-    private String TAG;
+    protected String TAG;
     /**
      * 状态栏
      */

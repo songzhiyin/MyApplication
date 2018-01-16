@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--统计界面折线的颜色-->
+    <color name="statics_line_color">#80ceff</color>
+    <!--统计界面折线的填充颜色-->
+    <color name="statics_line_fill_color">#80ceff</color>
+    <color name="blue_app_color">#80ceff</color>
+    <!--自定义日期选择器默认颜色-->
+    <color name="dete_view_text_color_default">#999999</color>
+    <!--自定义日期选择器选中时的颜色-->
+    <color name="dete_view_text_color_select">#000000</color>
+    <!--柱状图1的颜色-->
+    <color name="bardata1">#80ceff</color>
+    <!--柱状图2的颜色-->
+    <color name="bardata2">#ffcb80</color>
+    <!--柱状图3的颜色-->
+    <color name="bardata3">#ff845e</color>
+</resources>

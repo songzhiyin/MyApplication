@@ -16,6 +16,8 @@ public class MainActivity extends BaseActivity {
     private TextView tv_EventBus;
     private TextView tv_bezier;//贝塞尔曲线
     private TextView tv_ScrollView;//滑动悬浮框
+    private TextView tv_recy_scro;//滑动悬浮框
+    private TextView tv_chart;//图表
 
     @Override
     protected int getContentViewResId() {
@@ -30,6 +32,8 @@ public class MainActivity extends BaseActivity {
         tv_EventBus = $(R.id.tv_main_EventBus);
         tv_bezier = $(R.id.tv_main_bezier);
         tv_ScrollView = $(R.id.tv_main_ScrollView);
+        tv_recy_scro = $(R.id.tv_main_recyview_scroll);
+        tv_chart = $(R.id.tv_main_mp_android_chart);
     }
 
     @Override
@@ -40,6 +44,8 @@ public class MainActivity extends BaseActivity {
         tv_EventBus.setOnClickListener(onClickListener);
         tv_bezier.setOnClickListener(onClickListener);
         tv_ScrollView.setOnClickListener(onClickListener);
+        tv_recy_scro.setOnClickListener(onClickListener);
+        tv_chart.setOnClickListener(onClickListener);
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -60,6 +66,12 @@ public class MainActivity extends BaseActivity {
                     break;
                 case R.id.tv_main_ScrollView://滑动悬浮框
                     startActivity(new Intent(mContext, ScrollViewActivity.class));
+                    break;
+                case R.id.tv_main_recyview_scroll://recyview滑动监听
+                    startActivity(new Intent(mContext, RecyScrollActivity.class));
+                    break;
+                case R.id.tv_main_mp_android_chart://图表
+                    startActivity(new Intent(mContext, MpAndroidChartActivity.class));
                     break;
             }
         }

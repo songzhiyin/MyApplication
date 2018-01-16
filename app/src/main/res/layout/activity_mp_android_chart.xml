@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context="com.szy.myapplication.UI.MpAndroidChartActivity">
+
+    <include layout="@layout/include_layout_view_statusbar"></include>
+
+    <include layout="@layout/include_layout_view_title_layout"></include>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="10dp">
+
+        <TextView
+            android:id="@+id/tv_chart_lineChart"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="折线图"
+            android:textColor="@color/homeColor" />
+
+        <TextView
+            android:id="@+id/tv_chart_barChart"
+            android:layout_width="match_parent"
+            android:layout_height="35dp"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="柱状图"
+            android:textColor="@color/homeColor" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/line_mp_chart"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="20dp"
+        android:orientation="vertical"></LinearLayout>
+</LinearLayout>

@@ -2,6 +2,7 @@ package com.szy.myapplication.UI;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -42,6 +43,7 @@ public class ScrollViewActivity extends BaseActivity {
     private View.OnScrollChangeListener onScrollChangeListener = new View.OnScrollChangeListener() {
         @Override
         public void onScrollChange(View v, int scrollX, int scrollY, int oldScrollX, int oldScrollY) {
+            Log.i(TAG, "onScrollChange: scrollY" + scrollY + "  scrollX:" + scrollX + " oldScrollX:" + oldScrollX + " oldScrollY:" + oldScrollY);
             if (scrollY > tv_btn.getTop()) {
                 tv_btn_gone.setVisibility(View.VISIBLE);
             } else {
