@@ -126,8 +126,17 @@ public class MainActivity extends BaseActivity {
                 ToastUtils.show_toast("点击了第" + position + "张图");
             }
         });
-
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        banner.startAutoPlay();
+    }
 
+    @Override
+    protected void onPause() {
+        super.onPause();
+        banner.stopAutoPlay();
+    }
 }
