@@ -7,57 +7,32 @@
     android:orientation="vertical"
     tools:context="com.szy.myapplication.UI.MainActivity">
 
-    <include layout="@layout/include_layout_view_statusbar"></include>
 
-
-    <ScrollView
+    <com.youth.banner.Banner xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:id="@+id/banner_main"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="160dp"
+        app:indicator_drawable_selected="@drawable/banner_select"
+        app:indicator_drawable_unselected="@drawable/banner_no_select"
+        app:indicator_height="8dp"
+        app:indicator_width="8dp"></com.youth.banner.Banner>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/white"
-            android:gravity="center_horizontal"
-            android:orientation="vertical">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="15dp"
+        android:text="世界那么大，我想到处走走！"
+        android:textColor="@color/homeColor"
+        android:textSize="15sp" />
 
-            <TextView
-                android:id="@+id/tv_main_recyview"
-                style="@style/text_main_layout"
-                android:layout_marginTop="50dp"
-                android:text="recyview" />
-
-            <TextView
-                android:id="@+id/tv_main_retrofit"
-                style="@style/text_main_layout"
-                android:text="retrofit" />
-
-            <TextView
-                android:id="@+id/tv_main_EventBus"
-                style="@style/text_main_layout"
-                android:text="EventBus" />
-
-            <TextView
-                android:id="@+id/tv_main_bezier"
-                style="@style/text_main_layout"
-                android:text="贝塞尔曲线" />
-
-            <TextView
-                android:id="@+id/tv_main_ScrollView"
-                style="@style/text_main_layout"
-                android:text="滑动悬浮框" />
-
-            <TextView
-                android:id="@+id/tv_main_recyview_scroll"
-                style="@style/text_main_layout"
-                android:text="列表滑动监听" />
-
-            <TextView
-                android:id="@+id/tv_main_mp_android_chart"
-                style="@style/text_main_layout"
-                android:text="图表demo" />
-        </LinearLayout>
-    </ScrollView>
+    <GridView
+        android:id="@+id/grid_main_list"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        android:numColumns="3"></GridView>
 
 
 </LinearLayout>

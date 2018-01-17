@@ -40,7 +40,6 @@
     <LinearLayout
         android:id="@+id/line_mp_chart"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_margin="20dp"
+        android:layout_height="400dp"
         android:orientation="vertical"></LinearLayout>
 </LinearLayout>

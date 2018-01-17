@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.RequiresPermission;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -112,6 +113,14 @@ public abstract class BaseActivity extends Activity {
         }
         tv_title.setVisibility(titleName != null && titleName.length() > 0 ? View.VISIBLE : View.GONE);
         tv_title.setText(titleName);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode, KeyEvent event) {
+        if(keyCode==KeyEvent.KEYCODE_BACK){
+
+        }
+        return super.onKeyDown(keyCode, event);
     }
 
     /**
