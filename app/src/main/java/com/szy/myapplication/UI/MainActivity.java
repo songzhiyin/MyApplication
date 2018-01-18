@@ -81,6 +81,9 @@ public class MainActivity extends BaseActivity {
                 case 6://图表
                     startActivity(new Intent(mContext, MpAndroidChartActivity.class));
                     break;
+                case 7://水波纹
+                    startActivity(new Intent(mContext, WaterWaveActivity.class));
+                    break;
             }
         }
     };
@@ -96,6 +99,7 @@ public class MainActivity extends BaseActivity {
         data.add("滑动悬浮");
         data.add("列表滑动");
         data.add("图表");
+        data.add("水波纹");
         adapter.setdate(data);
         setBanner();
     }
@@ -106,7 +110,7 @@ public class MainActivity extends BaseActivity {
     private void setBanner() {
         banner.setBannerStyle(BannerConfig.CIRCLE_INDICATOR);//设置轮播图样式
         banner.setIndicatorGravity(BannerConfig.CENTER);//设置指示器的位置
-        banner.setDelayTime(1000);//设置轮播时间
+        banner.setDelayTime(2000);//设置轮播时间
         banner.setImageLoader(new ImageLoader() {
             @Override
             public void displayImage(Context context, Object path, ImageView imageView) {

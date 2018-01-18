@@ -11,7 +11,7 @@
     <com.youth.banner.Banner xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/banner_main"
         android:layout_width="match_parent"
-        android:layout_height="160dp"
+        android:layout_height="170dp"
         app:indicator_drawable_selected="@drawable/banner_select"
         app:indicator_drawable_unselected="@drawable/banner_no_select"
         app:indicator_height="8dp"

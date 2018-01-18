@@ -69,7 +69,8 @@
         <activity android:name=".UI.BezierDemoActivity" />
         <activity android:name=".UI.ScrollViewActivity" />
         <activity android:name=".UI.RecyScrollActivity" />
-        <activity android:name=".UI.MpAndroidChartActivity"></activity>
+        <activity android:name=".UI.MpAndroidChartActivity" />
+        <activity android:name=".UI.WaterWaveActivity"></activity>
     </application>
 
 </manifest>
