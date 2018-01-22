@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.szy.myapplication.UI.TextviewActivity">
+
+    <include layout="@layout/include_layout_view_statusbar"></include>
+
+    <include layout="@layout/include_layout_view_title_layout"></include>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="6dp"
+        android:text="这是默认字体"
+        android:textSize="30sp" />
+
+    <com.szy.myapplication.View.TextviewType
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:padding="6dp"
+        android:text="这是自定义字体"
+        android:textSize="30sp" />
+</LinearLayout>

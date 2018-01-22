@@ -84,6 +84,9 @@ public class MainActivity extends BaseActivity {
                 case 7://水波纹
                     startActivity(new Intent(mContext, WaterWaveActivity.class));
                     break;
+                case 8://自定义字体
+                    startActivity(new Intent(mContext, TextviewActivity.class));
+                    break;
             }
         }
     };
@@ -100,6 +103,7 @@ public class MainActivity extends BaseActivity {
         data.add("列表滑动");
         data.add("图表");
         data.add("水波纹");
+        data.add("自定义字体");
         adapter.setdate(data);
         setBanner();
     }
