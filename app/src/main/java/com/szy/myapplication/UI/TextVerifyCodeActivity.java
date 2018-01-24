@@ -7,6 +7,7 @@ import android.widget.TextView;
 
 import com.szy.myapplication.Base.BaseActivity;
 import com.szy.myapplication.R;
+import com.szy.myapplication.View.ImageVFCodeView;
 import com.szy.myapplication.View.VerifyCodeLayout;
 
 import java.io.UnsupportedEncodingException;
@@ -14,7 +15,8 @@ import java.util.Random;
 
 public class TextVerifyCodeActivity extends BaseActivity {
     private VerifyCodeLayout verifyCodeLayout;
-    private TextView tv_updata;
+    private TextView tv_updata, tv_updataimg;
+    private ImageVFCodeView imageVFCodeView;
 
     @Override
     protected int getContentViewResId() {
@@ -27,6 +29,8 @@ public class TextVerifyCodeActivity extends BaseActivity {
         setTextTitleName("验证码");
         verifyCodeLayout = $(R.id.verfity_code);
         tv_updata = $(R.id.tv_verfity_code_updata);
+        tv_updataimg = $(R.id.tv_verfity_code_updata_img);
+        imageVFCodeView = $(R.id.imavfc_verfity_code);
     }
 
     @Override
@@ -34,6 +38,7 @@ public class TextVerifyCodeActivity extends BaseActivity {
         super.initEvents();
         setBackOnclickListner(mContext);
         tv_updata.setOnClickListener(onClickListener);
+        tv_updataimg.setOnClickListener(onClickListener);
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
@@ -42,6 +47,9 @@ public class TextVerifyCodeActivity extends BaseActivity {
             switch (v.getId()) {
                 case R.id.tv_verfity_code_updata:
                     verifyCodeLayout.setChildViews();
+                    break;
+                case R.id.tv_verfity_code_updata_img:
+                    imageVFCodeView.setMessage();
                     break;
             }
         }

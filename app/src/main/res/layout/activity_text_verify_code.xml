@@ -38,7 +38,36 @@
         android:layout_marginTop="20dp"
         android:background="@drawable/backgroud_shape_red_stroke"
         android:gravity="center"
-        android:text="更新验证码"
+        android:text="更新文字验证码"
         android:textColor="@color/button_backgroud_red_show"
         android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+        <com.szy.myapplication.View.ImageVFCodeView
+            android:id="@+id/imavfc_verfity_code"
+            android:layout_width="100dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="20dp"
+            android:background="@color/gray_ccc" />
+
+        <TextView
+            android:id="@+id/tv_verfity_code_updata_img"
+            android:layout_width="match_parent"
+            android:layout_height="36dp"
+            android:layout_marginLeft="60dp"
+            android:layout_marginRight="60dp"
+            android:layout_marginTop="20dp"
+            android:background="@drawable/backgroud_shape_red_stroke"
+            android:gravity="center"
+            android:text="更新图片验证码"
+            android:textColor="@color/button_backgroud_red_show"
+            android:textSize="14sp" />
+    </LinearLayout>
+
+
 </LinearLayout>

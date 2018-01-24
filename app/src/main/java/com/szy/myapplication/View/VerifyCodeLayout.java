@@ -82,11 +82,6 @@ public class VerifyCodeLayout extends ViewGroup {
             //如果布局里面没有设置固定值,这里取布局的高度的3/4
             height = heightSize * 1 / 2;
         }
-        if (width > height) {
-            height = width;
-        } else {
-            width = height;
-        }
         mWidth = width - (getPaddingBottom() + getPaddingTop());
         mHeight = height - (getPaddingRight() + getPaddingLeft());
         setMeasuredDimension(width, height);
@@ -99,7 +94,7 @@ public class VerifyCodeLayout extends ViewGroup {
         for (int i = 0, size = getChildCount(); i < size; i++) {
 
             int a = random.nextInt(80) + 20;
-            int h = random.nextInt(mHeight / 3 - 100) + 20;
+            int h = random.nextInt(mHeight  - 100) + 20;
             View view = getChildAt(i);
             // 放置子View，宽高都是100
             view.layout(l + a, t + h, l + a + 100, t + 100 + h);
