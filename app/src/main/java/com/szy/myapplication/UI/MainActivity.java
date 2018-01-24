@@ -87,6 +87,9 @@ public class MainActivity extends BaseActivity {
                 case 8://自定义字体
                     startActivity(new Intent(mContext, TextviewActivity.class));
                     break;
+                case 9://文字验证码
+                    startActivity(new Intent(mContext, TextVerifyCodeActivity.class));
+                    break;
             }
         }
     };
@@ -104,6 +107,7 @@ public class MainActivity extends BaseActivity {
         data.add("图表");
         data.add("水波纹");
         data.add("自定义字体");
+        data.add("文字验证码");
         adapter.setdate(data);
         setBanner();
     }

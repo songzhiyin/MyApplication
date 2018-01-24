@@ -71,7 +71,8 @@
         <activity android:name=".UI.RecyScrollActivity" />
         <activity android:name=".UI.MpAndroidChartActivity" />
         <activity android:name=".UI.WaterWaveActivity" />
-        <activity android:name=".UI.TextviewActivity"></activity>
+        <activity android:name=".UI.TextviewActivity" />
+        <activity android:name=".UI.TextVerifyCodeActivity"></activity>
     </application>
 
 </manifest>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.szy.myapplication.UI.TextVerifyCodeActivity">
+
+    <include layout="@layout/include_layout_view_statusbar"></include>
+
+    <include layout="@layout/include_layout_view_title_layout"></include>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="160dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@mipmap/verfity_code_backgroud" />
+
+
+        <com.szy.myapplication.View.VerifyCodeLayout
+            android:id="@+id/verfity_code"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"></com.szy.myapplication.View.VerifyCodeLayout>
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tv_verfity_code_updata"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_marginLeft="60dp"
+        android:layout_marginRight="60dp"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/backgroud_shape_red_stroke"
+        android:gravity="center"
+        android:text="更新验证码"
+        android:textColor="@color/button_backgroud_red_show"
+        android:textSize="14sp" />
+</LinearLayout>
