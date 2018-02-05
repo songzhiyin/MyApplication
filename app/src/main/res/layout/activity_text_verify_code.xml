@@ -50,7 +50,7 @@
 
         <com.szy.myapplication.View.ImageVFCodeView
             android:id="@+id/imavfc_verfity_code"
-            android:layout_width="100dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_margin="20dp"
             android:background="@color/gray_ccc" />

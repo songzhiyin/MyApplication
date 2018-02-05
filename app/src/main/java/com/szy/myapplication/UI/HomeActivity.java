@@ -30,7 +30,7 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MainActivity extends BaseActivity {
+public class HomeActivity extends BaseActivity {
     private GridView grid;
     private ItemHomeMenuAdapter adapter;
     private Banner banner;

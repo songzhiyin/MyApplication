@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Rect;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -21,8 +22,11 @@ public class ImageVFCodeView extends View {
     private Context mContext;
     private Paint painText, painLine;
     private int mWidth, mHeight;
-    private String message = "";
-
+    private String message = "";//文本
+    private int pading = 20;
+    private int text_width = 0;//文本的宽度
+    private int text_height = 0;//文本的高度
+    private int textpad = 6;
 
     public ImageVFCodeView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
@@ -56,11 +60,18 @@ public class ImageVFCodeView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        int x = 10;
-        int y = mHeight / 2 + 15;
-        int text_width = (int) painText.measureText(message);// 得到总体长度
-        canvas.drawText(message, x, y, painText);
-        canvas.drawLine(x - 10, y - 20, x + text_width + 10, y, painLine);
+        int x = mWidth / 2 - text_width / 2;
+        int y = mHeight / 2 + text_height / 2;
+        int textItemW = text_width / message.length();
+        for (int i = 0; i < message.length(); i++) {
+            canvas.save();
+            canvas.rotate(-10, x + (i * textItemW) + textpad, y);
+            canvas.drawText(message.substring(i, i + 1), x + (i * textItemW) + textpad, y, painText);
+            canvas.restore();
+        }
+        int xLine = x + text_width + message.length() * textpad;
+        int yLine = y - text_height;
+        canvas.drawLine(x, y, xLine, yLine, painLine);
     }
 
 
@@ -71,25 +82,24 @@ public class ImageVFCodeView extends View {
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         int heightMode = MeasureSpec.getMode(heightMeasureSpec);
         int heightSize = MeasureSpec.getSize(heightMeasureSpec);
-        int width;
-        int height;
-        //如果布局里面设置的是固定值,这里取布局里面的固定值;如果设置的是match_parent,则取父布局的大小
+        Rect rect = new Rect();
+        painText.getTextBounds(message, 0, message.length(), rect);//用一个矩形去"套"字符串,获得能完全套住字符串的最小矩形
+        text_width = rect.width();//字符串的宽度
+        text_height = rect.height();//字符串的高度
+        //如果布局里面设置的是固定值,这里取布局里面的固定值;如果设置的是match_parent,则取测量的大小
         if (widthMode == MeasureSpec.EXACTLY) {
-            width = widthSize;
-        } else {
-            //如果布局里面没有设置固定值,这里取布局的文本的宽度
-            int text_width = (int) painText.measureText(message);// 得到总体长度
-            width = text_width + 30;
+            mWidth = widthSize;
+        } else {//如果布局里面设置的wrap_content,这里取布局的文本的宽度和内边距
+            mWidth = text_width + pading * 2 + textpad * message.length();
         }
-
+        //如果布局里面设置的模式是固定值或者是设置match_parent，则取测量的大小
         if (heightMode == MeasureSpec.EXACTLY) {
-            height = heightSize;
-        } else {
-            height = 80;
+            mHeight = heightSize;
+        } else {//如果布局设置的是wrap_content，这里取布局的文本高度和内边距
+            mHeight = text_height + pading * 2;
         }
-        mWidth = width - (getPaddingBottom() + getPaddingTop());
-        mHeight = height - (getPaddingRight() + getPaddingLeft());
-        setMeasuredDimension(width, height);
+        setMeasuredDimension(mWidth, mHeight);
+
     }
 
     /**
