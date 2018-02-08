@@ -35,13 +35,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:gravity="center"
+        android:background="@color/gray_ccc"
         android:orientation="vertical">
 
-        <TextView
+        <com.szy.myapplication.View.YYFishView
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="其他内容"
-            android:textSize="24sp" />
+            android:layout_height="wrap_content" />
 
     </LinearLayout>
 </LinearLayout>
