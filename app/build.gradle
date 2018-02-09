@@ -3,6 +3,11 @@ apply plugin: 'com.android.application'
 android {
     compileSdkVersion 26
     buildToolsVersion '26.0.2'
+    packagingOptions {
+        //避免出现多个jar包中文件重复问题
+        exclude 'push_version'
+        exclude 'miui_push_version'
+    }
     defaultConfig {
         applicationId "com.szy.myapplication"
         minSdkVersion 26
@@ -11,10 +16,19 @@ android {
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+    lintOptions {
+        disable "ResourceType"
+        checkReleaseBuilds false//打包时禁止报错
+        abortOnError false//debug时禁止报错
+    }
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
         }
     }
 
