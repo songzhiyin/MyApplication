@@ -53,7 +53,7 @@ public class HomeActivity extends BaseActivity {
         adapter = new ItemHomeMenuAdapter(mContext);
         grid.setAdapter(adapter);
         banner = $(R.id.banner_main);
-        tv_code.setText("版本号：" + getAppVersionName(mContext));
+        tv_code.setText("版本号：" + getAppVersionName(mContext)+"");
     }
 
     @Override

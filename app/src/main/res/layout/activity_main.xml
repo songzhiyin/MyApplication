@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="15dp"
-        android:text="世界那么大，我想到处走走2018020911.08！"
+        android:text="世界那么大，我想到处走走"
         android:textColor="@color/homeColor"
         android:textSize="15sp" />
 

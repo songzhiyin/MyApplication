@@ -171,10 +171,9 @@
     <init>(java.lang.Throwable);
 }
 ##腾讯Bugly
-#-dontwarn com.tencent.bugly.**
-#-keep public class com.tencent.bugly.**{*;}
-#-keep class android.support.**{*;}
-#-keepattributes Signature-keepattributes Exceptions
+-dontwarn com.tencent.bugly.**
+-keep public class com.tencent.bugly.**{*;}
+-keep class android.support.**{*;}
 # RxJava RxAndroid
 -dontwarn sun.misc.**
 -keepclassmembers class rx.internal.util.unsafe.*ArrayQueue*Field* {
