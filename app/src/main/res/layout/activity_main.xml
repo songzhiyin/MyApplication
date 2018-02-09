@@ -22,7 +22,7 @@
         android:layout_height="wrap_content"
         android:gravity="center"
         android:padding="15dp"
-        android:text="世界那么大，我想到处走走！"
+        android:text="世界那么大，我想到处走走2018020911.08！"
         android:textColor="@color/homeColor"
         android:textSize="15sp" />
 
@@ -32,7 +32,17 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
+        android:layout_weight="1"
         android:numColumns="3"></GridView>
 
+    <TextView
+        android:id="@+id/tv_home_versioncode"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:layout_weight="0"
+        android:gravity="center"
+        android:text="1.0.1"
+        android:textColor="@color/homeColor"
+        android:textSize="15sp" />
 
 </LinearLayout>

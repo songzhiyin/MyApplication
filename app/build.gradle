@@ -10,11 +10,15 @@ android {
     }
     defaultConfig {
         applicationId "com.szy.myapplication"
-        minSdkVersion 26
+        minSdkVersion 15
         targetSdkVersion 26
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+//        ndk {
+//            //设置支持的SO库架构
+//            abiFilters 'armeabi'//, 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
+//        }
     }
     lintOptions {
         disable "ResourceType"
@@ -31,23 +35,31 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
         }
     }
-
+    configurations.all {
+        resolutionStrategy.force 'com.google.code.findbugs:jsr305:1.3.9'
+    }
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    //noinspection GradleCompatible
-    compile 'com.android.support:appcompat-v7:26.1.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
+    compile fileTree(dir: 'libs', include: ['*.jar'])
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
     })
+    //noinspection GradleCompatible
+    compile 'com.android.support:appcompat-v7:26.+'
+    compile 'com.android.support:support-v4:26.1.0'
+    compile 'com.android.support.constraint:constraint-layout:1.0.2'
+    testCompile 'junit:junit:4.12'
+//    三方框架
     compile project(':libraries:pullrefresh')
     compile project(':libraries:network')
     compile project(':libraries:mpandroidchart')
-    compile 'org.greenrobot:eventbus:+'
-    //导入EventBus包
-    compile 'com.youth.banner:banner:1.4.10'
-    //导入Banner包
+    compile 'org.greenrobot:eventbus:+' //导入EventBus包
+    compile 'com.youth.banner:banner:1.4.10'  //导入Banner包
+//    //腾讯Bugly框架其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
+//    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
+//    //腾讯Bugly框架其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
+//    compile 'com.tencent.bugly:nativecrashreport:latest.release'
+    //noinspection GradleCompatible
+
 }

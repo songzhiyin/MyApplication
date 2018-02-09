@@ -13,5 +13,6 @@ public class MyApplication extends Application {
     public void onCreate() {
         super.onCreate();
         ApplicationHelp.init_ibraries(this);
+//        Bugly.init(getApplicationContext(), "534332d50d", true);
     }
 }

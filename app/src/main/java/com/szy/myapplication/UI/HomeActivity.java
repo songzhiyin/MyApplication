@@ -3,11 +3,14 @@ package com.szy.myapplication.UI;
 import android.content.Context;
 import android.content.Intent;
 import android.content.MutableContextWrapper;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.os.Handler;
 import android.os.Message;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.TextUtils;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -34,6 +37,7 @@ public class HomeActivity extends BaseActivity {
     private GridView grid;
     private ItemHomeMenuAdapter adapter;
     private Banner banner;
+    private TextView tv_code;
 
 
     @Override
@@ -45,9 +49,11 @@ public class HomeActivity extends BaseActivity {
     protected void initViews() {
         super.initViews();
         grid = $(R.id.grid_main_list);
+        tv_code = $(R.id.tv_home_versioncode);
         adapter = new ItemHomeMenuAdapter(mContext);
         grid.setAdapter(adapter);
         banner = $(R.id.banner_main);
+        tv_code.setText("版本号：" + getAppVersionName(mContext));
     }
 
     @Override
@@ -150,5 +156,23 @@ public class HomeActivity extends BaseActivity {
     protected void onPause() {
         super.onPause();
         banner.stopAutoPlay();
+    }
+
+    /**
+     * 获取当前版本号
+     */
+    private String getAppVersionName(Context context) {
+        String versionName = "";
+        try {
+            PackageManager packageManager = context.getPackageManager();
+            PackageInfo packageInfo = packageManager.getPackageInfo("com.szy.myapplication", 0);
+            versionName = packageInfo.versionName;
+            if (TextUtils.isEmpty(versionName)) {
+                return "";
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return versionName;
     }
 }

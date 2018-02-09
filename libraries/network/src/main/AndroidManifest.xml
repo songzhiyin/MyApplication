@@ -2,16 +2,7 @@
     package="com.szy.lib.network">
     <application android:allowBackup="true" android:label="@string/app_name"
         android:supportsRtl="true">
-        <!--7.0安装更新增加的配置-->
-        <provider
-            android:name="android.support.v4.content.FileProvider"
-            android:authorities="${applicationId}.fileprovider"
-            android:exported="false"
-            android:grantUriPermissions="true">
-            <meta-data
-                android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@xml/file_paths" />
-        </provider>
+
         <meta-data
             android:name="com.szy.lib.network.Glide.OkHttpGlideModule"
             android:value="GlideModule">
