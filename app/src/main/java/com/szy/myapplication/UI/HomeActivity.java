@@ -11,6 +11,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -19,10 +20,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.chaychan.library.BottomBarLayout;
 import com.szy.lib.network.Glide.GlideHelper;
 import com.szy.myapplication.Adapter.ItemHomeMenuAdapter;
 import com.szy.myapplication.Base.BaseActivity;
 import com.szy.myapplication.R;
+import com.szy.myapplication.Utils.EmulatorDetectorUtil;
+import com.szy.myapplication.Utils.SimulatoUtil;
 import com.szy.myapplication.Utils.ToastUtils;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
@@ -53,7 +57,7 @@ public class HomeActivity extends BaseActivity {
         adapter = new ItemHomeMenuAdapter(mContext);
         grid.setAdapter(adapter);
         banner = $(R.id.banner_main);
-        tv_code.setText("版本号：" + getAppVersionName(mContext)+"");
+        tv_code.setText("版本号：" + getAppVersionName(mContext) + "");
     }
 
     @Override
@@ -96,6 +100,15 @@ public class HomeActivity extends BaseActivity {
                 case 9://文字验证码
                     startActivity(new Intent(mContext, TextVerifyCodeActivity.class));
                     break;
+                case 10://检测模拟器
+                    if (EmulatorDetectorUtil.isEmulator(mContext))
+                        ToastUtils.show_toast("这是模拟器");
+                    else
+                        ToastUtils.show_toast("这是真机");
+                    break;
+                case 11://轻量级的底部导航栏
+                    startActivity(new Intent(mContext, BottomBarLayoutActivity.class));
+                    break;
             }
         }
     };
@@ -114,6 +127,8 @@ public class HomeActivity extends BaseActivity {
         data.add("水波纹");
         data.add("自定义字体");
         data.add("文字验证码");
+        data.add("检测模拟器");
+        data.add("底部导航栏");
         adapter.setdate(data);
         setBanner();
     }

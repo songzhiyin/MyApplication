@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.RequiresPermission;
+import android.support.v4.app.FragmentActivity;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -27,7 +28,7 @@ import com.szy.myapplication.Utils.SystemBarUtils;
  * Created by Administrator on 2018/1/12 0012.
  */
 
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends FragmentActivity {
     protected Activity mContext;
     protected int requestedOrientation = 1111;//屏幕横竖的值
     protected String TAG;

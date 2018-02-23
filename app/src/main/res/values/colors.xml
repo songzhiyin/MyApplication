@@ -68,4 +68,8 @@
     <color name="bardata2">#ffcb80</color>
     <!--柱状图3的颜色-->
     <color name="bardata3">#ff845e</color>
+
+    <color name="tab_gb">#F3F5F4</color>
+    <color name="tab_normal_color">#515051</color>
+    <color name="tab_selected_color">#D33D3C</color>
 </resources>
