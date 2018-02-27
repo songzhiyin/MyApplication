@@ -37,11 +37,14 @@ import java.lang.ref.WeakReference;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.github.xudaojie.qrcodelib.CaptureActivity;
+
 public class HomeActivity extends BaseActivity {
     private GridView grid;
     private ItemHomeMenuAdapter adapter;
     private Banner banner;
     private TextView tv_code;
+    private int REQUEST_QR_CODE = 2010;
 
 
     @Override
@@ -109,9 +112,23 @@ public class HomeActivity extends BaseActivity {
                 case 11://轻量级的底部导航栏
                     startActivity(new Intent(mContext, BottomBarLayoutActivity.class));
                     break;
+                case 12:
+                    Intent i = new Intent(mContext, CaptureActivity.class);
+                    startActivityForResult(i, REQUEST_QR_CODE);
+                    break;
             }
         }
     };
+
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (resultCode == RESULT_OK
+                && requestCode == REQUEST_QR_CODE
+                && data != null) {
+            String result = data.getStringExtra("result");
+            ToastUtils.show_toast("扫描到的数据" + result);
+        }
+    }
 
     @Override
     protected void initdatas() {
@@ -129,6 +146,7 @@ public class HomeActivity extends BaseActivity {
         data.add("文字验证码");
         data.add("检测模拟器");
         data.add("底部导航栏");
+        data.add("二维码扫描");
         adapter.setdate(data);
         setBanner();
     }

@@ -8,6 +8,7 @@
       <module fileurl="file://$PROJECT_DIR$/libraries/mpandroidchart/mpandroidchart.iml" filepath="$PROJECT_DIR$/libraries/mpandroidchart/mpandroidchart.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraries/network/network.iml" filepath="$PROJECT_DIR$/libraries/network/network.iml" />
       <module fileurl="file://$PROJECT_DIR$/libraries/pullrefresh/pullrefresh.iml" filepath="$PROJECT_DIR$/libraries/pullrefresh/pullrefresh.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libraries/qrcodelib/qrcodelib.iml" filepath="$PROJECT_DIR$/libraries/qrcodelib/qrcodelib.iml" />
     </modules>
   </component>
 </project>

@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$/libraries/mpandroidchart" />
             <option value="$PROJECT_DIR$/libraries/network" />
             <option value="$PROJECT_DIR$/libraries/pullrefresh" />
+            <option value="$PROJECT_DIR$/libraries/qrcodelib" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
