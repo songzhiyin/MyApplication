@@ -17,6 +17,8 @@
 
 自定义字体
 
+栈内通讯框架 EventBus
+
 检测模拟器的方法
 
 轻量级底部的导航栏 BottomBarLayout
