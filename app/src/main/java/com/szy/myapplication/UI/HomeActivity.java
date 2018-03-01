@@ -113,6 +113,7 @@ public class HomeActivity extends BaseActivity {
                     startActivity(new Intent(mContext, BottomBarLayoutActivity.class));
                     break;
                 case 12:
+                    //注意6.0的安卓权限：android.permission.CAMERA、android.permission.VIBRATE、android.permission.FLASHLIGHT、android.permission.READ_EXTERNAL_STORAGE
                     Intent i = new Intent(mContext, CaptureActivity.class);
                     startActivityForResult(i, REQUEST_QR_CODE);
                     break;
