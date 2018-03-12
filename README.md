@@ -27,3 +27,5 @@
 
 banner图框架  Banner
 
+弹框的框架   TDialog
+
