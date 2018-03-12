@@ -75,6 +75,8 @@ dependencies {
     //腾讯Bugly框架其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
     compile 'com.tencent.bugly:nativecrashreport:latest.release'
     compile "com.android.support:multidex:1.0.1" // 多dex配置
+    //TDialog 基于dialogFragment的弹框框架
+    compile 'com.timmy.tdialog:tdialog:1.3.1'
     apply from: 'tinker-support.gradle'
 
 }

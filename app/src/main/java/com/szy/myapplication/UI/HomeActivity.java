@@ -1,6 +1,7 @@
 package com.szy.myapplication.UI;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.MutableContextWrapper;
 import android.content.pm.PackageInfo;
@@ -12,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
@@ -28,6 +30,10 @@ import com.szy.myapplication.R;
 import com.szy.myapplication.Utils.EmulatorDetectorUtil;
 import com.szy.myapplication.Utils.SimulatoUtil;
 import com.szy.myapplication.Utils.ToastUtils;
+import com.timmy.tdialog.TDialog;
+import com.timmy.tdialog.base.BindViewHolder;
+import com.timmy.tdialog.listener.OnBindViewListener;
+import com.timmy.tdialog.listener.OnViewClickListener;
 import com.youth.banner.Banner;
 import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
@@ -117,6 +123,9 @@ public class HomeActivity extends BaseActivity {
                     Intent i = new Intent(mContext, CaptureActivity.class);
                     startActivityForResult(i, REQUEST_QR_CODE);
                     break;
+                case 13://TDialog
+                    showTDialog();
+                    break;
             }
         }
     };
@@ -148,6 +157,7 @@ public class HomeActivity extends BaseActivity {
         data.add("检测模拟器");
         data.add("底部导航栏");
         data.add("二维码扫描");
+        data.add("TDialog");
         adapter.setdate(data);
         setBanner();
     }
@@ -208,5 +218,47 @@ public class HomeActivity extends BaseActivity {
             e.printStackTrace();
         }
         return versionName;
+    }
+    /**
+     * 展示TDialog的实例
+     */
+    private void showTDialog() {
+        new TDialog.Builder(getSupportFragmentManager())
+                .setLayoutRes(R.layout.dialog_finish_app)//设置布局
+                .setGravity(Gravity.CENTER)//设置弹框的位置
+                .setCancelableOutside(true)//设置点击弹框以外的位置，弹框是否消失
+                .setCancelable(true)//设置弹框是否可以消失
+                .setOnDismissListener(new DialogInterface.OnDismissListener() { //弹窗隐藏时回调方法
+                    @Override
+                    public void onDismiss(DialogInterface dialog) {
+//                        ToastUtils.show_toast("弹窗消失回调");
+                    }
+                })
+                .setOnBindViewListener(new OnBindViewListener() {   //通过BindViewHolder拿到控件对象,进行修改
+                    @Override
+                    public void bindView(BindViewHolder bindViewHolder) {
+                        bindViewHolder.setText(R.id.tv_dialog_title, "这是基于dialogFragment的弹框框架");
+                        bindViewHolder.setText(R.id.tv_dialog_lift, "获取");
+                        bindViewHolder.setText(R.id.tv_dialog_right, "关闭");
+                    }
+                })
+                .addOnClickListener(R.id.tv_dialog_lift, R.id.tv_dialog_right)   //添加进行点击控件的id
+                .setOnViewClickListener(new OnViewClickListener() {     //View控件点击事件回调
+                    @Override
+                    public void onViewClick(BindViewHolder viewHolder, View view, TDialog tDialog) {
+                        switch (view.getId()) {
+                            case R.id.tv_dialog_lift:
+                                TextView textView = viewHolder.getView(R.id.tv_dialog_title);
+                                ToastUtils.show_toast("提示内容：" + textView.getText().toString());
+                                break;
+                            case R.id.tv_dialog_right:
+                                ToastUtils.show_toast("关闭dialog");
+                                tDialog.dismiss();
+                                break;
+                        }
+                    }
+                })
+                .create()
+                .show();
     }
 }
