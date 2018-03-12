@@ -80,9 +80,10 @@
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:theme="@android:style/Theme.Translucent" />
-        <activity android:name=".UI.BottomBarLayoutActivity"></activity>
-        <!--二维码界面-->
+        <activity android:name=".UI.BottomBarLayoutActivity" />
+        <!-- 二维码界面 -->
         <activity android:name="io.github.xudaojie.qrcodelib.CaptureActivity" />
+        <activity android:name=".UI.ListScrollActivity"></activity>
     </application>
 
 </manifest>

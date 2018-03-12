@@ -126,6 +126,9 @@ public class HomeActivity extends BaseActivity {
                 case 13://TDialog
                     showTDialog();
                     break;
+                case 14://多个列表上下左右滑动时，可以联动
+                    startActivity(new Intent(mContext, ListScrollActivity.class));
+                    break;
             }
         }
     };
@@ -158,6 +161,7 @@ public class HomeActivity extends BaseActivity {
         data.add("底部导航栏");
         data.add("二维码扫描");
         data.add("TDialog");
+        data.add("多列表上下左右联动滑动");
         adapter.setdate(data);
         setBanner();
     }
@@ -219,6 +223,7 @@ public class HomeActivity extends BaseActivity {
         }
         return versionName;
     }
+
     /**
      * 展示TDialog的实例
      */
