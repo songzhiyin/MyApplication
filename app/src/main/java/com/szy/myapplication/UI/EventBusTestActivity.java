@@ -110,5 +110,6 @@ public class EventBusTestActivity extends BaseActivity {
         super.onDestroy();
         //4、取消注册，销毁监听事件
         EventBus.getDefault().unregister(this);
+
     }
 }

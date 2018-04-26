@@ -80,6 +80,12 @@ dependencies {
     compile 'com.android.support:design:26.1.0'
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
     compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'
+//    RxJava
+
+    compile 'io.reactivex:rxjava:1.1.6'
+    compile 'io.reactivex:rxandroid:1.2.1'
+
     apply from: 'tinker-support.gradle'
 
+    compile 'org.jetbrains:annotations-java5:15.0'
 }

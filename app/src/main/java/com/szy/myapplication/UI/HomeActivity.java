@@ -1,13 +1,19 @@
 package com.szy.myapplication.UI;
 
+import android.app.Notification;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.MutableContextWrapper;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
+import android.graphics.BitmapFactory;
+import android.os.Build;
 import android.os.Handler;
 import android.os.Message;
+import android.support.v4.app.NotificationCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -23,9 +29,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.chaychan.library.BottomBarLayout;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.szy.lib.network.Glide.GlideHelper;
+import com.szy.lib.network.Retrofit.gson.GsonConverterFactory;
 import com.szy.myapplication.Adapter.ItemHomeMenuAdapter;
 import com.szy.myapplication.Base.BaseActivity;
+import com.szy.myapplication.Entity.Adete;
 import com.szy.myapplication.R;
 import com.szy.myapplication.Utils.EmulatorDetectorUtil;
 import com.szy.myapplication.Utils.SimulatoUtil;
@@ -40,6 +50,7 @@ import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
 import java.lang.ref.WeakReference;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -51,7 +62,7 @@ public class HomeActivity extends BaseActivity {
     private Banner banner;
     private TextView tv_code;
     private int REQUEST_QR_CODE = 2010;
-
+    private StringBuffer res = new StringBuffer();
 
     @Override
     protected int getContentViewResId() {
@@ -67,6 +78,24 @@ public class HomeActivity extends BaseActivity {
         grid.setAdapter(adapter);
         banner = $(R.id.banner_main);
         tv_code.setText("版本号：" + getAppVersionName(mContext) + "");
+        setdata();
+        setNotificationChannel();
+    }
+
+    private void setdata() {
+        res.append("{\n" +
+                "    \"Code\":0,\n" +
+                "    \"Result\":{\n" +
+                "        \"icons\":{\n" +
+                "            \"loversSelected\":\"30\",\n" +
+                "            \"loversNoSelected\":\"30\",\n" +
+                "            \"opSelected\":\"30\",\n" +
+                "            \"selected\":\"30\",\n" +
+                "            \"noSelected\":\"30\",\n" +
+                "            \"loversOpSelected\":\"30\"\n" +
+                "        }\n" +
+                "    }\n" +
+                "}  ");
     }
 
     @Override
@@ -79,13 +108,13 @@ public class HomeActivity extends BaseActivity {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             switch (position) {
-                case 0:
+                case 0://recyview
                     startActivity(new Intent(mContext, MessageListActivity.class));
                     break;
-                case 1:
+                case 1://retrofit
                     startActivity(new Intent(mContext, NetWorkActivity.class));
                     break;
-                case 2:
+                case 2://EventBus
                     startActivity(new Intent(mContext, EventBusTestActivity.class));
                     break;
                 case 3://贝塞尔曲线
@@ -129,9 +158,55 @@ public class HomeActivity extends BaseActivity {
                 case 14://多个列表上下左右滑动时，可以联动
                     startActivity(new Intent(mContext, ListScrollActivity.class));
                     break;
+                case 15://将json字符串转化为模型
+                    Gson gson = new Gson();
+                    Type type = new TypeToken<Adete>() {
+                    }.getType();
+                    String asss = String.valueOf(res);
+                    Adete adete = gson.fromJson(asss, type);
+                    adete.getCode();
+                    break;
+                case 16://rxjava的demo用法
+                    startActivity(new Intent(mContext, RxjavaActivity.class));
+                    break;
+                case 17://android 8.0的通知适配
+                    sendNotication();
+                    break;
             }
         }
     };
+
+    /**
+     * 设置android8.0的通知渠道，这是android8.0新增的适配
+     */
+    private void setNotificationChannel() {
+        //判断设备的android版本是否大于8.0
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            String channelId = "chat";//渠道id
+            String channelName = "聊天消息";//渠道名称
+            int importance = NotificationManager.IMPORTANCE_HIGH;//渠道级别
+            NotificationChannel channel = new NotificationChannel(channelId, channelName, importance);
+            NotificationManager notificationManager = (NotificationManager) getSystemService(
+                    NOTIFICATION_SERVICE);
+            notificationManager.createNotificationChannel(channel);
+        }
+    }
+
+    /**
+     * 发送通知
+     */
+    private void sendNotication() {
+        NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        Notification notification= new NotificationCompat.Builder(this, "chat")
+                .setContentTitle("收到一条聊天消息")
+                .setContentText("今天中午吃什么？")
+                .setWhen(System.currentTimeMillis())
+                .setSmallIcon(R.drawable.ic_launcher_foreground)
+                .setLargeIcon(BitmapFactory.decodeResource(getResources(), R.drawable.ic_launcher_foreground))
+                .setAutoCancel(true)
+                .build();
+        manager.notify(1, notification);
+    }
 
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -162,6 +237,9 @@ public class HomeActivity extends BaseActivity {
         data.add("二维码扫描");
         data.add("TDialog");
         data.add("多列表上下左右联动滑动");
+        data.add("Gson转化");
+        data.add("RXjava");
+        data.add("notication");
         adapter.setdate(data);
         setBanner();
     }

@@ -83,7 +83,8 @@
         <activity android:name=".UI.BottomBarLayoutActivity" />
         <!-- 二维码界面 -->
         <activity android:name="io.github.xudaojie.qrcodelib.CaptureActivity" />
-        <activity android:name=".UI.ListScrollActivity"></activity>
+        <activity android:name=".UI.ListScrollActivity" />
+        <activity android:name=".UI.RxjavaActivity"></activity>
     </application>
 
 </manifest>
