@@ -147,7 +147,7 @@ public class HomeActivity extends BaseActivity {
                 case 11://轻量级的底部导航栏
                     startActivity(new Intent(mContext, BottomBarLayoutActivity.class));
                     break;
-                case 12:
+                case 12://二维码扫描
                     //注意6.0的安卓权限：android.permission.CAMERA、android.permission.VIBRATE、android.permission.FLASHLIGHT、android.permission.READ_EXTERNAL_STORAGE
                     Intent i = new Intent(mContext, CaptureActivity.class);
                     startActivityForResult(i, REQUEST_QR_CODE);
@@ -171,6 +171,9 @@ public class HomeActivity extends BaseActivity {
                     break;
                 case 17://android 8.0的通知适配
                     sendNotication();
+                    break;
+                case 18://ConstraintLayout布局的联系
+                    startActivity(new Intent(mContext, ConstraintLayoutActivity.class));
                     break;
             }
         }
@@ -197,7 +200,7 @@ public class HomeActivity extends BaseActivity {
      */
     private void sendNotication() {
         NotificationManager manager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-        Notification notification= new NotificationCompat.Builder(this, "chat")
+        Notification notification = new NotificationCompat.Builder(this, "chat")
                 .setContentTitle("收到一条聊天消息")
                 .setContentText("今天中午吃什么？")
                 .setWhen(System.currentTimeMillis())
@@ -240,6 +243,7 @@ public class HomeActivity extends BaseActivity {
         data.add("Gson转化");
         data.add("RXjava");
         data.add("notication");
+        data.add("ConstraintLayout");
         adapter.setdate(data);
         setBanner();
     }

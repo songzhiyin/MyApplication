@@ -40,6 +40,7 @@ public class ListScrollActivity extends BaseActivity {
         public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
             super.onScrolled(recyclerView, dx, dy);
             // 当单元（房间）列表滑动时，楼层列表也滑动
+
             mRvLayer.scrollBy(dx, dy);
         }
     };
