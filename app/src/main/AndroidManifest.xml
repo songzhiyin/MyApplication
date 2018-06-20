@@ -81,7 +81,8 @@
         <activity android:name=".UI.ListScrollActivity" />
         <activity android:name=".UI.RxjavaActivity" />
         <activity android:name=".UI.CancasBitmapActivity" />
-        <activity android:name=".UI.ConstraintLayoutActivity"></activity>
+        <activity android:name=".UI.ConstraintLayoutActivity" />
+        <activity android:name=".UI.DrawerLayoutActivity"></activity>
     </application>
 
 </manifest>

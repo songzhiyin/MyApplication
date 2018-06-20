@@ -175,6 +175,9 @@ public class HomeActivity extends BaseActivity {
                 case 18://ConstraintLayout布局的联系
                     startActivity(new Intent(mContext, ConstraintLayoutActivity.class));
                     break;
+                case 19://DrawerLayout侧滑菜单组件
+                    startActivity(new Intent(mContext, DrawerLayoutActivity.class));
+                    break;
             }
         }
     };
@@ -244,6 +247,7 @@ public class HomeActivity extends BaseActivity {
         data.add("RXjava");
         data.add("notication");
         data.add("ConstraintLayout");
+        data.add("DrawerLayout侧滑菜单");
         adapter.setdate(data);
         setBanner();
     }
