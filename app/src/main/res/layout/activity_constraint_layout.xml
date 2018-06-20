@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <include layout="@layout/include_layout_view_statusbar"></include>
 
         <include layout="@layout/include_layout_view_title_layout"></include>
     </LinearLayout>

@@ -44,6 +44,7 @@
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
+    <!-- 浮动框权限 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
@@ -82,7 +83,12 @@
         <activity android:name=".UI.RxjavaActivity" />
         <activity android:name=".UI.CancasBitmapActivity" />
         <activity android:name=".UI.ConstraintLayoutActivity" />
-        <activity android:name=".UI.DrawerLayoutActivity"></activity>
+        <activity android:name=".UI.DrawerLayoutActivity" />
+        <activity android:name=".UI.FloatingFrameActivity"></activity>
+
+        <service android:name=".service.FloatingButtonService"></service>
+        <service android:name=".service.FloatingImageDisplayService"></service>
+        <service android:name=".service.FloatingVideoService"></service>
     </application>
 
 </manifest>

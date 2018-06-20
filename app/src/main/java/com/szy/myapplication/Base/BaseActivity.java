@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import com.gyf.barlibrary.ImmersionBar;
 import com.lib.szy.pullrefresh.PullreFresh.PullRecyclerView;
 import com.szy.myapplication.R;
 import com.szy.myapplication.Retrofit.HttpModel;
@@ -32,10 +33,6 @@ public abstract class BaseActivity extends FragmentActivity {
     protected Activity mContext;
     protected int requestedOrientation = 1111;//屏幕横竖的值
     protected String TAG;
-    /**
-     * 状态栏
-     */
-    protected View view_statusbar;
     //标题、右边按钮
     protected TextView tv_title, tv_right;
     //返回按钮、右边图片按钮
@@ -48,7 +45,7 @@ public abstract class BaseActivity extends FragmentActivity {
     protected boolean isFirstLoadck = true;//是否是首次加载，默认是true
     protected boolean isLoadDataFinishck = false;//数据是否加载完毕，默认是false
     protected HttpModel httpModel;
-
+    protected ImmersionBar mImmersionBar;//沉浸式控制器
 
     @LayoutRes
     protected abstract int getContentViewResId();
@@ -82,17 +79,12 @@ public abstract class BaseActivity extends FragmentActivity {
     /**
      * 初始化状态栏
      */
-    private void initDefaultViews() {
-        //设置状态栏高度
-        view_statusbar = findViewById(R.id.view_statusbar);
-        if (view_statusbar != null) {
-            LinearLayout.LayoutParams ll = new LinearLayout.LayoutParams(
-                    ViewGroup.LayoutParams.MATCH_PARENT,
-                    SystemBarUtils.getStatusBarHeight(this)
-            );
-            view_statusbar.setBackgroundResource(R.color.homeColor);
-            view_statusbar.setLayoutParams(ll);
-        }
+    protected void initDefaultViews() {
+        mImmersionBar = ImmersionBar.with(this)
+                .keyboardEnable(true)//解决软键盘与底部输入框冲突问题
+                .fitsSystemWindows(true)  //使用该属性,必须指定状态栏颜色
+                .statusBarColor(R.color.homeColor);
+        mImmersionBar.init();
     }
 
     /**
@@ -376,5 +368,10 @@ public abstract class BaseActivity extends FragmentActivity {
         super.startActivityForResult(intent, requestCode);
         overridePendingTransition(R.anim.zoomin, R.anim.zoomout);//设置界面跳转时的动画效果
     }
-
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (mImmersionBar != null)
+            mImmersionBar.destroy();  //必须调用该方法，防止内存泄漏，不调用该方法，如果界面bar发生改变，在不关闭app的情况下，退出此界面再进入将记忆最后一次bar改变的状态
+    }
 }

@@ -82,6 +82,10 @@ public class HomeActivity extends BaseActivity {
         setNotificationChannel();
     }
 
+    @Override
+    protected void initDefaultViews() {
+    }
+
     private void setdata() {
         res.append("{\n" +
                 "    \"Code\":0,\n" +
@@ -178,6 +182,9 @@ public class HomeActivity extends BaseActivity {
                 case 19://DrawerLayout侧滑菜单组件
                     startActivity(new Intent(mContext, DrawerLayoutActivity.class));
                     break;
+                case 20://浮动框
+                    startActivity(new Intent(mContext, FloatingFrameActivity.class));
+                    break;
             }
         }
     };
@@ -247,7 +254,8 @@ public class HomeActivity extends BaseActivity {
         data.add("RXjava");
         data.add("notication");
         data.add("ConstraintLayout");
-        data.add("DrawerLayout侧滑菜单");
+        data.add("侧滑菜单");
+        data.add("浮动框");
         adapter.setdate(data);
         setBanner();
     }

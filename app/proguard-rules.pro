@@ -132,6 +132,8 @@
 -keep class com.youth.banner.** {
     *;
  }
+# 沉浸式框架
+-keep class com.gyf.barlibrary.* {*;}
 #entity
 -keep class com.szy.myapplication.Entity.** {*;}
 -dontwarn com.szy.myapplication.Entity.**

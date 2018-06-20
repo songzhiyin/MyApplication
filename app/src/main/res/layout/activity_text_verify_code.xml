@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context="com.szy.myapplication.UI.TextVerifyCodeActivity">
 
-    <include layout="@layout/include_layout_view_statusbar"></include>
 
     <include layout="@layout/include_layout_view_title_layout"></include>
 

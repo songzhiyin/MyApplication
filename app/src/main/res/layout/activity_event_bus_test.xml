@@ -9,7 +9,6 @@
 
     tools:context="com.szy.myapplication.UI.EventBusTestActivity">
 
-    <include layout="@layout/include_layout_view_statusbar"></include>
 
     <include layout="@layout/include_layout_view_title_layout"></include>
 
