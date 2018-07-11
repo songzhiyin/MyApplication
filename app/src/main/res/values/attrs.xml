@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="RangeSelectorView">
+        <attr name="allnumber" format="integer"></attr>
+        <attr name="radius" format="integer"></attr>
+        <attr name="line_width" format="float"></attr>
+        <attr name="line_color" format="color"></attr>
+        <attr name="circle_color" format="color"></attr>
+    </declare-styleable>
+</resources>

@@ -18,7 +18,12 @@
         android:layout_width="match_parent"
         android:layout_height="100dp"
         android:paddingLeft="60dp"
-        android:paddingRight="60dp" />
+        android:paddingRight="60dp"
+        app:allnumber="500"
+        app:circle_color="@color/blue_color"
+        app:line_color="@color/tv_black"
+        app:line_width="6"
+        app:radius="40" />
 
     <EditText
         android:id="@+id/edt_amoney"
@@ -32,7 +37,7 @@
         android:hint="最大金额"
         android:inputType="number"
         android:paddingLeft="6dp"
-        android:text="300"
+        android:text="500"
         android:textColor="#f5f"
         android:textColorHint="#f5f"
         android:textSize="14sp" />

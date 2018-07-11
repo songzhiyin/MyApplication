@@ -1,22 +1,27 @@
 package com.szy.myapplication.View;
 
+import android.annotation.SuppressLint;
 import android.app.usage.UsageEvents;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.graphics.Typeface;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Toast;
 
+import com.szy.myapplication.R;
+
 public class RangeSelectorView extends View {
     private int xLift, xRight, yCentre;//左圆点的X坐标、右圆点的X坐标、直线的Y轴坐标
     private int mXLift, mXRight;//左边界限、右边界限
     private int mWidth, mHeight;
-    private int radius = 44;
-    private int allNumber = 300, liftNumer = 1, rightNumber = 300;
+    private int radius = 6;
+    private int allNumber = 1, liftNumer = 1, rightNumber = 1;
     private Context mContext;
     private Paint paint_line;
     private Paint paint_circle;
@@ -25,33 +30,35 @@ public class RangeSelectorView extends View {
     private int code = 0;//触摸事件的类型
     private int difference = 0;//点击点和圆点的差值
 
-    public RangeSelectorView(Context context) {
-        super(context);
-        initView(context);
-    }
 
     public RangeSelectorView(Context context, @Nullable AttributeSet attrs) {
         super(context, attrs);
-        initView(context);
+        initView(context, attrs);
     }
 
     public RangeSelectorView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
-        initView(context);
+        initView(context, attrs);
     }
 
-    private void initView(Context context) {
+    @SuppressLint("ResourceAsColor")
+    private void initView(Context context, @Nullable AttributeSet attrs) {
         this.mContext = context;
+        TypedArray array = mContext.obtainStyledAttributes(attrs, R.styleable.RangeSelectorView);
         paint_line = new Paint();
-        paint_line.setColor(Color.GRAY);
+        paint_line.setColor(array.getColor(R.styleable.RangeSelectorView_line_color, R.color.gray_666));
         paint_line.setAntiAlias(true);
         paint_line.setStyle(Paint.Style.FILL);
-        paint_line.setStrokeWidth(5f);
+        paint_line.setStrokeWidth(array.getFloat(R.styleable.RangeSelectorView_line_width, 6f));
         paint_circle = new Paint();
         paint_circle.setStyle(Paint.Style.FILL);
         paint_circle.setAntiAlias(true);
-        paint_circle.setColor(Color.BLUE);
-        paint_line.setStrokeWidth(5f);
+        paint_circle.setColor(array.getColor(R.styleable.RangeSelectorView_circle_color, R.color.red));
+        paint_circle.setStrokeWidth(array.getFloat(R.styleable.RangeSelectorView_line_width, 6f));
+        allNumber = array.getInteger(R.styleable.RangeSelectorView_allnumber, 100);
+        rightNumber = allNumber;
+        radius = array.getInteger(R.styleable.RangeSelectorView_radius, 20);
+
     }
 
     @Override
