@@ -1,4 +1,4 @@
-package com.szy.myapplication.UI;
+package com.szy.myapplication.UI.View;
 
 import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;

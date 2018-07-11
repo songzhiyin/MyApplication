@@ -1,4 +1,4 @@
-package com.szy.myapplication.UI;
+package com.szy.myapplication.UI.Util;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.szy.myapplication.Base.BaseActivity;
 import com.szy.myapplication.R;
+import com.szy.myapplication.Utils.ToastUtils;
 import com.szy.myapplication.service.FloatingButtonService;
 import com.szy.myapplication.service.FloatingImageDisplayService;
 import com.szy.myapplication.service.FloatingVideoService;
@@ -40,28 +41,42 @@ public class FloatingFrameActivity extends BaseActivity {
         setBackOnclickListner(mContext);
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == 0) {
-            if (!Settings.canDrawOverlays(this)) {
-                Toast.makeText(this, "授权失败", Toast.LENGTH_SHORT).show();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (!Settings.canDrawOverlays(this)) {
+                    Toast.makeText(this, "授权失败", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "授权成功", Toast.LENGTH_SHORT).show();
+                    startService(new Intent(mContext, FloatingButtonService.class));
+                }
             } else {
-                Toast.makeText(this, "授权成功", Toast.LENGTH_SHORT).show();
                 startService(new Intent(mContext, FloatingButtonService.class));
+//                ToastUtils.show_toast("手机安卓版本过低，必须>=android6.0才行");
             }
         } else if (requestCode == 1) {
-            if (!Settings.canDrawOverlays(this)) {
-                Toast.makeText(this, "授权失败", Toast.LENGTH_SHORT).show();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (!Settings.canDrawOverlays(this)) {
+                    Toast.makeText(this, "授权失败", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "授权成功", Toast.LENGTH_SHORT).show();
+                    startService(new Intent(mContext, FloatingImageDisplayService.class));
+                }
             } else {
-                Toast.makeText(this, "授权成功", Toast.LENGTH_SHORT).show();
+//                ToastUtils.show_toast("手机安卓版本过低，必须>=android6.0才行");
                 startService(new Intent(mContext, FloatingImageDisplayService.class));
             }
         } else if (requestCode == 2) {
-            if (!Settings.canDrawOverlays(this)) {
-                Toast.makeText(this, "授权失败", Toast.LENGTH_SHORT).show();
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                if (!Settings.canDrawOverlays(this)) {
+                    Toast.makeText(this, "授权失败", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(this, "授权成功", Toast.LENGTH_SHORT).show();
+                    startService(new Intent(mContext, FloatingVideoService.class));
+                }
             } else {
-                Toast.makeText(this, "授权成功", Toast.LENGTH_SHORT).show();
+//                ToastUtils.show_toast("手机安卓版本过低，必须>=android6.0才行");
                 startService(new Intent(mContext, FloatingVideoService.class));
             }
         }
@@ -78,6 +93,9 @@ public class FloatingFrameActivity extends BaseActivity {
             } else {
                 startService(new Intent(mContext, FloatingButtonService.class));
             }
+        } else {
+//            ToastUtils.show_toast("手机安卓版本过低，必须>=android6.0才行");
+            startService(new Intent(mContext, FloatingButtonService.class));
         }
     }
 
@@ -88,36 +106,47 @@ public class FloatingFrameActivity extends BaseActivity {
         stopService(new Intent(mContext, FloatingButtonService.class));
     }
 
-    @SuppressLint("NewApi")
     public void startFloatingImageDisplayService(View view) {
         if (FloatingImageDisplayService.isStarted) {
             return;
         }
-        if (!Settings.canDrawOverlays(this)) {
-            Toast.makeText(this, "当前无权限，请授权", Toast.LENGTH_SHORT);
-            startActivityForResult(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName())), 1);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                Toast.makeText(this, "当前无权限，请授权", Toast.LENGTH_SHORT);
+                startActivityForResult(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName())), 1);
+            } else {
+                startService(new Intent(mContext, FloatingImageDisplayService.class));
+            }
         } else {
+//            ToastUtils.show_toast("手机安卓版本过低，必须>=android6.0才行");
             startService(new Intent(mContext, FloatingImageDisplayService.class));
         }
     }
+
     public void stopFloatingImageDisplayService(View view) {
         if (!FloatingImageDisplayService.isStarted) {
             return;
         }
         stopService(new Intent(mContext, FloatingImageDisplayService.class));
     }
-    @SuppressLint("NewApi")
+
     public void startFloatingVideoService(View view) {
         if (FloatingVideoService.isStarted) {
             return;
         }
-        if (!Settings.canDrawOverlays(this)) {
-            Toast.makeText(this, "当前无权限，请授权", Toast.LENGTH_SHORT);
-            startActivityForResult(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName())), 2);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+            if (!Settings.canDrawOverlays(this)) {
+                Toast.makeText(this, "当前无权限，请授权", Toast.LENGTH_SHORT);
+                startActivityForResult(new Intent(Settings.ACTION_MANAGE_OVERLAY_PERMISSION, Uri.parse("package:" + getPackageName())), 2);
+            } else {
+                startService(new Intent(mContext, FloatingVideoService.class));
+            }
         } else {
+//            ToastUtils.show_toast("手机安卓版本过低，必须>=android6.0才行");
             startService(new Intent(mContext, FloatingVideoService.class));
         }
     }
+
     public void stopFloatingVideoService(View view) {
         if (!FloatingVideoService.isStarted) {
             return;

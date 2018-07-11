@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".UI.View.RangeSelectorViewActivity">
+
+    <include
+        android:id="@+id/include3"
+        layout="@layout/include_layout_view_title_layout"></include>
+
+    <com.szy.myapplication.View.RangeSelectorView
+        android:id="@+id/ragse"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:paddingLeft="60dp"
+        android:paddingRight="60dp" />
+
+    <EditText
+        android:id="@+id/edt_amoney"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="20dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:background="#f0f0f0"
+        android:gravity="center_vertical"
+        android:hint="最大金额"
+        android:inputType="number"
+        android:paddingLeft="6dp"
+        android:text="300"
+        android:textColor="#f5f"
+        android:textColorHint="#f5f"
+        android:textSize="14sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <EditText
+            android:id="@+id/edt_lift"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1"
+            android:background="#f0f0f0"
+            android:gravity="center_vertical"
+            android:hint="左侧金额"
+            android:inputType="number"
+            android:paddingLeft="6dp"
+            android:text="0"
+            android:textColor="#f5f"
+            android:textColorHint="#f5f"
+            android:textSize="14sp" />
+
+        <EditText
+            android:id="@+id/edt_right"
+            android:layout_width="100dp"
+            android:layout_height="40dp"
+            android:layout_marginLeft="12dp"
+            android:layout_marginRight="12dp"
+            android:layout_weight="1"
+            android:background="#f0f0f0"
+            android:gravity="center_vertical"
+            android:hint="右侧金额"
+            android:inputType="number"
+            android:paddingLeft="6dp"
+            android:text="300"
+            android:textColor="#f5f"
+            android:textColorHint="#f5f"
+            android:textSize="14sp" />
+
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_confirm"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_margin="30dp"
+        android:background="#e1e1e1"
+        android:gravity="center"
+        android:text="确定"
+        android:textColor="#0f0f0f" />
+</LinearLayout>

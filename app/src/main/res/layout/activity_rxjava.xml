@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.szy.myapplication.UI.RxjavaActivity">
+    tools:context="com.szy.myapplication.UI.Util.RxjavaActivity">
 
 
     <include layout="@layout/include_layout_view_title_layout"></include>

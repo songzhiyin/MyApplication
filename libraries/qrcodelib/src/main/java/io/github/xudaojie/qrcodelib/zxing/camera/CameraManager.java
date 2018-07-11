@@ -249,6 +249,7 @@ public final class CameraManager {
                     leftOffset + width + offsetX,
                     topOffset + height + offsetY);
             Log.d(TAG, "Calculated framing rect: " + framingRect);
+//            framingRect=new Rect(100,100,500,300);
         }
         return framingRect;
     }
@@ -270,6 +271,7 @@ public final class CameraManager {
             rect.top = rect.top * cameraResolution.x / screenResolution.y;
             rect.bottom = rect.bottom * cameraResolution.x / screenResolution.y;
             framingRectInPreview = rect;
+//            framingRectInPreview=new Rect(0,0, rect.right,rect.bottom);
         }
         return framingRectInPreview;
     }

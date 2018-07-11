@@ -1,4 +1,4 @@
-package com.szy.myapplication.UI;
+package com.szy.myapplication.UI.Util;
 
 import android.view.View;
 import android.widget.TextView;
@@ -19,6 +19,9 @@ import java.util.Map;
 
 import okhttp3.RequestBody;
 
+/**
+ * 网络请求
+ */
 public class NetWorkActivity extends BaseActivity {
     private TextView tv_network_post;
     private TextView tv_network_get;

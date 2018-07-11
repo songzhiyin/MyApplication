@@ -1,4 +1,4 @@
-package com.szy.myapplication.UI;
+package com.szy.myapplication.UI.View;
 
 import android.animation.Animator;
 import android.animation.ValueAnimator;
@@ -23,6 +23,9 @@ import com.szy.myapplication.R;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 贝塞尔曲线
+ */
 public class BezierDemoActivity extends BaseActivity {
     private ItemBezierAdapter adapter;
     private ImageView img_shopp;

@@ -78,7 +78,10 @@ public class LineChartUtils {
                 return v + "";
             }
         });
-        barChart.getAxisRight().setEnabled(false);
+//        barChart.getAxisRight().setEnabled(false);
+        barChart.getAxisRight().setDrawGridLines(false);
+        barChart.getAxisRight().setDrawAxisLine(false);
+        barChart.getAxisRight().setTextColor(Color.WHITE);
         //图例设置
         Legend legend = barChart.getLegend();
         legend.setHorizontalAlignment(Legend.LegendHorizontalAlignment.LEFT);

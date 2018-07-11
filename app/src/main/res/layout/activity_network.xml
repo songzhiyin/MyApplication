@@ -7,7 +7,7 @@
     android:background="@color/white"
     android:gravity="center_horizontal"
     android:orientation="vertical"
-    tools:context="com.szy.myapplication.UI.NetWorkActivity">
+    tools:context="com.szy.myapplication.UI.Util.NetWorkActivity">
 
 
     <include layout="@layout/include_layout_view_title_layout"></include>

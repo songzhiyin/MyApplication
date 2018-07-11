@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UI.layout.CoordinatorLayoutActivity">
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/include_layout_view_title_layout"></include>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                app:layout_scrollFlags="scroll|snap"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:text="第一条数据这还少时间长卡市场就安上" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:text="后视镜擦换算成检测卡是陈建安看出来是" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:text="检测卡是创建时间长卡市场就是插卡式就是插卡式" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="6dp"
+                    android:text="才看见爱上课程教案就是插卡式时间长卡市场空间素材是" />
+            </LinearLayout>
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/banner2"
+                app:layout_scrollFlags="scroll" />
+
+
+        </android.support.design.widget.AppBarLayout>
+
+        <com.lib.szy.pullrefresh.PullreFresh.PullRecyclerView
+            android:id="@+id/recylist_message_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        </com.lib.szy.pullrefresh.PullreFresh.PullRecyclerView>
+    </android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

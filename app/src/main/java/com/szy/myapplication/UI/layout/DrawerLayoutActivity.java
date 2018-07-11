@@ -1,4 +1,4 @@
-package com.szy.myapplication.UI;
+package com.szy.myapplication.UI.layout;
 
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;

@@ -62,33 +62,36 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".UI.MessageListActivity" />
-        <activity android:name=".UI.NetWorkActivity" />
-        <activity android:name=".UI.EventBusTestActivity" />
-        <activity android:name=".UI.BezierDemoActivity" />
-        <activity android:name=".UI.ScrollViewActivity" />
-        <activity android:name=".UI.RecyScrollActivity" />
-        <activity android:name=".UI.MpAndroidChartActivity" />
-        <activity android:name=".UI.WaterWaveActivity" />
-        <activity android:name=".UI.TextviewActivity" />
-        <activity android:name=".UI.TextVerifyCodeActivity" />
+        <activity android:name=".UI.View.MessageListActivity" />
+        <activity android:name=".UI.Util.NetWorkActivity" />
+        <activity android:name=".UI.Util.EventBusTestActivity" />
+        <activity android:name=".UI.View.BezierDemoActivity" />
+        <activity android:name=".UI.View.ScrollViewActivity" />
+        <activity android:name=".UI.View.RecyScrollActivity" />
+        <activity android:name=".UI.View.MpAndroidChartActivity" />
+        <activity android:name=".UI.View.WaterWaveActivity" />
+        <activity android:name=".UI.View.TextviewActivity" />
+        <activity android:name=".UI.View.TextVerifyCodeActivity" />
         <activity
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:theme="@android:style/Theme.Translucent" />
-        <activity android:name=".UI.BottomBarLayoutActivity" />
+        <activity android:name=".UI.layout.BottomBarLayoutActivity" />
         <!-- 二维码界面 -->
         <activity android:name="io.github.xudaojie.qrcodelib.CaptureActivity" />
-        <activity android:name=".UI.ListScrollActivity" />
-        <activity android:name=".UI.RxjavaActivity" />
-        <activity android:name=".UI.CancasBitmapActivity" />
-        <activity android:name=".UI.ConstraintLayoutActivity" />
-        <activity android:name=".UI.DrawerLayoutActivity" />
-        <activity android:name=".UI.FloatingFrameActivity"></activity>
+        <activity android:name=".UI.View.ListScrollActivity" />
+        <activity android:name=".UI.Util.RxjavaActivity" />
+        <activity android:name=".UI.View.CancasBitmapActivity" />
+        <activity android:name=".UI.layout.ConstraintLayoutActivity" />
+        <activity android:name=".UI.layout.DrawerLayoutActivity" />
+        <activity android:name=".UI.Util.FloatingFrameActivity" />
 
-        <service android:name=".service.FloatingButtonService"></service>
-        <service android:name=".service.FloatingImageDisplayService"></service>
-        <service android:name=".service.FloatingVideoService"></service>
+        <service android:name=".service.FloatingButtonService" />
+        <service android:name=".service.FloatingImageDisplayService" />
+        <service android:name=".service.FloatingVideoService" />
+
+        <activity android:name=".UI.layout.CoordinatorLayoutActivity" />
+        <activity android:name=".UI.View.RangeSelectorViewActivity"></activity>
     </application>
 
 </manifest>

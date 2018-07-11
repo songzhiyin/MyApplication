@@ -1,4 +1,4 @@
-package com.szy.myapplication.UI;
+package com.szy.myapplication.UI.View;
 
 import android.graphics.Color;
 import android.support.v7.app.AppCompatActivity;
@@ -21,6 +21,9 @@ import com.yqritc.recyclerviewflexibledivider.HorizontalDividerItemDecoration;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * 多个listview联动滑动
+ */
 public class ListScrollActivity extends BaseActivity {
     private RecyclerView mRvLayer;
     private RecyclerView mRvRoom;

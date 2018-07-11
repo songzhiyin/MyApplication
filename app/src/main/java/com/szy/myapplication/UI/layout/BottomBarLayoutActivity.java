@@ -1,4 +1,4 @@
-package com.szy.myapplication.UI;
+package com.szy.myapplication.UI.layout;
 
 import android.os.Handler;
 import android.support.v4.app.Fragment;

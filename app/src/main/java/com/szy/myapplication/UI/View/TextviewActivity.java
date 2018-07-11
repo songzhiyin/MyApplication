@@ -1,4 +1,4 @@
-package com.szy.myapplication.UI;
+package com.szy.myapplication.UI.View;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,24 +7,19 @@ import com.szy.myapplication.Base.BaseActivity;
 import com.szy.myapplication.R;
 
 /**
- * 绘制view和缩小动画
+ * 自定义字体
  */
-public class CancasBitmapActivity extends BaseActivity {
+public class TextviewActivity extends BaseActivity {
 
     @Override
     protected int getContentViewResId() {
-        return R.layout.activity_cancas_bitmap;
+        return R.layout.activity_textview;
     }
 
     @Override
     protected void initViews() {
         super.initViews();
-        setTextTitleName("绘制图片");
-    }
-
-    @Override
-    protected void initEvents() {
-        super.initEvents();
         setBackOnclickListner(mContext);
+        setTextTitleName("自定义字体");
     }
 }

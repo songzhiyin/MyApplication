@@ -1,4 +1,4 @@
-package com.szy.myapplication.UI;
+package com.szy.myapplication.UI.layout;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -7,7 +7,7 @@ import com.szy.myapplication.Base.BaseActivity;
 import com.szy.myapplication.R;
 
 /**
- * ConstraintLayout布局的联系
+ * ConstraintLayout布局
  */
 public class ConstraintLayoutActivity extends BaseActivity {
 

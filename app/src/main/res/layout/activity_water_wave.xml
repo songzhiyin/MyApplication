@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.szy.myapplication.UI.WaterWaveActivity">
+    tools:context="com.szy.myapplication.UI.View.WaterWaveActivity">
 
 
     <include layout="@layout/include_layout_view_title_layout"></include>
