@@ -12,18 +12,17 @@ import android.view.View;
 import android.widget.Toast;
 
 public class RangeSelectorView extends View {
-    private int xLift, xRight, yCentre;
-    private int mXLift, mXRight;
+    private int xLift, xRight, yCentre;//左圆点的X坐标、右圆点的X坐标、直线的Y轴坐标
+    private int mXLift, mXRight;//左边界限、右边界限
     private int mWidth, mHeight;
-    private int radius = 60;
+    private int radius = 44;
     private int allNumber = 300, liftNumer = 1, rightNumber = 300;
     private Context mContext;
     private Paint paint_line;
     private Paint paint_circle;
     private boolean isFirst = true;//是否是首次加载布局
-    private OnXyTouchListener onXyTouchListener;
-    //触摸事件的类型
-    private int code = 0;
+    private OnXyTouchListener onXyTouchListener;//滑动触摸回调接口
+    private int code = 0;//触摸事件的类型
     private int difference = 0;//点击点和圆点的差值
 
     public RangeSelectorView(Context context) {
@@ -60,7 +59,7 @@ public class RangeSelectorView extends View {
         super.onDraw(canvas);
         canvas.drawLine(mXLift, yCentre, xLift, yCentre, paint_line);
         canvas.drawLine(xLift, yCentre, xRight, yCentre, paint_circle);
-        canvas.drawLine(xRight, yCentre, mXRight - 2, yCentre, paint_line);
+        canvas.drawLine(xRight, yCentre, mXRight, yCentre, paint_line);
         canvas.drawCircle(xLift, yCentre, radius, paint_circle);
         canvas.drawCircle(xRight, yCentre, radius, paint_circle);
 
@@ -74,6 +73,11 @@ public class RangeSelectorView extends View {
         this.allNumber = allNumber;
     }
 
+    /**
+     * 设置左边刻度
+     *
+     * @param liftNumer
+     */
     public void setLiftNumer(int liftNumer) {
         if (liftNumer >= 0 && liftNumer < rightNumber) {
             this.liftNumer = liftNumer;
@@ -83,6 +87,11 @@ public class RangeSelectorView extends View {
         }
     }
 
+    /**
+     * 设置右边刻度
+     *
+     * @param rightNumber
+     */
     public void setRightNumber(int rightNumber) {
         if (rightNumber > liftNumer && rightNumber <= allNumber) {
             this.rightNumber = rightNumber;
@@ -93,13 +102,14 @@ public class RangeSelectorView extends View {
     }
 
     /**
-     * 计算左边按钮的UI
+     * 计算左边圆点按钮的UI
      */
     private void setXLiftUI() {
         int xLiftNew = radius;
         if (liftNumer == 0) {
             xLiftNew = mXLift + radius;
         } else {
+            //先计算圆点在X轴上的滑动范围距离 再加上圆点的X轴距离
             xLiftNew = (mXRight - mXLift - radius * 2) * liftNumer / allNumber + radius + mXLift;
         }
         if (xLiftNew > xLift) {
@@ -129,6 +139,7 @@ public class RangeSelectorView extends View {
      * 计算右边按钮的UI
      */
     private void setXrightUI() {
+        //先计算圆点在X轴上的滑动范围距离 再加上圆点的X轴距离
         int xRightNew = (mXRight - mXLift - radius * 2) * rightNumber / allNumber + radius + mXLift;
         if (xRightNew > xRight) {
             for (int i = xRight; i <= xRightNew; i++) {
@@ -166,12 +177,15 @@ public class RangeSelectorView extends View {
             mWidth = 300;
         }
         if (heightMode == MeasureSpec.EXACTLY) {
-            mHeight = heightSize;
+            if (heightSize < radius + 6)
+                mHeight = radius + 6;
+            else
+                mHeight = heightSize;
         } else {
             mHeight = radius + 6;
         }
         setMeasuredDimension(mWidth, mHeight);
-        if (isFirst) {//当界面布局发生不变，进行重新绘制的时候，会再次调用该方法，所以需要判断是否是首次调用
+        if (isFirst) {//当界面布局发生变化进行重新绘制的时候，会再次调用该方法，所以需要判断是否是首次调用，只有首次调用时才能设置两个圆点的X轴坐标
             mXLift = 0 + getPaddingLeft();
             xLift = mXLift + radius;
             mXRight = mWidth - getPaddingRight();
@@ -187,13 +201,14 @@ public class RangeSelectorView extends View {
     @Override
     public boolean onTouchEvent(MotionEvent event) {
         switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
+            case MotionEvent.ACTION_DOWN://按下屏幕的时候，判断触摸点是否在左右圆点上,并且记录触摸点距离圆点的距离
                 int x = (int) event.getX();
-                if (x > xLift - radius && x < xLift + radius) {
+                int y = (int) event.getY();
+                if (x > xLift - radius && x < xLift + radius && y > yCentre - radius && y < yCentre + radius) {
                     difference = xLift - x;
                     code = 1;
                 }
-                if (x > xRight - radius && x < xRight + radius) {
+                if (x > xRight - radius && x < xRight + radius && y > yCentre - radius && y < yCentre + radius) {
                     code = 2;
                     difference = xRight - x;
                 }
@@ -206,7 +221,7 @@ public class RangeSelectorView extends View {
                     setOnTouRightUI((int) event.getX());
                 }
                 break;
-            default:
+            default://重置数据
                 code = 0;
                 difference = 0;
                 break;
@@ -214,8 +229,14 @@ public class RangeSelectorView extends View {
         return true;
     }
 
+    /**
+     * 设置触摸左边圆点之后的UI
+     *
+     * @param xNew
+     */
     private void setOnTouLiftUI(int xNew) {
-        xNew = difference + xNew;
+        xNew = difference + xNew;//因为触摸点和圆点有误差，所以需要进行修正
+        //当滑动到距离左边界限点不足20像素时，直接滑动到左边界限点防止出现无法滑动到边界的情况
         if (xNew < mXLift + radius + 20) {
             xLift = mXLift + radius;
             invalidate();
@@ -226,6 +247,7 @@ public class RangeSelectorView extends View {
             return;
         }
         if (xNew - radius >= mXLift && xNew <= xRight - radius * 2) {
+            //获取最后离开屏幕点X坐标到初始左边圆点坐标和初始最右边圆点到初始左边圆点坐标的比例，再计算对应的数值
             liftNumer = allNumber * (xNew - mXLift - radius) / (mXRight - mXLift - radius * 2);
             xLift = xNew;
             invalidate();
@@ -236,7 +258,8 @@ public class RangeSelectorView extends View {
     }
 
     private void setOnTouRightUI(int xNew) {
-        xNew = difference + xNew;
+        xNew = difference + xNew;//因为触摸点和圆点有误差，所以需要进行修正
+        //当滑动到距离右边界限点不足20像素时，直接滑动到右边界限点防止出现无法滑动到边界的情况
         if (xNew > mXRight - radius - 20) {
             xRight = mXRight - radius;
             invalidate();
@@ -247,6 +270,7 @@ public class RangeSelectorView extends View {
             return;
         }
         if (xNew >= xLift + radius * 2 && xNew <= mXRight - radius) {
+            //获取最后离开屏幕点X坐标到初始左边圆点坐标和初始最右边圆点到初始左边圆点坐标的比例，再计算对应的数值
             rightNumber = allNumber * (xNew - mXLift - radius) / (mXRight - mXLift - radius * 2);
             xRight = xNew;
             invalidate();
