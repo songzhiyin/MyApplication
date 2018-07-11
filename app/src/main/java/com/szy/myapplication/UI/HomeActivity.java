@@ -6,39 +6,45 @@ import android.app.NotificationManager;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.MutableContextWrapper;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.graphics.BitmapFactory;
 import android.os.Build;
-import android.os.Handler;
-import android.os.Message;
 import android.support.v4.app.NotificationCompat;
-import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.text.TextUtils;
-import android.util.Log;
 import android.view.Gravity;
-import android.view.MotionEvent;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.chaychan.library.BottomBarLayout;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.szy.lib.network.Glide.GlideHelper;
-import com.szy.lib.network.Retrofit.gson.GsonConverterFactory;
 import com.szy.myapplication.Adapter.ItemHomeMenuAdapter;
 import com.szy.myapplication.Base.BaseActivity;
 import com.szy.myapplication.Entity.Adete;
 import com.szy.myapplication.R;
+import com.szy.myapplication.UI.Util.EventBusTestActivity;
+import com.szy.myapplication.UI.Util.FloatingFrameActivity;
+import com.szy.myapplication.UI.Util.NetWorkActivity;
+import com.szy.myapplication.UI.Util.RxjavaActivity;
+import com.szy.myapplication.UI.View.BezierDemoActivity;
+import com.szy.myapplication.UI.View.ListScrollActivity;
+import com.szy.myapplication.UI.View.MessageListActivity;
+import com.szy.myapplication.UI.View.MpAndroidChartActivity;
+import com.szy.myapplication.UI.View.RangeSelectorViewActivity;
+import com.szy.myapplication.UI.View.RecyScrollActivity;
+import com.szy.myapplication.UI.View.ScrollViewActivity;
+import com.szy.myapplication.UI.View.TextVerifyCodeActivity;
+import com.szy.myapplication.UI.View.TextviewActivity;
+import com.szy.myapplication.UI.View.WaterWaveActivity;
+import com.szy.myapplication.UI.layout.BottomBarLayoutActivity;
+import com.szy.myapplication.UI.layout.ConstraintLayoutActivity;
+import com.szy.myapplication.UI.layout.CoordinatorLayoutActivity;
+import com.szy.myapplication.UI.layout.DrawerLayoutActivity;
 import com.szy.myapplication.Utils.EmulatorDetectorUtil;
-import com.szy.myapplication.Utils.SimulatoUtil;
 import com.szy.myapplication.Utils.ToastUtils;
 import com.timmy.tdialog.TDialog;
 import com.timmy.tdialog.base.BindViewHolder;
@@ -49,7 +55,6 @@ import com.youth.banner.BannerConfig;
 import com.youth.banner.listener.OnBannerListener;
 import com.youth.banner.loader.ImageLoader;
 
-import java.lang.ref.WeakReference;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
@@ -185,9 +190,47 @@ public class HomeActivity extends BaseActivity {
                 case 20://浮动框
                     startActivity(new Intent(mContext, FloatingFrameActivity.class));
                     break;
+                case 21://CoordinatorLayout
+                    startActivity(new Intent(mContext, CoordinatorLayoutActivity.class));
+                    break;
+                case 22://范围选择器
+                    startActivity(new Intent(mContext, RangeSelectorViewActivity.class));
+                    break;
             }
         }
     };
+
+
+    @Override
+    protected void initdatas() {
+        super.initdatas();
+        List<String> data = new ArrayList<>();
+        data.add("recyview");
+        data.add("retrofit");
+        data.add("EventBus");
+        data.add("贝塞尔曲线");
+        data.add("滑动悬浮");
+        data.add("列表滑动");
+        data.add("图表");
+        data.add("水波纹");
+        data.add("自定义字体");
+        data.add("文字验证码");
+        data.add("检测模拟器");
+        data.add("底部导航栏");
+        data.add("二维码扫描");
+        data.add("TDialog");
+        data.add("多列表上下左右联动滑动");
+        data.add("Gson转化");
+        data.add("RXjava");
+        data.add("notication");
+        data.add("ConstraintLayout");
+        data.add("侧滑菜单");
+        data.add("浮动框");
+        data.add("CoordinatorLayout");
+        data.add("范围选择器");
+        adapter.setdate(data);
+        setBanner();
+    }
 
     /**
      * 设置android8.0的通知渠道，这是android8.0新增的适配
@@ -229,35 +272,6 @@ public class HomeActivity extends BaseActivity {
             String result = data.getStringExtra("result");
             ToastUtils.show_toast("扫描到的数据" + result);
         }
-    }
-
-    @Override
-    protected void initdatas() {
-        super.initdatas();
-        List<String> data = new ArrayList<>();
-        data.add("recyview");
-        data.add("retrofit");
-        data.add("EventBus");
-        data.add("贝塞尔曲线");
-        data.add("滑动悬浮");
-        data.add("列表滑动");
-        data.add("图表");
-        data.add("水波纹");
-        data.add("自定义字体");
-        data.add("文字验证码");
-        data.add("检测模拟器");
-        data.add("底部导航栏");
-        data.add("二维码扫描");
-        data.add("TDialog");
-        data.add("多列表上下左右联动滑动");
-        data.add("Gson转化");
-        data.add("RXjava");
-        data.add("notication");
-        data.add("ConstraintLayout");
-        data.add("侧滑菜单");
-        data.add("浮动框");
-        adapter.setdate(data);
-        setBanner();
     }
 
     /**
