@@ -104,8 +104,7 @@ public class FloatingVideoService extends Service {
                 try {
                     mediaPlayer.setDataSource(this, Uri.parse("https://raw.githubusercontent.com/dongzhong/ImageAndVideoStore/master/Bruno%20Mars%20-%20Treasure.mp4"));
                     mediaPlayer.prepareAsync();
-                }
-                catch (IOException e) {
+                } catch (IOException e) {
                     Toast.makeText(this, "无法打开视频源", Toast.LENGTH_LONG).show();
                 }
                 windowManager.addView(displayView, layoutParams);
@@ -117,8 +116,16 @@ public class FloatingVideoService extends Service {
     public void onDestroy() {
         super.onDestroy();
         isStarted = false;
-        windowManager.removeView(displayView);
+        if (mediaPlayer != null) {
+            mediaPlayer.stop();
+            mediaPlayer.release();
+            mediaPlayer = null;
+        }
+        if (displayView != null) {
+            windowManager.removeView(displayView);
+        }
     }
+
     private class FloatingOnTouchListener implements View.OnTouchListener {
         private int x;
         private int y;

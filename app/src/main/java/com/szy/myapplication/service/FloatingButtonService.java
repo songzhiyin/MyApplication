@@ -76,7 +76,10 @@ public class FloatingButtonService extends Service {
     public void onDestroy() {
         super.onDestroy();
         isStarted = false;
-        windowManager.removeView(button);
+        if(button!=null){
+            windowManager.removeView(button);
+        }
+
     }
 
     private class FloatingOnTouchListener implements View.OnTouchListener {

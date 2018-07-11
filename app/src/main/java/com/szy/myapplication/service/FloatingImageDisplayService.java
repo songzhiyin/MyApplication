@@ -98,7 +98,10 @@ public class FloatingImageDisplayService extends Service {
     public void onDestroy() {
         super.onDestroy();
         isStarted = false;
-        windowManager.removeView(displayView);
+        if(displayView!=null){
+            windowManager.removeView(displayView);
+        }
+
     }
 
     private Handler.Callback changeImageCallback = new Handler.Callback() {
