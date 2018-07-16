@@ -531,10 +531,6 @@ public class PullRecyclerView extends RecyclerView {
      */
     public void refreshDataSucced() {
         mHeaderView.setState(RecyclerViewHeader.STATE_SUCCEED);
-        if (mEnableAutoLoading) {
-            //当用户刷新完数据之后，如果可以自动加载，再将自动的布局显示出来
-//            mFooterView.setVisibleLoadingData(true);
-        }
         stopRefresh();
     }
 

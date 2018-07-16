@@ -81,11 +81,6 @@ public class RecyclerViewFooter extends LinearLayout {
      * @param status
      */
     public void setStateAutoLoading(int status) {
-//        if (STATE_AUTOLOADSUCCED == status) {
-//            moreView.setVisibility(GONE);
-//        } else {
-//            moreView.setVisibility(VISIBLE);
-//        }
         moreView.setVisibility(VISIBLE);
         switch (status) {
             case STATE_AUTOLOADSTART://开启加载动画
