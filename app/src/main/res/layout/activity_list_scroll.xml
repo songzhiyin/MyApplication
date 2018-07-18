@@ -4,16 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
     android:background="#f5f5f5"
+    android:orientation="vertical"
     tools:context="com.szy.myapplication.UI.View.ListScrollActivity">
 
-
     <include layout="@layout/include_layout_view_title_layout"></include>
-
-
-
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -34,13 +29,13 @@
                 android:gravity="center"
                 android:padding="10dp"
                 android:text="楼层&#x000A;单元"
-                android:textSize="12sp"/>
+                android:textSize="12sp" />
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/rv_layer"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginTop="1dp"/>
+                android:layout_marginTop="1dp" />
 
         </LinearLayout>
 
@@ -65,13 +60,13 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:text="3"
-                    android:textSize="12sp"/>
+                    android:textSize="12sp" />
 
                 <com.szy.myapplication.Utils.MyRecyclerView
                     android:id="@+id/rv_room"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_marginTop="1dp"/>
+                    android:layout_marginTop="1dp" />
             </LinearLayout>
         </com.szy.myapplication.Utils.ObservableHorizontalScrollView>
     </LinearLayout>

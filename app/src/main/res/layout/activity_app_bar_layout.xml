@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".UI.layout.CoordinatorLayoutActivity">
+
+    <include
+        android:id="@+id/include2"
+        layout="@layout/include_layout_view_title_layout"></include>
+
+    <android.support.design.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <android.support.design.widget.AppBarLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:scaleType="fitXY"
+                android:src="@mipmap/banner2"
+                app:layout_scrollFlags="scroll" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/blue_color"
+                android:lineSpacingExtra="2dp"
+                android:padding="12dp"
+                android:text="Child View不会存在局部显示的情况，滚动Child View的部分高度，当我们松开手指时，Child View要么向上全部滚出屏幕，要么向下全部滚进屏幕，有点类似ViewPager的左右滑动"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                app:layout_scrollFlags="scroll|snap" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+                android:background="@color/red"
+                android:lineSpacingExtra="2dp"
+                android:minHeight="40dp"
+                android:padding="12dp"
+                android:text="发生向下滚动事件时,先滚动到最小距离，然后滑动父布局最后在滑动该view剩下的距离"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                app:layout_scrollFlags="scroll|enterAlways" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@color/homeColor"
+                android:minHeight="40dp"
+                android:padding="12dp"
+                android:text="发生向上滚动事件时，Child View向上滚动退出直至最小高度，然后Scrolling View开始滚动。也就是，Child View不会完全退出屏幕"
+                android:textColor="@color/white"
+                app:layout_scrollFlags="scroll|exitUntilCollapsed" />
+
+        </android.support.design.widget.AppBarLayout>
+
+        <com.lib.szy.pullrefresh.PullreFresh.PullRecyclerView
+            android:id="@+id/recylist_message_list"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior">
+
+        </com.lib.szy.pullrefresh.PullreFresh.PullRecyclerView>
+    </android.support.design.widget.CoordinatorLayout>
+</LinearLayout>

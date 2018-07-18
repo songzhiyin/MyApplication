@@ -91,7 +91,8 @@
         <service android:name=".service.FloatingVideoService" />
 
         <activity android:name=".UI.layout.CoordinatorLayoutActivity" />
-        <activity android:name=".UI.View.RangeSelectorViewActivity"></activity>
+        <activity android:name=".UI.View.RangeSelectorViewActivity" />
+        <activity android:name=".UI.layout.AppBarLayoutActivity"></activity>
     </application>
 
 </manifest>

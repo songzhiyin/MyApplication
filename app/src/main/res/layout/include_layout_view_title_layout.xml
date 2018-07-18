@@ -32,7 +32,6 @@
         android:layout_centerHorizontal="true"
         android:ellipsize="end"
         android:gravity="center"
-        android:maxLength="10"
         android:singleLine="true"
         android:text="标题"
         android:textColor="@color/white"

@@ -40,6 +40,7 @@ import com.szy.myapplication.UI.View.ScrollViewActivity;
 import com.szy.myapplication.UI.View.TextVerifyCodeActivity;
 import com.szy.myapplication.UI.View.TextviewActivity;
 import com.szy.myapplication.UI.View.WaterWaveActivity;
+import com.szy.myapplication.UI.layout.AppBarLayoutActivity;
 import com.szy.myapplication.UI.layout.BottomBarLayoutActivity;
 import com.szy.myapplication.UI.layout.ConstraintLayoutActivity;
 import com.szy.myapplication.UI.layout.CoordinatorLayoutActivity;
@@ -190,11 +191,14 @@ public class HomeActivity extends BaseActivity {
                 case 20://浮动框
                     startActivity(new Intent(mContext, FloatingFrameActivity.class));
                     break;
-                case 21://CoordinatorLayout
-                    startActivity(new Intent(mContext, CoordinatorLayoutActivity.class));
+                case 21://AppBarLayout
+                    startActivity(new Intent(mContext, AppBarLayoutActivity.class));
                     break;
                 case 22://范围选择器
                     startActivity(new Intent(mContext, RangeSelectorViewActivity.class));
+                    break;
+                case 23://CoordinatorLayout
+                    startActivity(new Intent(mContext, CoordinatorLayoutActivity.class));
                     break;
             }
         }
@@ -226,8 +230,9 @@ public class HomeActivity extends BaseActivity {
         data.add("ConstraintLayout");
         data.add("侧滑菜单");
         data.add("浮动框");
-        data.add("CoordinatorLayout");
+        data.add("AppBarLayout");
         data.add("范围选择器");
+        data.add("CoordinatorLayout");
         adapter.setdate(data);
         setBanner();
     }
