@@ -27,7 +27,8 @@ public class ServiceGenerator {
     /**
      * 获取域名之后，访问的域名地址——获取域名接口的域名地址写在了接口类里面
      */
-    public static String BASE_URL = "http://175.25.49.199:8001";//测试环境
+//    public static String BASE_URL = "http://175.25.49.199:8001";//测试环境
+    public static String BASE_URL = "http://gank.io/api/";//测试环境
     private static String base_url = null;
     private static OkHttpClient.Builder httpClientBuilder = NetWorkUtils.getUnsafeOkHttpClient();
     private static Retrofit.Builder builder = new Retrofit.Builder();

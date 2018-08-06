@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">温故知新</string>
+    <string name="behavior_my_fab_scale">com.xujun.contralayout.behavior.ScaleDownShowBehavior</string>
 </resources>

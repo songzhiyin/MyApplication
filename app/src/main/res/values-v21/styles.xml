@@ -22,6 +22,7 @@
         <item name="android:windowEnableSplitTouch">false</item>
         <item name="android:splitMotionEvents">false</item>
         <!--<item name="android:textCursorDrawable">@null</item>-->
+
     </style>
 
 </resources>

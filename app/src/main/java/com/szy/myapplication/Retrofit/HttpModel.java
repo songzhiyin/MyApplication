@@ -20,6 +20,7 @@ public class HttpModel extends HttpModelBase {
         Map<String, Object> maps = getMap(map);
         setModel(retrofitApiSerivce.login(maps), subscriber);
     }
+
     /**
      * 上传用户头像
      */
@@ -27,6 +28,7 @@ public class HttpModel extends HttpModelBase {
         Map<String, RequestBody> maps = getMapRequestBody(map);
         setModel(retrofitApiSerivce.uploadAvatar(maps), subscriber);
     }
+
     /**
      * 获取我的消息列表
      */
@@ -35,4 +37,10 @@ public class HttpModel extends HttpModelBase {
         setModel(retrofitApiSerivce.getMessageList(maps), subscriber);
     }
 
+    /**
+     * 获取我的美女图片列表
+     */
+    public void getBellePhones(String page, Subscriber subscriber) {
+        setModel(retrofitApiSerivce.getBellePhones(page), subscriber);
+    }
 }

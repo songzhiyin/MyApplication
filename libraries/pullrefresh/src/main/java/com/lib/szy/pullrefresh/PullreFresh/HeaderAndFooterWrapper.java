@@ -4,6 +4,7 @@ import android.support.v4.util.ArrayMap;
 import android.support.v4.util.SparseArrayCompat;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -168,25 +169,25 @@ public class HeaderAndFooterWrapper extends RecyclerView.Adapter<RecyclerView.Vi
         }
     }
 
-//    /**
-//     * 解决 StaggeredGridLayoutManager样式的加头部问题,暂时没用
-//     * @param holder
-//     */
-//    @Override
-//    public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
-//        mInnerAdapter.onViewAttachedToWindow(holder);
-//        int position = holder.getLayoutPosition();
-//        if (isHeaderViewPos(position) || isFooterViewPos(position)) {
-//            ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
-//
-//            if (lp != null && lp instanceof StaggeredGridLayoutManager.LayoutParams) {
-//
-//                StaggeredGridLayoutManager.LayoutParams p = (StaggeredGridLayoutManager.LayoutParams) lp;
-//
-//                p.setFullSpan(true);
-//            }
-//        }
-//    }
+    /**
+     * 解决 StaggeredGridLayoutManager样式的加头部问题,暂时没用
+     * @param holder
+     */
+    @Override
+    public void onViewAttachedToWindow(RecyclerView.ViewHolder holder) {
+        mInnerAdapter.onViewAttachedToWindow(holder);
+        int position = holder.getLayoutPosition();
+        if (isHeaderViewPos(position) || isFooterViewPos(position)) {
+            ViewGroup.LayoutParams lp = holder.itemView.getLayoutParams();
+
+            if (lp != null && lp instanceof StaggeredGridLayoutManager.LayoutParams) {
+
+                StaggeredGridLayoutManager.LayoutParams p = (StaggeredGridLayoutManager.LayoutParams) lp;
+
+                p.setFullSpan(true);
+            }
+        }
+    }
 
 
     class HeaderViewHolder extends RecyclerView.ViewHolder {

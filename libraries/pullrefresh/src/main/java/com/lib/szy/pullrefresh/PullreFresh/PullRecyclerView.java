@@ -4,8 +4,10 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.Nullable;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.StaggeredGridLayoutManager;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -148,11 +150,11 @@ public class PullRecyclerView extends RecyclerView {
                 @Override
                 public void onScrolled(RecyclerView recyclerView, int dx, int dy) {
                     super.onScrolled(recyclerView, dx, dy);
-                    LinearLayoutManager lm = (LinearLayoutManager) getLayoutManager();
-                    int lastVisibleItem = lm.findLastVisibleItemPosition();//最后一个item的position
-                    int totalItemCount = lm.getItemCount();//列表上所有的item数量
-                    Log.i("recycler", "lastVisibleItem: " + lastVisibleItem + "  totalItemCount:" + totalItemCount + "  dy" + dy);
-                    if (lastVisibleItem >= totalItemCount - 1 && dy > 0) {
+                    int lastItem = getLastItem();
+                    RecyclerView.LayoutManager layoutManager = getLayoutManager();
+                    int totalItemCount = layoutManager.getItemCount();//列表上所有的item数量
+                    Log.i("recycler", "lastVisibleItem: " + lastItem + "  totalItemCount:" + totalItemCount + "  dy" + dy);
+                    if (lastItem >= totalItemCount - 1 && dy > 0) {
                         if (mPullLoading == false) {
                             startAutoLoadingAnication();
                         }
@@ -178,6 +180,17 @@ public class PullRecyclerView extends RecyclerView {
                 }
             });
         }
+    }
+
+    //To find the maximum value in the array
+    private int findMax(int[] lastPositions) {
+        int max = lastPositions[0];
+        for (int value : lastPositions) {
+            if (value > max) {
+                max = value;
+            }
+        }
+        return max;
     }
 
     /**
@@ -387,7 +400,7 @@ public class PullRecyclerView extends RecyclerView {
                 mLastY = moveY;
 
                 //第一个条目完全显示   //头部高度大于0   deltaY大于0  向下移动
-                if ((((LinearLayoutManager) getLayoutManager()).findFirstCompletelyVisibleItemPosition() == 0 || ((LinearLayoutManager) getLayoutManager()).findFirstCompletelyVisibleItemPosition() == 1) && (mHeaderView.getVisibleHeight() > 0 || distanceY > 0)) {
+                if ((getFirstItem() == 0 || getFirstItem() == 1) && (mHeaderView.getVisibleHeight() > 0 || distanceY > 0)) {
                     // 更新头部高度
                     if (mEnablePullRefresh) {
                         updateHeaderHeight(distanceY / OFFSET_RADIO);
@@ -400,7 +413,7 @@ public class PullRecyclerView extends RecyclerView {
                 break;
             default:
                 mLastY = -1; // 复位
-                if ((((LinearLayoutManager) getLayoutManager()).findFirstCompletelyVisibleItemPosition() == 0 || ((LinearLayoutManager) getLayoutManager()).findFirstCompletelyVisibleItemPosition() == 1)) {
+                if ((getFirstItem() == 0 || getFirstItem() == 1)) {
                     // 松手的时候  高度大于  一定值  调用刷新
                     if (mEnablePullRefresh && mHeaderView.getVisibleHeight() > mHeaderView.getRealityHeight()) {
                         //变为刷新状态
@@ -433,6 +446,60 @@ public class PullRecyclerView extends RecyclerView {
 
 
         return super.onTouchEvent(e);
+    }
+
+    /**
+     * 获取第一个可见的item
+     * @return
+     */
+    private int getFirstItem() {
+        int firstItem = 0;
+        RecyclerView.LayoutManager layoutManager = getLayoutManager();
+        if (layoutManager instanceof GridLayoutManager) {
+            GridLayoutManager gridLayoutManager = ((GridLayoutManager) layoutManager);
+            firstItem = gridLayoutManager.findFirstCompletelyVisibleItemPosition();
+            //Position to find the final item of the current LayoutManager
+        } else if (layoutManager instanceof LinearLayoutManager) {
+            LinearLayoutManager linearLayoutManager = ((LinearLayoutManager) layoutManager);
+            firstItem = linearLayoutManager.findFirstCompletelyVisibleItemPosition();
+        } else if (layoutManager instanceof StaggeredGridLayoutManager) {
+            StaggeredGridLayoutManager staggeredGridLayoutManager = ((StaggeredGridLayoutManager) layoutManager);
+            // since may lead to the final item has more than one StaggeredGridLayoutManager the particularity of the so here that is an array
+            // this array into an array of position and then take the maximum value that is the last show the position value
+            int[] lastPositions = new int[((StaggeredGridLayoutManager) layoutManager).getSpanCount()];
+            staggeredGridLayoutManager.findLastCompletelyVisibleItemPositions(lastPositions);
+            firstItem = staggeredGridLayoutManager.findFirstVisibleItemPositions(lastPositions)[0];
+        }
+        return firstItem;
+    }
+
+    /**
+     * 获取最后一个可见的item位置
+     * @return
+     */
+    private int getLastItem() {
+        int lastItem = 0;
+        RecyclerView.LayoutManager layoutManager = getLayoutManager();
+        if (layoutManager instanceof GridLayoutManager) {
+            GridLayoutManager gridLayoutManager = ((GridLayoutManager) layoutManager);
+            //Position to find the final item of the current LayoutManager
+            lastItem = gridLayoutManager.findLastCompletelyVisibleItemPosition();
+            if (lastItem == -1)
+                lastItem = gridLayoutManager.findLastVisibleItemPosition();
+        } else if (layoutManager instanceof LinearLayoutManager) {
+            LinearLayoutManager linearLayoutManager = ((LinearLayoutManager) layoutManager);
+            lastItem = linearLayoutManager.findLastCompletelyVisibleItemPosition();
+            if (lastItem == -1)
+                lastItem = linearLayoutManager.findLastVisibleItemPosition();
+        } else if (layoutManager instanceof StaggeredGridLayoutManager) {
+            StaggeredGridLayoutManager staggeredGridLayoutManager = ((StaggeredGridLayoutManager) layoutManager);
+            // since may lead to the final item has more than one StaggeredGridLayoutManager the particularity of the so here that is an array
+            // this array into an array of position and then take the maximum value that is the last show the position value
+            int[] lastPositions = new int[((StaggeredGridLayoutManager) layoutManager).getSpanCount()];
+            staggeredGridLayoutManager.findLastCompletelyVisibleItemPositions(lastPositions);
+            lastItem = findMax(lastPositions);
+        }
+        return lastItem;
     }
 
     /**
@@ -629,7 +696,6 @@ public class PullRecyclerView extends RecyclerView {
         mOnRefreshListener = onRefreshListener;
 
     }
-
 
 
     /**

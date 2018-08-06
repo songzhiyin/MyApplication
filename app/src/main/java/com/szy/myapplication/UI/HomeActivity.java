@@ -12,6 +12,7 @@ import android.graphics.BitmapFactory;
 import android.os.Build;
 import android.support.v4.app.NotificationCompat;
 import android.text.TextUtils;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -25,11 +26,13 @@ import com.szy.lib.network.Glide.GlideHelper;
 import com.szy.myapplication.Adapter.ItemHomeMenuAdapter;
 import com.szy.myapplication.Base.BaseActivity;
 import com.szy.myapplication.Entity.Adete;
+import com.szy.myapplication.Entity.Student;
 import com.szy.myapplication.R;
 import com.szy.myapplication.UI.Util.EventBusTestActivity;
 import com.szy.myapplication.UI.Util.FloatingFrameActivity;
 import com.szy.myapplication.UI.Util.NetWorkActivity;
 import com.szy.myapplication.UI.Util.RxjavaActivity;
+import com.szy.myapplication.UI.View.BellePhoneActivity;
 import com.szy.myapplication.UI.View.BezierDemoActivity;
 import com.szy.myapplication.UI.View.ListScrollActivity;
 import com.szy.myapplication.UI.View.MessageListActivity;
@@ -200,9 +203,23 @@ public class HomeActivity extends BaseActivity {
                 case 23://CoordinatorLayout
                     startActivity(new Intent(mContext, CoordinatorLayoutActivity.class));
                     break;
+                case 24://图片列表
+                    startActivity(new Intent(mContext, BellePhoneActivity.class));
+                    break;
+                case 25:
+                    Student.Address address = new Student.Address();
+                    address.setAge("scas");
+                    address.setName(" cas");
+                    address.setSex(" asas");
+                    setStuden(address);
+                    break;
             }
         }
     };
+
+    private void setStuden(Student.Address address) {
+        Log.i(TAG, "setStuden: " + address.getAge() + address.getName() + address.getSex());
+    }
 
 
     @Override
@@ -233,6 +250,8 @@ public class HomeActivity extends BaseActivity {
         data.add("AppBarLayout");
         data.add("范围选择器");
         data.add("CoordinatorLayout");
+        data.add("图片列表");
+        data.add("单例模式");
         adapter.setdate(data);
         setBanner();
     }

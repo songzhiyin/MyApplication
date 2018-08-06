@@ -92,7 +92,8 @@
 
         <activity android:name=".UI.layout.CoordinatorLayoutActivity" />
         <activity android:name=".UI.View.RangeSelectorViewActivity" />
-        <activity android:name=".UI.layout.AppBarLayoutActivity"></activity>
+        <activity android:name=".UI.layout.AppBarLayoutActivity" />
+        <activity android:name=".UI.View.BellePhoneActivity"></activity>
     </application>
 
 </manifest>

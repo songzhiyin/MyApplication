@@ -13,6 +13,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PartMap;
+import retrofit2.http.Path;
 import retrofit2.http.QueryMap;
 import rx.Observable;
 
@@ -40,4 +41,10 @@ public interface RetrofitApiSerivce {
      */
     @GET("/message/page")
     Observable<NetMessageEntity> getMessageList(@QueryMap Map<String, Object> fields);
+
+    /**
+     * 获取我的美女图片列表
+     */
+    @GET("data/福利/10/{page}")
+    Observable<NetMessageEntity> getBellePhones(@Path("page") String page);
 }
