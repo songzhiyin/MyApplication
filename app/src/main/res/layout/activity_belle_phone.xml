@@ -9,10 +9,12 @@
     tools:context=".UI.View.BellePhoneActivity">
 
     <include layout="@layout/include_layout_view_title_layout"></include>
+
     <com.lib.szy.pullrefresh.PullreFresh.PullRecyclerView
         android:id="@+id/recylist_message_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:background="@color/white">
 
     </com.lib.szy.pullrefresh.PullreFresh.PullRecyclerView>
 </LinearLayout>

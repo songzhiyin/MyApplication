@@ -40,8 +40,7 @@ public class MessageListActivity extends BaseActivity {
         recyclerView = $(R.id.recylist_message_list);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
-        StaggeredGridLayoutManager recyclerViewLayoutManager =
-                new StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL);
+
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.addItemDecoration(new MyDeviderDecoration(mContext, R.color.main_line_color, 1));
         adapter = new ItemMessageAdapter(mContext);

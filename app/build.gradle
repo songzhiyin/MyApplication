@@ -90,4 +90,8 @@ dependencies {
     compile 'io.reactivex:rxandroid:1.2.1'
     apply from: 'tinker-support.gradle'
     compile 'org.jetbrains:annotations-java5:15.0'
+    //选择器
+    compile 'com.contrarywind:Android-PickerView:4.1.6'
+//    compile 'com.contrarywind:wheelview:4.0.8'
+
 }

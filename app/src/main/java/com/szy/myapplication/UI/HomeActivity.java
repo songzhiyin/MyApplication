@@ -43,6 +43,7 @@ import com.szy.myapplication.UI.View.ScrollViewActivity;
 import com.szy.myapplication.UI.View.TextVerifyCodeActivity;
 import com.szy.myapplication.UI.View.TextviewActivity;
 import com.szy.myapplication.UI.View.WaterWaveActivity;
+import com.szy.myapplication.UI.View.WheelPickerActivity;
 import com.szy.myapplication.UI.layout.AppBarLayoutActivity;
 import com.szy.myapplication.UI.layout.BottomBarLayoutActivity;
 import com.szy.myapplication.UI.layout.ConstraintLayoutActivity;
@@ -206,12 +207,15 @@ public class HomeActivity extends BaseActivity {
                 case 24://图片列表
                     startActivity(new Intent(mContext, BellePhoneActivity.class));
                     break;
-                case 25:
+                case 25://单例模式
                     Student.Address address = new Student.Address();
                     address.setAge("scas");
-                    address.setName(" cas");
+                    address.setName("cas");
                     address.setSex(" asas");
                     setStuden(address);
+                    break;
+                case 26://选择器
+                    startActivity(new Intent(mContext, WheelPickerActivity.class));
                     break;
             }
         }
@@ -252,6 +256,7 @@ public class HomeActivity extends BaseActivity {
         data.add("CoordinatorLayout");
         data.add("图片列表");
         data.add("单例模式");
+        data.add("选择器");
         adapter.setdate(data);
         setBanner();
     }

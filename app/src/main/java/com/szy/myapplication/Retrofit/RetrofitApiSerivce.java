@@ -46,5 +46,5 @@ public interface RetrofitApiSerivce {
      * 获取我的美女图片列表
      */
     @GET("data/福利/10/{page}")
-    Observable<NetMessageEntity> getBellePhones(@Path("page") String page);
+    Observable<String> getBellePhones(@Path("page") String page);
 }
