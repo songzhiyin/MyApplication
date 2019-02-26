@@ -40,6 +40,7 @@ import com.szy.myapplication.UI.View.MpAndroidChartActivity;
 import com.szy.myapplication.UI.View.RangeSelectorViewActivity;
 import com.szy.myapplication.UI.View.RecyScrollActivity;
 import com.szy.myapplication.UI.View.ScrollViewActivity;
+import com.szy.myapplication.UI.View.SpinnerActivity;
 import com.szy.myapplication.UI.View.TextVerifyCodeActivity;
 import com.szy.myapplication.UI.View.TextviewActivity;
 import com.szy.myapplication.UI.View.WaterWaveActivity;
@@ -217,6 +218,9 @@ public class HomeActivity extends BaseActivity {
                 case 26://选择器
                     startActivity(new Intent(mContext, WheelPickerActivity.class));
                     break;
+                case 27://下拉框
+                    startActivity(new Intent(mContext, SpinnerActivity.class));
+                    break;
             }
         }
     };
@@ -257,6 +261,7 @@ public class HomeActivity extends BaseActivity {
         data.add("图片列表");
         data.add("单例模式");
         data.add("选择器");
+        data.add("下拉框");
         adapter.setdate(data);
         setBanner();
     }

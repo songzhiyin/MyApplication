@@ -94,7 +94,8 @@
         <activity android:name=".UI.View.RangeSelectorViewActivity" />
         <activity android:name=".UI.layout.AppBarLayoutActivity" />
         <activity android:name=".UI.View.BellePhoneActivity" />
-        <activity android:name=".UI.View.WheelPickerActivity"></activity>
+        <activity android:name=".UI.View.WheelPickerActivity" />
+        <activity android:name=".UI.View.SpinnerActivity"></activity>
     </application>
 
 </manifest>

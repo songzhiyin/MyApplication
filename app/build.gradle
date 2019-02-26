@@ -15,10 +15,11 @@ android {
         versionCode 2
         versionName "1.2.201807111"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-        ndk {
-            //设置支持的SO库架构
-            abiFilters 'armeabi', 'x86', 'armeabi-v7a', 'x86_64', 'arm64-v8a'
-        }
+        multiDexEnabled true
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
     lintOptions {
         disable "ResourceType"
@@ -52,46 +53,36 @@ android {
 }
 
 dependencies {
-    compile fileTree(dir: 'libs', include: ['*.jar'])
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    //noinspection GradleCompatible
-    compile 'com.android.support:appcompat-v7:26.+'
-    compile 'com.android.support:support-v4:26.1.0'
-//    compile 'com.android.support.constraint:constraint-layout:1.0.0'
-    //noinspection GradleCompatible
-    compile 'com.android.support:design:23.4.0'
-    compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    testCompile 'junit:junit:4.12'
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'com.android.support:appcompat-v7:27.0.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
     //    三方框架
-    compile project(':libraries:pullrefresh')
-    compile project(':libraries:network')
-    compile project(':libraries:mpandroidchart')
-    compile project(':libraries:qrcodelib')
-    compile 'org.greenrobot:eventbus:+' //导入EventBus包
-    compile 'com.youth.banner:banner:1.4.10'  //导入Banner包
+    implementation project(':libraries:pullrefresh')
+    implementation project(':libraries:network')
+    implementation project(':libraries:mpandroidchart')
+    implementation project(':libraries:qrcodelib')
+    implementation 'org.greenrobot:eventbus:+' //导入EventBus包
+    implementation 'com.youth.banner:banner:1.4.10'  //导入Banner包
     //BottomBarLayout 轻量级的底部导航栏
-    compile 'com.github.chaychan:BottomBarLayout:1.0.8' //建议使用最新版本
-    //腾讯Bugly框架其中latest.release指代最新版本号，也可以指定明确的版本号，例如1.2.0
-    compile 'com.tencent.bugly:crashreport_upgrade:latest.release'
-    //腾讯Bugly框架其中latest.release指代最新版本号，也可以指定明确的版本号，例如2.2.0
-    compile 'com.tencent.bugly:nativecrashreport:latest.release'
-    compile "com.android.support:multidex:1.0.1" // 多dex配置
+    implementation 'com.github.chaychan:BottomBarLayout:1.0.8' //建议使用最新版本
     //TDialog 基于dialogFragment的弹框框架
-    compile 'com.timmy.tdialog:tdialog:1.3.1'
-    compile 'com.android.support:design:26.1.0'
-    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
-    compile 'com.yqritc:recyclerview-flexibledivider:1.4.0'
+    implementation 'com.timmy.tdialog:tdialog:1.3.1'
+    implementation 'com.android.support:design:26.1.0'
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
+    implementation 'com.yqritc:recyclerview-flexibledivider:1.4.0'
     //沉浸式管理
-    compile 'com.gyf.barlibrary:barlibrary:2.3.0'
+    implementation 'com.gyf.barlibrary:barlibrary:2.3.0'
     //RxJava
-    compile 'io.reactivex:rxjava:1.1.6'
-    compile 'io.reactivex:rxandroid:1.2.1'
-    apply from: 'tinker-support.gradle'
-    compile 'org.jetbrains:annotations-java5:15.0'
+    implementation 'io.reactivex:rxjava:1.1.6'
+    implementation 'io.reactivex:rxandroid:1.2.1'
+    implementation 'org.jetbrains:annotations-java5:15.0'
     //选择器
-    compile 'com.contrarywind:Android-PickerView:4.1.6'
+    implementation 'com.contrarywind:Android-PickerView:4.1.6'
+    implementation 'com.github.arcadefire:nice-spinner:1.3.4'
 //    compile 'com.contrarywind:wheelview:4.0.8'
 
 }

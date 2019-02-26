@@ -2,7 +2,6 @@ package com.szy.myapplication.Base;
 
 import android.app.Application;
 import android.content.Context;
-import android.support.multidex.MultiDex;
 
 import com.szy.myapplication.Utils.ApplicationHelp;
 
