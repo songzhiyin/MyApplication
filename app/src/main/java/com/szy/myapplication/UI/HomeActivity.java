@@ -41,6 +41,7 @@ import com.szy.myapplication.UI.View.RangeSelectorViewActivity;
 import com.szy.myapplication.UI.View.RecyScrollActivity;
 import com.szy.myapplication.UI.View.ScrollViewActivity;
 import com.szy.myapplication.UI.View.SpinnerActivity;
+import com.szy.myapplication.UI.View.StatusTextViewActivity;
 import com.szy.myapplication.UI.View.TextVerifyCodeActivity;
 import com.szy.myapplication.UI.View.TextviewActivity;
 import com.szy.myapplication.UI.View.WaterWaveActivity;
@@ -221,6 +222,9 @@ public class HomeActivity extends BaseActivity {
                 case 27://下拉框
                     startActivity(new Intent(mContext, SpinnerActivity.class));
                     break;
+                case 28://下拉框
+                    startActivity(new Intent(mContext, StatusTextViewActivity.class));
+                    break;
             }
         }
     };
@@ -262,6 +266,7 @@ public class HomeActivity extends BaseActivity {
         data.add("单例模式");
         data.add("选择器");
         data.add("下拉框");
+        data.add("状态文字控件");
         adapter.setdate(data);
         setBanner();
     }

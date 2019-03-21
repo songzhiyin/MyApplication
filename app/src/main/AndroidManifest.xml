@@ -13,19 +13,15 @@
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.FLASHLIGHT" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-
-    <!-- Optional. Required for location feature -->
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- Optional. Required for location feature -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" /> <!-- 用于开启 debug 版本的应用在6.0 系统上 层叠窗口权限 -->
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
     <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-    <uses-permission android:name="android.permission.GET_TASKS" />
-    <!-- 拨打电话的权限 -->
-    <uses-permission android:name="android.permission.CALL_PHONE" />
-    <!-- 环信的 -->
+    <uses-permission android:name="android.permission.GET_TASKS" /> <!-- 拨打电话的权限 -->
+    <uses-permission android:name="android.permission.CALL_PHONE" /> <!-- 环信的 -->
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
@@ -43,8 +39,7 @@
     <uses-permission android:name="android.permission.USE_CREDENTIALS" />
     <uses-permission android:name="com.android.launcher.permission.READ_SETTINGS" />
     <uses-permission android:name="android.permission.BROADCAST_STICKY" />
-    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" />
-    <!-- 浮动框权限 -->
+    <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS" /> <!-- 浮动框权限 -->
     <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
 
     <application
@@ -55,6 +50,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".UI.View.StatusTextViewActivity"></activity>
         <activity android:name=".UI.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -76,8 +72,7 @@
             android:name="com.tencent.bugly.beta.ui.BetaActivity"
             android:configChanges="keyboardHidden|orientation|screenSize|locale"
             android:theme="@android:style/Theme.Translucent" />
-        <activity android:name=".UI.layout.BottomBarLayoutActivity" />
-        <!-- 二维码界面 -->
+        <activity android:name=".UI.layout.BottomBarLayoutActivity" /> <!-- 二维码界面 -->
         <activity android:name="io.github.xudaojie.qrcodelib.CaptureActivity" />
         <activity android:name=".UI.View.ListScrollActivity" />
         <activity android:name=".UI.Util.RxjavaActivity" />
@@ -95,7 +90,7 @@
         <activity android:name=".UI.layout.AppBarLayoutActivity" />
         <activity android:name=".UI.View.BellePhoneActivity" />
         <activity android:name=".UI.View.WheelPickerActivity" />
-        <activity android:name=".UI.View.SpinnerActivity"></activity>
+        <activity android:name=".UI.View.SpinnerActivity" />
     </application>
 
 </manifest>
