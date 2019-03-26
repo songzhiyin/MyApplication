@@ -5,6 +5,7 @@ import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.util.Log;
 
 
@@ -28,6 +29,7 @@ public class ApplicationHelp {
         context = application;
         ToastUtils.inittostutils(application);//初始化提示工具类
         GlideHelper.initGlide(application);//初始化Glide图片加载工具
+        PreferenManager.init(application.getApplicationContext());
     }
 
     public static Handler getHandler(String type) {

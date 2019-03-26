@@ -28,6 +28,7 @@ import com.szy.myapplication.Base.BaseActivity;
 import com.szy.myapplication.Entity.Adete;
 import com.szy.myapplication.Entity.Student;
 import com.szy.myapplication.R;
+import com.szy.myapplication.UI.Util.BluetoothPritActivity;
 import com.szy.myapplication.UI.Util.EventBusTestActivity;
 import com.szy.myapplication.UI.Util.FloatingFrameActivity;
 import com.szy.myapplication.UI.Util.NetWorkActivity;
@@ -222,8 +223,11 @@ public class HomeActivity extends BaseActivity {
                 case 27://下拉框
                     startActivity(new Intent(mContext, SpinnerActivity.class));
                     break;
-                case 28://下拉框
+                case 28://状态view
                     startActivity(new Intent(mContext, StatusTextViewActivity.class));
+                    break;
+                case 29://蓝牙打印
+                    startActivity(new Intent(mContext, BluetoothPritActivity.class));
                     break;
             }
         }
@@ -267,6 +271,7 @@ public class HomeActivity extends BaseActivity {
         data.add("选择器");
         data.add("下拉框");
         data.add("状态文字控件");
+        data.add("蓝牙打印");
         adapter.setdate(data);
         setBanner();
     }

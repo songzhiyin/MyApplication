@@ -108,6 +108,20 @@ public abstract class BaseActivity extends FragmentActivity {
         tv_title.setText(titleName);
     }
 
+    protected void setTextRightName(String titleName) {
+        if (tv_right == null) {
+            return;
+        }
+        tv_right.setVisibility(titleName != null && titleName.length() > 0 ? View.VISIBLE : View.GONE);
+        tv_right.setText(titleName);
+    }
+
+    protected void setTextRightOnClickListener(View.OnClickListener onClickListener) {
+        if (tv_right != null && onClickListener != null) {
+            tv_right.setOnClickListener(onClickListener);
+        }
+    }
+
     @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK) {
@@ -368,6 +382,7 @@ public abstract class BaseActivity extends FragmentActivity {
         super.startActivityForResult(intent, requestCode);
         overridePendingTransition(R.anim.zoomin, R.anim.zoomout);//设置界面跳转时的动画效果
     }
+
     @Override
     protected void onDestroy() {
         super.onDestroy();
