@@ -35,6 +35,7 @@ import rx.schedulers.Schedulers;
 
 /**
  * 蓝牙界面
+ * 只支持热成敏标准ESC/POS蓝牙打印机
  */
 public class BluetoothPritActivity extends BaseActivity {
     private ItemBluetoothMessageAdapter adapter;
