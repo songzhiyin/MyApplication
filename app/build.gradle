@@ -2,12 +2,15 @@ apply plugin: 'com.android.application'
 
 android {
     compileSdkVersion 26
-    buildToolsVersion '28.0.3'
+    buildToolsVersion '26.0.0'
     packagingOptions {
         //避免出现多个jar包中文件重复问题
         exclude 'push_version'
         exclude 'miui_push_version'
+        pickFirst 'META-INF/*'
     }
+
+
     defaultConfig {
         applicationId "com.szy.myapplication"
         minSdkVersion 16

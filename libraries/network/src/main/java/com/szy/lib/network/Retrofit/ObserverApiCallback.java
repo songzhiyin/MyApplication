@@ -4,8 +4,10 @@ package com.szy.lib.network.Retrofit;
 
 import com.szy.lib.network.Retrofit.Util.LogUtil;
 
-import retrofit2.adapter.rxjava.HttpException;
+
+import retrofit2.HttpException;
 import rx.Subscriber;
+
 
 /**
  * Created by bingju on 2017/1/4.
@@ -54,7 +56,6 @@ public abstract class ObserverApiCallback<M> extends Subscriber<M> {
             onSuccess(m);
     }
 
-    @Override
     public void onCompleted() {
         onFinish();
     }

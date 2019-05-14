@@ -7,7 +7,6 @@ import com.bumptech.glide.GlideBuilder;
 import com.bumptech.glide.load.DecodeFormat;
 import com.bumptech.glide.load.model.GlideUrl;
 import com.bumptech.glide.module.GlideModule;
-import com.squareup.okhttp.OkHttpClient;
 
 import java.io.InputStream;
 import java.security.KeyManagementException;
@@ -20,6 +19,8 @@ import javax.net.ssl.SSLContext;
 import javax.net.ssl.SSLSession;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+
+import okhttp3.OkHttpClient;
 
 
 /**
@@ -35,7 +36,7 @@ public class OkHttpGlideModule implements GlideModule {
 
     @Override
     public void registerComponents(Context context, Glide glide) {
-        OkHttpClient okHttpClient = new OkHttpClient();
+        OkHttpClient.Builder builder = new OkHttpClient().newBuilder();
         X509TrustManager xtm = new X509TrustManager() {
             @Override
             public void checkClientTrusted(X509Certificate[] chain, String authType) {
@@ -69,8 +70,8 @@ public class OkHttpGlideModule implements GlideModule {
                 return true;
             }
         };
-        okHttpClient.setSslSocketFactory(sslContext.getSocketFactory());
-        okHttpClient.setHostnameVerifier(DO_NOT_VERIFY);
-        glide.register(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory(okHttpClient));
+        builder.sslSocketFactory(sslContext.getSocketFactory());
+        builder.hostnameVerifier(DO_NOT_VERIFY);
+        glide.register(GlideUrl.class, InputStream.class, new OkHttpUrlLoader.Factory(builder.build()));
     }
 }

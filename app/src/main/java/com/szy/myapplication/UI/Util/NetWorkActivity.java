@@ -13,6 +13,8 @@ import com.szy.myapplication.Retrofit.HttpModel;
 import com.szy.myapplication.Retrofit.OnObserverRetrofitResetCallBack;
 import com.szy.myapplication.Utils.ToastUtils;
 
+import org.reactivestreams.Subscription;
+
 import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
