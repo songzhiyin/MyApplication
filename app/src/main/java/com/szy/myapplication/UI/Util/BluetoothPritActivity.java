@@ -27,11 +27,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import rx.Observable;
-import rx.Observer;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
+import io.reactivex.Observable;
+import io.reactivex.ObservableEmitter;
+import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * 蓝牙界面
@@ -131,39 +134,9 @@ public class BluetoothPritActivity extends BaseActivity {
 
     private void getSocket() {
         Dialog_util.start_NetworkRequests_diolog(mContext);
-        Observable.create(new Observable.OnSubscribe<Boolean>() {
+        Observable.just(BluetoothUtil.connectDevice(device)==null?false:true).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<Boolean>() {
             @Override
-            public void call(Subscriber<? super Boolean> subscriber) {
-                if (checkBluetoothState() && device != null) {
-                    if (mSocket != null) {
-                        try {
-                            mSocket.close();
-                        } catch (IOException e) {
-                            mSocket = null;
-                            e.printStackTrace();
-                        }
-                    }
-                    mSocket = BluetoothUtil.connectDevice(device);
-                    if (mSocket == null) {
-                        subscriber.onNext(false);
-                    } else {
-                        subscriber.onNext(true);
-                        PreferenManager.saveBluetoothAddress(device.getAddress());
-                        PreferenManager.saveBluetoothName(device.getName());
-                    }
-                } else {
-                    ToastUtils.show_toast("请先打开蓝牙设置");
-                }
-                subscriber.onCompleted();
-            }
-        }).subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread()).subscribe(new Observer<Boolean>() {
-            @Override
-            public void onCompleted() {
-                Dialog_util.close_NetworkRequests_diolog();
-            }
-
-            @Override
-            public void onError(Throwable e) {
+            public void onSubscribe(Disposable d) {
 
             }
 
@@ -172,8 +145,21 @@ public class BluetoothPritActivity extends BaseActivity {
                 ToastUtils.show_toast(aBoolean ? "连接成功" : "连接失败");
                 tvDeviceName.setText("连接的蓝牙：" + device != null && aBoolean ? device.getName() : "无");
             }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                Dialog_util.close_NetworkRequests_diolog();
+            }
         });
+
     }
+
+
 
     /**
      * 打印订单信息

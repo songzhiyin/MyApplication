@@ -16,7 +16,7 @@ import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.CallAdapter;
 import retrofit2.Converter;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 
 /**
  * @author binju
@@ -54,7 +54,7 @@ public class ServiceGenerator {
         /**打印OKHTTP的运行日志，APP打包时一定要关闭日志功能*/
         builder.baseUrl(base_url != null ? base_url : BASE_URL);//设置url
         builder.addConverterFactory(GsonConverterFactory.create());//设置解析类
-        builder.addCallAdapterFactory(RxJavaCallAdapterFactory.create());//设置rxjava
+        builder.addCallAdapterFactory(RxJava2CallAdapterFactory.create());//设置rxjava
         Retrofit retrofit = builder.client(httpClientBuilder.build()).build();
         return retrofit.create(serviceClass);
     }

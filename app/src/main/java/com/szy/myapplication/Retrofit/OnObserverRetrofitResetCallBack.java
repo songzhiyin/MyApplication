@@ -14,7 +14,7 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import okhttp3.ResponseBody;
-import retrofit2.adapter.rxjava.HttpException;
+import retrofit2.adapter.rxjava2.HttpException;
 
 
 /**

@@ -7,14 +7,15 @@ import com.szy.lib.network.Retrofit.Util.RequestBody_Util;
 import com.szy.myapplication.Utils.ApplicationHelp;
 import com.szy.myapplication.Utils.ToastUtils;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.schedulers.Schedulers;
 import okhttp3.RequestBody;
-import rx.Observable;
-import rx.Subscriber;
-import rx.android.schedulers.AndroidSchedulers;
-import rx.schedulers.Schedulers;
 
 /**
  * Created by bingju on 2017/2/15.
@@ -66,7 +67,7 @@ public class HttpModelBase {
         return maps;
     }
 
-    protected void setModel(Observable observable, Subscriber subscriber) {
+    protected void setModel(Observable observable, Observer subscriber) {
         if (ApplicationHelp.isConnect() == false) {
             ToastUtils.show_toast("网络异常");
             Dialog_util.close_NetworkRequests_diolog();

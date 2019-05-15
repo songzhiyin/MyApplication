@@ -33,14 +33,11 @@ dependencies {
     // Glide
     compile 'com.github.bumptech.glide:glide:3.7.0'
     //引入retrofit2.1.0
-    compile 'com.squareup.retrofit2:retrofit:2.3.0'
-    //引入rxjava
-    compile 'com.squareup.retrofit2:adapter-rxjava:2.3.0'
-    //引入的gson解析相关的，如果没用gson解析此行可省略
-    compile 'com.squareup.retrofit2:converter-gson:2.3.0'
-    //rxAndroid
-    compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    compile 'com.squareup.retrofit2:retrofit:2.4.0'
+    compile 'com.squareup.retrofit2:adapter-rxjava2:2.4.0'
+    compile 'com.squareup.retrofit2:converter-gson:2.4.0'
+    compile 'io.reactivex.rxjava2:rxandroid:2.1.0'
+    compile 'io.reactivex.rxjava2:rxjava:2.2.4'
     compile 'com.squareup.okhttp3:okhttp:3.10.0'
-    //引入打印日志相关的jar包
     compile 'com.squareup.okhttp3:logging-interceptor:3.9.0'
 }

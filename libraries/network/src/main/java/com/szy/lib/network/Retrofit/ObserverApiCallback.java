@@ -1,12 +1,12 @@
 package com.szy.lib.network.Retrofit;
 
 
-
 import com.szy.lib.network.Retrofit.Util.LogUtil;
 
 
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 import retrofit2.HttpException;
-import rx.Subscriber;
 
 
 /**
@@ -14,7 +14,7 @@ import rx.Subscriber;
  * Rxjava 的一个Oberver的实现,用来接收并处理ApiService回调结果
  */
 
-public abstract class ObserverApiCallback<M> extends Subscriber<M> {
+public abstract class ObserverApiCallback<M> implements Observer<M> {
     public abstract void onSuccess(M model);
 
     public abstract void onFailure(String msg);
@@ -22,8 +22,13 @@ public abstract class ObserverApiCallback<M> extends Subscriber<M> {
     public void onFinish() {
 
     }
+
     protected void onlogin() {
 
+    }
+
+    @Override
+    public void onSubscribe(Disposable d) {
     }
 
     @Override
@@ -56,7 +61,10 @@ public abstract class ObserverApiCallback<M> extends Subscriber<M> {
             onSuccess(m);
     }
 
-    public void onCompleted() {
+    @Override
+    public void onComplete() {
         onFinish();
     }
+
+
 }

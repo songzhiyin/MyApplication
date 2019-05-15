@@ -19,6 +19,8 @@ import java.io.File;
 import java.util.HashMap;
 import java.util.Map;
 
+import io.reactivex.Observer;
+import io.reactivex.disposables.Disposable;
 import okhttp3.RequestBody;
 
 /**
@@ -97,6 +99,7 @@ public class NetWorkActivity extends BaseActivity {
         map.put(RequestBody_Util.parseImageMapKey("file", file_head.getName()), RequestBody_Util.parseRequestBody_File(file_head));
         map.put("sessionId", RequestBody_Util.parseRequestBody_String(sessionId));
         httpModel.uploadAvatar(map, new OnObserverRetrofitResetCallBack<BaseEntity>() {
+
 
             @Override
             public void onSuccess(BaseEntity model) {
