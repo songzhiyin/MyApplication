@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="center_horizontal"
     android:orientation="vertical"
+    android:background="@color/white"
     tools:context="com.szy.myapplication.UI.Util.RxjavaActivity">
 
 
@@ -13,25 +14,28 @@
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="wrap_content"
+        android:layout_width="100dp"
         android:layout_height="45dp"
         android:layout_marginTop="64dp"
         android:gravity="center"
-        android:text="普通订阅" />
+        android:textColor="@color/tv_black"
+        android:text="获取验证码" />
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:gravity="center"
+        android:textColor="@color/tv_black"
         android:text="异步订阅" />
 
     <TextView
         android:id="@+id/textView3"
         android:layout_width="wrap_content"
-        android:layout_height="45dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="64dp"
         android:gravity="center"
+        android:textColor="@color/tv_black"
         android:text="TextView" />
 </LinearLayout>
