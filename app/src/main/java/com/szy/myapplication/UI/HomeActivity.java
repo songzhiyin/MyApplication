@@ -36,6 +36,7 @@ import com.szy.myapplication.UI.Util.RxjavaActivity;
 import com.szy.myapplication.UI.View.BellePhoneActivity;
 import com.szy.myapplication.UI.View.BezierDemoActivity;
 import com.szy.myapplication.UI.View.ListScrollActivity;
+import com.szy.myapplication.UI.View.LoveViewActivity;
 import com.szy.myapplication.UI.View.MessageListActivity;
 import com.szy.myapplication.UI.View.MpAndroidChartActivity;
 import com.szy.myapplication.UI.View.RangeSelectorViewActivity;
@@ -229,6 +230,9 @@ public class HomeActivity extends BaseActivity {
                 case 29://蓝牙打印
                     startActivity(new Intent(mContext, BluetoothPritActivity.class));
                     break;
+                case 30://LoveView
+                    startActivity(new Intent(mContext, LoveViewActivity.class));
+                    break;
             }
         }
     };
@@ -272,6 +276,7 @@ public class HomeActivity extends BaseActivity {
         data.add("下拉框");
         data.add("状态文字控件");
         data.add("蓝牙打印");
+        data.add("LoveView");
         adapter.setdate(data);
         setBanner();
     }

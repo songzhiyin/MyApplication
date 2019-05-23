@@ -155,12 +155,12 @@ public abstract class BaseActivity extends FragmentActivity {
      *
      * @param mEnableAutoLoading 是否可以进行自动加载
      */
-    protected void setOnRefreshListener(boolean mEnableAutoLoading) {
+    protected void setOnRefreshListener(boolean mEnableAutoLoading,boolean enable) {
         if (recyclerView == null) {
             return;
         }
         recyclerView.setmEnableAutoLoading(mEnableAutoLoading);
-        recyclerView.setPullRefreshEnable(true);
+        recyclerView.setPullRefreshEnable(enable);
         recyclerView.setOnRefreshListener(new PullRecyclerView.OnRefreshListener() {
             @Override
             public void onRefresh() {

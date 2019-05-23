@@ -40,7 +40,7 @@ public class BellePhoneActivity extends BaseActivity {
     @Override
     protected void initEvents() {
         super.initEvents();
-        setOnRefreshListener(true);
+        setOnRefreshListener(true, true);
     }
 
     @Override
