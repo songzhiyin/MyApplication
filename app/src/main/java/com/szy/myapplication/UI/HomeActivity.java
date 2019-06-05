@@ -47,6 +47,7 @@ import com.szy.myapplication.UI.View.StatusTextViewActivity;
 import com.szy.myapplication.UI.View.TextVerifyCodeActivity;
 import com.szy.myapplication.UI.View.TextviewActivity;
 import com.szy.myapplication.UI.View.WaterWaveActivity;
+import com.szy.myapplication.UI.View.WebSroRecycleActivity;
 import com.szy.myapplication.UI.View.WheelPickerActivity;
 import com.szy.myapplication.UI.layout.AppBarLayoutActivity;
 import com.szy.myapplication.UI.layout.BottomBarLayoutActivity;
@@ -233,6 +234,9 @@ public class HomeActivity extends BaseActivity {
                 case 30://LoveView
                     startActivity(new Intent(mContext, LoveViewActivity.class));
                     break;
+                case 31://webview和recyclerview的滑动
+                    startActivity(new Intent(mContext, WebSroRecycleActivity.class));
+                    break;
             }
         }
     };
@@ -277,6 +281,7 @@ public class HomeActivity extends BaseActivity {
         data.add("状态文字控件");
         data.add("蓝牙打印");
         data.add("LoveView");
+        data.add("web和recycler的滑动兼容");
         adapter.setdate(data);
         setBanner();
     }

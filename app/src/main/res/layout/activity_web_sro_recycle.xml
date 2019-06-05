@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UI.View.WebSroRecycleActivity">
+
+
+    <com.szy.myapplication.View.NestedScrollingDetailContainer
+        android:id="@+id/nested_container"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.szy.myapplication.View.NestedScrollingWebView
+            android:id="@+id/web_message"
+            android:tag="nested_scroll_webview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/mRecycler"
+            android:tag="nested_scroll_recyclerview"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </com.szy.myapplication.View.NestedScrollingDetailContainer>
+
+</android.support.constraint.ConstraintLayout>

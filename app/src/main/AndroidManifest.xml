@@ -52,7 +52,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".UI.View.LoveViewActivity"></activity>
+        <activity android:name=".UI.View.WebSroRecycleActivity"></activity>
+        <activity android:name=".UI.View.LoveViewActivity" />
         <activity android:name=".UI.Util.BluetoothPritActivity" />
         <activity android:name=".UI.View.StatusTextViewActivity" />
         <activity android:name=".UI.HomeActivity">
