@@ -20,8 +20,8 @@
         android:id="@+id/imageView"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        android:layout_marginLeft="15dp"
         android:layout_marginStart="15dp"
+        android:layout_marginLeft="15dp"
         android:layout_marginTop="8dp"
         android:scaleType="centerCrop"
         android:src="@mipmap/belle"
@@ -33,8 +33,8 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="16dp"
         android:layout_marginStart="16dp"
+        android:layout_marginLeft="16dp"
         android:text="Button"
         app:layout_constraintBottom_toBottomOf="@+id/imageView"
         app:layout_constraintStart_toEndOf="@+id/imageView" />
@@ -96,14 +96,53 @@
         android:id="@+id/button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
         android:layout_marginStart="8dp"
+        android:layout_marginLeft="8dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginRight="8dp"
         android:text="Button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:id="@+id/view_fgx"
+        app:layout_constraintTop_toBottomOf="@id/button6" />
+
+    <TextView
+        android:id="@+id/tvName1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="这是name"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="@id/view_fgx" />
+
+    <TextView
+        android:id="@+id/tvName2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="这是name2"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvName1" />
+
+
+    <android.support.constraint.Barrier
+        android:id="@+id/barriee"
+        android:layout_width="1dp"
+        android:layout_height="20dp"
+        app:barrierDirection="right"
+        app:constraint_referenced_ids="tvName1,tvName2" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="10dp"
+        android:text="和增加as查收库存加成卡死几十卡擦接口赛车接口赛车进出口撒擦开始刹车卡"
+        app:layout_constraintLeft_toRightOf="@id/barriee"
+        app:layout_constraintTop_toTopOf="@id/tvName1" />
+    
 
 </android.support.constraint.ConstraintLayout>

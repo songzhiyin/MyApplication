@@ -29,10 +29,12 @@ import com.szy.myapplication.Entity.Adete;
 import com.szy.myapplication.Entity.Student;
 import com.szy.myapplication.R;
 import com.szy.myapplication.UI.Util.BluetoothPritActivity;
+import com.szy.myapplication.UI.Util.DataMatcherActivity;
 import com.szy.myapplication.UI.Util.EventBusTestActivity;
 import com.szy.myapplication.UI.Util.FloatingFrameActivity;
 import com.szy.myapplication.UI.Util.NetWorkActivity;
 import com.szy.myapplication.UI.Util.RxjavaActivity;
+import com.szy.myapplication.UI.Util.VideoPlayActivity;
 import com.szy.myapplication.UI.View.BellePhoneActivity;
 import com.szy.myapplication.UI.View.BezierDemoActivity;
 import com.szy.myapplication.UI.View.ListScrollActivity;
@@ -237,6 +239,12 @@ public class HomeActivity extends BaseActivity {
                 case 31://webview和recyclerview的滑动
                     startActivity(new Intent(mContext, WebSroRecycleActivity.class));
                     break;
+                case 32://正则表达式
+                    startActivity(new Intent(mContext, DataMatcherActivity.class));
+                    break;
+                case 33:
+                    startActivity(new Intent(mContext, VideoPlayActivity.class));
+                    break;
             }
         }
     };
@@ -282,6 +290,8 @@ public class HomeActivity extends BaseActivity {
         data.add("蓝牙打印");
         data.add("LoveView");
         data.add("web和recycler的滑动兼容");
+        data.add("正则表达式");
+        data.add("视频的录制播放");
         adapter.setdate(data);
         setBanner();
     }
