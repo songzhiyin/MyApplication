@@ -1,5 +1,6 @@
 package com.szy.myapplication.UI.Util;
 
+import android.content.Intent;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.media.MediaRecorder;
@@ -9,8 +10,10 @@ import android.view.SurfaceView;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+
 import com.szy.myapplication.Base.BaseActivity;
 import com.szy.myapplication.R;
+
 import java.io.File;
 import java.io.IOException;
 
@@ -42,6 +45,7 @@ public class VideoPlayActivity extends BaseActivity {
         holder = surfaceView.getHolder();
         camera = Camera.open(0); //开启相机
         camera.setDisplayOrientation(90);
+
     }
 
     @Override
@@ -49,7 +53,6 @@ public class VideoPlayActivity extends BaseActivity {
         super.initEvents();
         tvStartRecoreVideo.setOnClickListener(onClickListener);
         tvStopRecoreVideo.setOnClickListener(onClickListener);
-//        camera.setPreviewCallback(previewCallback);
         holder.addCallback(callback);
     }
 
@@ -79,6 +82,10 @@ public class VideoPlayActivity extends BaseActivity {
         }
         mediaRecorder = new MediaRecorder();
         //*******************************************
+        if (camera == null) {
+            camera = Camera.open(0); //开启相机
+            camera.setDisplayOrientation(90);
+        }
         //预览时旋转90度正常
         Camera.Parameters params = camera.getParameters();
         //自动聚焦,不然的话可嫩不清晰
@@ -135,9 +142,10 @@ public class VideoPlayActivity extends BaseActivity {
             tvStopRecoreVideo.setEnabled(false);
         }
         if (camera != null) {
-            camera.setPreviewCallback(null);
             camera.stopPreview();
-            camera = null;
+        }
+        if (avfile != null && avfile.exists() && avfile.length() > 0) {
+            startActivity(new Intent(mContext, PlayVideoActivity.class).putExtra("path", avfile.getPath()));
         }
 
     }
@@ -147,12 +155,14 @@ public class VideoPlayActivity extends BaseActivity {
         @Override
         public void surfaceCreated(SurfaceHolder surfaceHolder) {
             try {
-                Camera.Parameters parameters = camera.getParameters();
-                parameters.setPreviewFormat(ImageFormat.NV21); //设置数据格式
-                parameters.setPreviewSize(1920, 1080);
-                camera.setParameters(parameters);
-                camera.setPreviewDisplay(surfaceHolder);
-                camera.startPreview();
+                if (camera != null) {
+//                    Camera.Parameters parameters = camera.getParameters();
+//                    parameters.setPreviewFormat(ImageFormat.NV21); //设置数据格式
+//                    parameters.setPreviewSize(1920, 1080);
+//                    camera.setParameters(parameters);
+                    camera.setPreviewDisplay(surfaceHolder);
+                    camera.startPreview();
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }
@@ -166,10 +176,19 @@ public class VideoPlayActivity extends BaseActivity {
 
         @Override
         public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-            if (camera != null) {
-                camera.release();
-            }
         }
     };
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (camera != null) {
+            camera.stopPreview();
+            camera = null;
+        }
+        if (mediaRecorder != null) {
+            mediaRecorder.release();
+            mediaRecorder = null;
+        }
+    }
 }
