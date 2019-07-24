@@ -13,23 +13,29 @@
         android:layout_height="match_parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btnStartStop"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/tvStartRecoreVideo"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
         android:layout_margin="40dp"
+        android:background="@color/white"
+        android:gravity="center"
         android:text="开始录制"
+        android:textColor="@color/tv_black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent" />
 
-    <Button
-        android:id="@+id/btnPlayVideo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+    <TextView
+        android:id="@+id/tvStopRecoreVideo"
+        android:layout_width="80dp"
+        android:layout_height="40dp"
         android:layout_marginRight="40dp"
-        android:text="播放"
+        android:background="@color/white"
+        android:gravity="center"
+        android:text="结束录制"
+        android:textColor="@color/tv_black"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@id/btnStartStop" />
+        app:layout_constraintTop_toTopOf="@id/tvStartRecoreVideo" />
 
     <TextView
         android:id="@+id/text"

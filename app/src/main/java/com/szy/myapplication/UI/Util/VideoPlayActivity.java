@@ -1,53 +1,44 @@
 package com.szy.myapplication.UI.Util;
 
+import android.graphics.ImageFormat;
 import android.hardware.Camera;
 import android.media.AudioManager;
+import android.media.MediaCodecInfo;
+import android.media.MediaCodecList;
 import android.media.MediaPlayer;
 import android.media.MediaRecorder;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Environment;
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
 import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
 import android.widget.Button;
-import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.szy.myapplication.Base.BaseActivity;
 import com.szy.myapplication.R;
+import com.szy.myapplication.Utils.H264Encoder;
 
 import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
 
 /**
  * 视频的录制和播放
  */
-public class VideoPlayActivity extends BaseActivity implements SurfaceHolder.Callback {
-    private static final String TAG = "MainActivity";
-    private SurfaceView mSurfaceview;
-    private Button mBtnStartStop;
-    private Button mBtnPlay;
-    private boolean mStartedFlg = false;//是否正在录像
-    private boolean mIsPlay = false;//是否正在播放录像
-    private MediaRecorder mRecorder;
-    private SurfaceHolder mSurfaceHolder;
+public class VideoPlayActivity extends BaseActivity {
+    private TextView tvStartRecoreVideo, tvStopRecoreVideo;
+    private SurfaceView surfaceView;
+    private SurfaceHolder holder;
     private Camera camera;
-    private MediaPlayer mediaPlayer;
-    private String path;
-    private TextView textView;
-    private int text = 0;
-    private android.os.Handler handler = new android.os.Handler();
-    private Runnable runnable = new Runnable() {
-        @Override
-        public void run() {
-            text++;
-            textView.setText(text + "");
-            handler.postDelayed(this, 1000);
-        }
-    };
+    private H264Encoder encoder;
+    private int width = 1280;
+    private int height = 720;
+    private int framerate = 30; //一秒30帧
+    private boolean isRecordVideo = false;
+
 
     @Override
     protected int getContentViewResId() {
@@ -57,207 +48,126 @@ public class VideoPlayActivity extends BaseActivity implements SurfaceHolder.Cal
     @Override
     protected void initViews() {
         super.initViews();
-        mSurfaceview = (SurfaceView) findViewById(R.id.surfaceview);
-        mBtnStartStop = (Button) findViewById(R.id.btnStartStop);
-        mBtnPlay = (Button) findViewById(R.id.btnPlayVideo);
-        textView = (TextView) findViewById(R.id.text);
-        SurfaceHolder holder = mSurfaceview.getHolder();
-        holder.addCallback(this);
-        // setType必须设置，要不出错.
-        holder.setType(SurfaceHolder.SURFACE_TYPE_PUSH_BUFFERS);
+        tvStartRecoreVideo = $(R.id.tvStartRecoreVideo);
+        tvStopRecoreVideo = $(R.id.tvStopRecoreVideo);
+        surfaceView = $(R.id.surfaceview);
+        holder = surfaceView.getHolder();
+        camera = Camera.open(); //开启相机
+        camera.setDisplayOrientation(90);
     }
 
     @Override
     protected void initEvents() {
         super.initEvents();
-        mBtnPlay.setOnClickListener(onClickListener);
-        mBtnStartStop.setOnClickListener(onClickListener);
+        tvStartRecoreVideo.setOnClickListener(onClickListener);
+        tvStopRecoreVideo.setOnClickListener(onClickListener);
+        camera.setPreviewCallback(previewCallback);
+        holder.addCallback(callback);
     }
 
     private View.OnClickListener onClickListener = new View.OnClickListener() {
         @Override
         public void onClick(View view) {
             switch (view.getId()) {
-                case R.id.btnStartStop://录制视频
-                    recordVideo();
+                case R.id.tvStartRecoreVideo://开始录制
+                    if (isRecordVideo == false && encoder != null) {
+                        isRecordVideo = true;
+                        encoder.startEncoder(); //开始编码
+                    }
                     break;
-                case R.id.btnPlayVideo://播放视频
-                    playVideo();
+                case R.id.tvStopRecoreVideo://停止录制
+                    if (camera != null && isRecordVideo) {
+                        camera.setPreviewCallback(null);
+                        camera.stopPreview();
+                        camera = null;
+                        isRecordVideo = false;
+                    }
+                    if (encoder != null) {
+                        encoder.stopEncoder();
+                    }
                     break;
             }
         }
     };
 
     /**
-     * 录制视频
+     * 判断该设备是否支持H264编码
      */
-    private void recordVideo() {
-        if (mIsPlay) {//是否正在播放视频
-            if (mediaPlayer != null) {
-                mIsPlay = false;
-                mediaPlayer.stop();
-                mediaPlayer.reset();
-                mediaPlayer.release();
-                mediaPlayer = null;
+    private boolean supportH264Codec() {
+        // 遍历支持的编码格式信息,并查询有没有支持H.264(avc)的编码
+        if (Build.VERSION.SDK_INT >= 18) {
+            //计算可用的编解码器数量
+            int number = MediaCodecList.getCodecCount();
+            for (int i = number - 1; i > 0; i--) {
+                //获得指定的编解码器信息
+                MediaCodecInfo codecInfo = MediaCodecList.getCodecInfoAt(i);
+                //得到支持的类型
+                String[] types = codecInfo.getSupportedTypes();
+                //查询有没有支持H.264(avc)的编码
+                for (int j = 0; j < types.length; j++) {
+                    if (types[j].equalsIgnoreCase("video/avc")) {
+                        return true;
+                    }
+                }
             }
         }
-        if (!mStartedFlg) {//是否正在播放视频
-            handler.postDelayed(runnable, 1000);
-            if (mRecorder == null) {
-                mRecorder = new MediaRecorder();
-            }
-            camera = Camera.open(Camera.CameraInfo.CAMERA_FACING_BACK);
-            if (camera != null) {
-                camera.setDisplayOrientation(90);//设置视频预览角度
-                camera.unlock();
-                mRecorder.setCamera(camera);
-            }
+        return false;
+    }
 
+    private byte[] rotateYUV420Degree270(byte[] data, int imageWidth, int imageHeight){
+        byte[] yuv =new byte[imageWidth*imageHeight*3/2];
+        // Rotate the Y luma
+        int i =0;
+        for(int x = imageWidth-1;x >=0;x--){
+            for(int y =0;y < imageHeight;y++){
+                yuv[i]= data[y*imageWidth+x]; 		            i++;
+            }   }// Rotate the U and V color components  	i = imageWidth*imageHeight;
+        for(int x = imageWidth-1;x >0;x=x-2){
+            for(int y =0;y < imageHeight/2;y++){ 		       yuv[i]= data[(imageWidth*imageHeight)+(y*imageWidth)+(x-1)]; 		         i++; 		       yuv[i]= data[(imageWidth*imageHeight)+(y*imageWidth)+x]; 		            i++;
+            }
+        }
+        return yuv;
+    }
+    private Camera.PreviewCallback previewCallback = new Camera.PreviewCallback() {
+        @Override
+        public void onPreviewFrame(byte[] bytes, Camera camera) {
+//返回相机预览的视频数据,并给H264Encoder编码压缩为H.264(avc)的文件test.mp4
+            //这里面的Bytes的数据就是NV21格式的数据
+            if (encoder != null && isRecordVideo) {
+                encoder.putDate(rotateYUV420Degree270(bytes,1280,720)); //将一帧的数据传过去处理
+            }
+        }
+    };
+
+    private SurfaceHolder.Callback callback = new SurfaceHolder.Callback() {
+        @Override
+        public void surfaceCreated(SurfaceHolder surfaceHolder) {
             try {
-                // 这两项需要放在setOutputFormat之前
-                mRecorder.setAudioSource(MediaRecorder.AudioSource.CAMCORDER);//设置音频来源
-                mRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);//设置视频来源
-
-                // Set output file format
-                mRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
-
-                // 这两项需要放在setOutputFormat之后
-                mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB);
-                mRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.MPEG_4_SP);
-
-                mRecorder.setVideoSize(640, 480);//设置视频分辨率
-                mRecorder.setVideoFrameRate(30);//设置录制视频的帧率即1秒30帧
-                mRecorder.setVideoEncodingBitRate(3 * 1024 * 1024);//设置视频的大小
-                mRecorder.setOrientationHint(90);//设置视频的角度
-                //设置记录会话的最大持续时间（毫秒）
-                mRecorder.setMaxDuration(30 * 1000);
-                mRecorder.setPreviewDisplay(mSurfaceHolder.getSurface());
-
-                path = getSDPath();
-                if (path != null) {
-                    File dir = new File(path + "/recordtest");
-                    if (!dir.exists()) {
-                        dir.mkdir();
-                    }
-                    path = dir + "/" + getDate() + ".mp4";
-                    mRecorder.setOutputFile(path);
-                    mRecorder.prepare();
-                    mRecorder.start();
-                    mStartedFlg = true;
-                    mBtnStartStop.setText("Stop");
-                }
-            } catch (Exception e) {
+                Camera.Parameters parameters = camera.getParameters();
+                parameters.setPreviewFormat(ImageFormat.NV21); //设置数据格式
+                parameters.setPreviewSize(1280, 720);
+                camera.setParameters(parameters);
+                camera.setPreviewDisplay(surfaceHolder);
+                camera.startPreview();
+            } catch (IOException e) {
                 e.printStackTrace();
             }
-        } else {
-            //stop
-            if (mStartedFlg) {
-                try {
-                    handler.removeCallbacks(runnable);
-                    mRecorder.stop();
-                    mRecorder.reset();
-                    mRecorder.release();
-                    mRecorder = null;
-                    mBtnStartStop.setText("Start");
-                    if (camera != null) {
-                        camera.release();
-                        camera = null;
-                    }
-                } catch (Exception e) {
-                    e.printStackTrace();
-                }
+            //编码初始化
+            encoder = new H264Encoder(width, height, framerate);
+
+        }
+
+        @Override
+        public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
+
+        }
+
+        @Override
+        public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
+            if (camera != null) {
+                camera.release();
             }
-            mStartedFlg = false;
         }
-    }
+    };
 
-
-    /**
-     * 播放视频
-     */
-    private void playVideo() {
-        mIsPlay = true;
-        if (mediaPlayer == null) {
-            mediaPlayer = new MediaPlayer();
-        }
-        mediaPlayer.reset();
-        Uri uri = Uri.parse(path);
-        mediaPlayer = MediaPlayer.create(mContext, uri);
-        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
-        mediaPlayer.setDisplay(mSurfaceHolder);
-        try {
-            mediaPlayer.prepare();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-        mediaPlayer.start();
-    }
-
-    /**
-     * 获取系统时间
-     *
-     * @return
-     */
-    public static String getDate() {
-        Calendar ca = Calendar.getInstance();
-        int year = ca.get(Calendar.YEAR);           // 获取年份
-        int month = ca.get(Calendar.MONTH);         // 获取月份
-        int day = ca.get(Calendar.DATE);            // 获取日
-        int minute = ca.get(Calendar.MINUTE);       // 分
-        int hour = ca.get(Calendar.HOUR);           // 小时
-        int second = ca.get(Calendar.SECOND);       // 秒
-
-        String date = "" + year + (month + 1) + day + hour + minute + second;
-        Log.d(TAG, "date:" + date);
-
-        return date;
-    }
-
-    /**
-     * 获取SD path
-     *
-     * @return
-     */
-    public String getSDPath() {
-        File sdDir = null;
-        boolean sdCardExist = Environment.getExternalStorageState()
-                .equals(android.os.Environment.MEDIA_MOUNTED); // 判断sd卡是否存在
-        if (sdCardExist) {
-            sdDir = Environment.getExternalStorageDirectory();// 获取跟目录
-            return sdDir.toString();
-        }
-
-        return null;
-    }
-
-    @Override
-    public void surfaceCreated(SurfaceHolder surfaceHolder) {
-        mSurfaceHolder = surfaceHolder;
-    }
-
-    @Override
-    public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
-        // 将holder，这个holder为开始在onCreate里面取得的holder，将它赋给mSurfaceHolder
-        mSurfaceHolder = surfaceHolder;
-    }
-
-    @Override
-    public void surfaceDestroyed(SurfaceHolder surfaceHolder) {
-        mSurfaceview = null;
-        mSurfaceHolder = null;
-        handler.removeCallbacks(runnable);
-        if (mRecorder != null) {
-            mRecorder.release();
-            mRecorder = null;
-            Log.d(TAG, "surfaceDestroyed release mRecorder");
-        }
-        if (camera != null) {
-            camera.release();
-            camera = null;
-        }
-        if (mediaPlayer != null) {
-            mediaPlayer.release();
-            mediaPlayer = null;
-        }
-    }
 }
