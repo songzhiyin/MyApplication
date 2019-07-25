@@ -3,6 +3,7 @@ package com.szy.myapplication.UI.Util;
 import android.content.Intent;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
+import android.media.MediaCodec;
 import android.media.MediaRecorder;
 import android.os.Environment;
 import android.view.SurfaceHolder;
@@ -14,14 +15,25 @@ import android.widget.Toast;
 import com.szy.myapplication.Base.BaseActivity;
 import com.szy.myapplication.R;
 
+import org.reactivestreams.Subscription;
+
 import java.io.File;
 import java.io.IOException;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Observable;
+import io.reactivex.Observer;
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.functions.Function;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * 视频的录制和播放
  */
 public class VideoPlayActivity extends BaseActivity {
-    private TextView tvStartRecoreVideo, tvStopRecoreVideo;
+    private TextView tvStartRecoreVideo, tvStopRecoreVideo, tvRecordNumber;
     private SurfaceView surfaceView;
     private SurfaceHolder holder;
     private Camera camera;
@@ -29,6 +41,7 @@ public class VideoPlayActivity extends BaseActivity {
     File avfile; //存储位置
     //标志
     private boolean isRecording = false;
+    private Disposable disposable;
 
 
     @Override
@@ -41,6 +54,7 @@ public class VideoPlayActivity extends BaseActivity {
         super.initViews();
         tvStartRecoreVideo = $(R.id.tvStartRecoreVideo);
         tvStopRecoreVideo = $(R.id.tvStopRecoreVideo);
+        tvRecordNumber = $(R.id.tvRecordNumber);
         surfaceView = $(R.id.surfaceview);
         holder = surfaceView.getHolder();
         camera = Camera.open(0); //开启相机
@@ -124,8 +138,7 @@ public class VideoPlayActivity extends BaseActivity {
         }
         //开始录制
         mediaRecorder.start();
-        //
-        Toast.makeText(this, "开始录制...", Toast.LENGTH_SHORT).show();
+        sendCheckCode();
         tvStartRecoreVideo.setEnabled(false);
         tvStopRecoreVideo.setEnabled(true);
         isRecording = true;
@@ -147,6 +160,54 @@ public class VideoPlayActivity extends BaseActivity {
         if (avfile != null && avfile.exists() && avfile.length() > 0) {
             startActivity(new Intent(mContext, PlayVideoActivity.class).putExtra("path", avfile.getPath()));
         }
+        if (disposable != null && disposable.isDisposed()==false) {
+            disposable.dispose();
+        }
+
+    }
+
+    /**
+     * 基本的rxjava的用法
+     */
+    private void sendCheckCode() {
+        final int a = 15;
+        Observable.interval(0, 1, TimeUnit.SECONDS)
+                .take(a + 1)
+                .map(new Function<Long, Long>() {
+                    @Override
+                    public Long apply(Long aLong) throws Exception {
+                        return aLong+1;
+                    }
+                })
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeOn(Schedulers.newThread())
+                .doOnSubscribe(new Consumer<Disposable>() {//监听刚开始的时候
+                    @Override
+                    public void accept(Disposable disposable) throws Exception {
+                    }
+                }).subscribe(new Observer<Long>() {
+            @Override
+            public void onSubscribe(Disposable d) {
+                disposable = d;
+            }
+
+            @Override
+            public void onNext(Long aLong) {
+                tvRecordNumber.setText("录制时间" + aLong + "秒");
+            }
+
+            @Override
+            public void onError(Throwable e) {
+
+            }
+
+            @Override
+            public void onComplete() {
+                tvRecordNumber.setText("录制时间");
+                stopRecoreVideo();
+            }
+        });
+
 
     }
 

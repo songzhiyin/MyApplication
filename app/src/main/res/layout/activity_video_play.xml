@@ -38,7 +38,7 @@
         app:layout_constraintTop_toTopOf="@id/tvStartRecoreVideo" />
 
     <TextView
-        android:id="@+id/text"
+        android:id="@+id/tvRecordNumber"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
