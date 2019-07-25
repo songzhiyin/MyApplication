@@ -3,9 +3,11 @@ package com.szy.myapplication.UI.Util;
 import android.content.Intent;
 import android.graphics.ImageFormat;
 import android.hardware.Camera;
+import android.media.CamcorderProfile;
 import android.media.MediaCodec;
 import android.media.MediaRecorder;
 import android.os.Environment;
+import android.util.Log;
 import android.view.SurfaceHolder;
 import android.view.SurfaceView;
 import android.view.View;
@@ -111,19 +113,18 @@ public class VideoPlayActivity extends BaseActivity {
 //********************************************
         mediaRecorder.reset();
         //设置声音来源 和 视频来源
-        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        mediaRecorder.setAudioSource(MediaRecorder.AudioSource.CAMCORDER);
         mediaRecorder.setVideoSource(MediaRecorder.VideoSource.CAMERA);
         //设置输出文件的格式,必须在设置编码格式之前设置
-        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
+//        mediaRecorder.setOutputFormat(MediaRecorder.OutputFormat.MPEG_4);
         //设置编码格式 音频 和 视频 格式要设置正确，不然有时候录制黑屏
-        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
-        mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
+//        mediaRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.DEFAULT);
+//        mediaRecorder.setVideoEncoder(MediaRecorder.VideoEncoder.H264);
         //设置分辨率,可以改变清晰度 这个值没设置对的话会崩溃  在编码格式之后设置 可以默认
-        mediaRecorder.setVideoSize(1920, 1080);
+//        mediaRecorder.setVideoSize(1920, 1080);
         //设置帧率,每秒25帧 这个值没设置对的话会崩溃  在编码格式之后设置
-        mediaRecorder.setVideoFrameRate(30);
-        // 设置位率，不设置可能画质不清晰
-        mediaRecorder.setVideoEncodingBitRate(1920 * 1080 * 5);
+//        mediaRecorder.setVideoFrameRate(30);
+        setVideoProfile();
         // 输出旋转90度播放时，但是预览时没有旋转90度,预览由Camera决定
         mediaRecorder.setOrientationHint(90);
         //设置输出文件位置 注意这里不是传入一个文件，而是路径
@@ -144,6 +145,25 @@ public class VideoPlayActivity extends BaseActivity {
         isRecording = true;
     }
 
+    /**
+     * 设置视频的像素质量
+     */
+    private void setVideoProfile() {
+        CamcorderProfile profile = null;
+        if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_1080P))
+            profile = CamcorderProfile.get(CamcorderProfile.QUALITY_1080P);
+        else if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_720P))
+            profile = CamcorderProfile.get(CamcorderProfile.QUALITY_720P);
+        else if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_480P))
+            profile = CamcorderProfile.get(CamcorderProfile.QUALITY_480P);
+        else if (CamcorderProfile.hasProfile(CamcorderProfile.QUALITY_HIGH))
+            profile = CamcorderProfile.get(CamcorderProfile.QUALITY_HIGH);
+        if (profile != null)
+            mediaRecorder.setProfile(profile);
+        else
+            mediaRecorder.setVideoEncodingBitRate(1920 * 1080 * 5);
+    }
+
     private void stopRecoreVideo() {
         if (isRecording) {
             //停止录制
@@ -160,7 +180,7 @@ public class VideoPlayActivity extends BaseActivity {
         if (avfile != null && avfile.exists() && avfile.length() > 0) {
             startActivity(new Intent(mContext, PlayVideoActivity.class).putExtra("path", avfile.getPath()));
         }
-        if (disposable != null && disposable.isDisposed()==false) {
+        if (disposable != null && disposable.isDisposed() == false) {
             disposable.dispose();
         }
 
@@ -176,7 +196,7 @@ public class VideoPlayActivity extends BaseActivity {
                 .map(new Function<Long, Long>() {
                     @Override
                     public Long apply(Long aLong) throws Exception {
-                        return aLong+1;
+                        return aLong + 1;
                     }
                 })
                 .observeOn(AndroidSchedulers.mainThread())
@@ -217,10 +237,6 @@ public class VideoPlayActivity extends BaseActivity {
         public void surfaceCreated(SurfaceHolder surfaceHolder) {
             try {
                 if (camera != null) {
-//                    Camera.Parameters parameters = camera.getParameters();
-//                    parameters.setPreviewFormat(ImageFormat.NV21); //设置数据格式
-//                    parameters.setPreviewSize(1920, 1080);
-//                    camera.setParameters(parameters);
                     camera.setPreviewDisplay(surfaceHolder);
                     camera.startPreview();
                 }
@@ -231,8 +247,35 @@ public class VideoPlayActivity extends BaseActivity {
         }
 
         @Override
-        public void surfaceChanged(SurfaceHolder surfaceHolder, int i, int i1, int i2) {
+        public void surfaceChanged(SurfaceHolder mHolder, int i, int i1, int i2) {
+            if (camera == null || mHolder.getSurface() == null) {
+                // preview surface does not exist
+                return;
+            }
 
+            // stop preview before making changes
+            try {
+                camera.stopPreview();
+            } catch (Exception e) {
+                // ignore: tried to stop a non-existent preview
+            }
+
+            // set preview size and make any resize, rotate or
+            // reformatting changes here
+
+            // start preview with new settings
+            try {
+                camera.setPreviewDisplay(mHolder);
+                camera.setDisplayOrientation(90);
+                Camera.Parameters parameters = camera.getParameters();
+                parameters.set("orientation", "portrait");
+                parameters.setFocusMode(Camera.Parameters.FOCUS_MODE_CONTINUOUS_PICTURE);
+                camera.setParameters(parameters);
+                camera.startPreview();
+
+            } catch (Exception e) {
+                Log.d(TAG, "Error starting camera preview: " + e.getMessage());
+            }
         }
 
         @Override
