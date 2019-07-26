@@ -34,7 +34,7 @@ import io.reactivex.schedulers.Schedulers;
 /**
  * 视频的录制和播放
  */
-public class VideoPlayActivity extends BaseActivity {
+public class VideoRecorderActivity extends BaseActivity {
     private TextView tvStartRecoreVideo, tvStopRecoreVideo, tvRecordNumber;
     private SurfaceView surfaceView;
     private SurfaceHolder holder;
