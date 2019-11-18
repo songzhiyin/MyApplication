@@ -14,6 +14,8 @@ import com.szy.lib.network.Glide.GlideHelper;
 import java.util.HashMap;
 import java.util.Map;
 
+import skin.support.SkinCompatManager;
+
 /**
  * Created by songzhiiyn on 2017/9/25.
  */
@@ -30,6 +32,10 @@ public class ApplicationHelp {
         ToastUtils.inittostutils(application);//初始化提示工具类
         GlideHelper.initGlide(application);//初始化Glide图片加载工具
         PreferenManager.init(application.getApplicationContext());
+        SkinCompatManager.withoutActivity(application)                         // 基础控件换肤初始化
+                .setSkinStatusBarColorEnable(false)                     // 关闭状态栏换肤，默认打开[可选]
+                .setSkinWindowBackgroundEnable(false)                   // 关闭windowBackground换肤，默认打开[可选]
+                .loadSkin();
     }
 
     public static Handler getHandler(String type) {

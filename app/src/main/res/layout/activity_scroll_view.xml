@@ -41,7 +41,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/banner2" />
+                    android:src="@mipmap/banner_white" />
 
                 <TextView
                     android:id="@+id/tv_scroll_btn"
@@ -67,7 +67,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:scaleType="centerCrop"
-                    android:src="@mipmap/banner3" />
+                    android:src="@mipmap/banner_black" />
 
                 <TextView
                     android:layout_width="match_parent"

@@ -14,6 +14,7 @@
             <option value="$PROJECT_DIR$/libraries/network" />
             <option value="$PROJECT_DIR$/libraries/pullrefresh" />
             <option value="$PROJECT_DIR$/libraries/qrcodelib" />
+            <option value="$PROJECT_DIR$/skinn" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

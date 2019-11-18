@@ -6,14 +6,18 @@ import android.content.ComponentName;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
+import android.os.Environment;
 import android.support.annotation.IdRes;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.RequiresPermission;
 import android.support.v4.app.FragmentActivity;
+import android.support.v4.view.LayoutInflaterCompat;
+import android.support.v7.widget.LinearLayoutCompat;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.LinearInterpolator;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -23,7 +27,10 @@ import com.lib.szy.pullrefresh.PullreFresh.PullRecyclerView;
 import com.szy.myapplication.R;
 import com.szy.myapplication.Retrofit.HttpModel;
 import com.szy.myapplication.Utils.NetWorkUtils;
+import com.szy.myapplication.Utils.SkinManager;
 import com.szy.myapplication.Utils.SystemBarUtils;
+
+import java.io.File;
 
 /**
  * Created by Administrator on 2018/1/12 0012.
@@ -54,6 +61,7 @@ public abstract class BaseActivity extends FragmentActivity {
         return (T) findViewById(id);
     }
 
+
     @SuppressLint("WrongConstant")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +83,7 @@ public abstract class BaseActivity extends FragmentActivity {
         initEvents();
         initdatas();
     }
+
 
     /**
      * 初始化状态栏
@@ -155,7 +164,7 @@ public abstract class BaseActivity extends FragmentActivity {
      *
      * @param mEnableAutoLoading 是否可以进行自动加载
      */
-    protected void setOnRefreshListener(boolean mEnableAutoLoading,boolean enable) {
+    protected void setOnRefreshListener(boolean mEnableAutoLoading, boolean enable) {
         if (recyclerView == null) {
             return;
         }

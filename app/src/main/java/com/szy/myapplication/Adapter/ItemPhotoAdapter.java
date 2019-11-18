@@ -9,7 +9,6 @@ import android.widget.TextView;
 
 import com.lib.szy.pullrefresh.PullreFresh.BaseRecyAdapter;
 import com.szy.lib.network.Glide.GlideHelper;
-import com.szy.myapplication.Entity.BellePhoneEntity;
 import com.szy.myapplication.R;
 
 public class ItemPhotoAdapter extends BaseRecyAdapter<ItemPhotoAdapter.ViewHoder, String> {
@@ -27,7 +26,7 @@ public class ItemPhotoAdapter extends BaseRecyAdapter<ItemPhotoAdapter.ViewHoder
         String entity = getItemData(position);
         ViewHoder viewHoder = (ViewHoder) holder;
         if (entity != null && entity.length() > 0) {
-            GlideHelper.showImage(mContext, entity, viewHoder.img_phone, R.mipmap.banner2);
+            GlideHelper.showImage(mContext, entity, viewHoder.img_phone, R.mipmap.banner_white);
 //            viewHoder.tv_name.setText(entity);
         }
 

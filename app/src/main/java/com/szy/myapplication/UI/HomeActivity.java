@@ -35,9 +35,11 @@ import com.szy.myapplication.UI.Util.FloatingFrameActivity;
 import com.szy.myapplication.UI.Util.NetWorkActivity;
 import com.szy.myapplication.UI.Util.PlayNetVideoActivity;
 import com.szy.myapplication.UI.Util.RxjavaActivity;
+import com.szy.myapplication.UI.Util.SkinDermaActivity;
 import com.szy.myapplication.UI.Util.VideoRecorderActivity;
 import com.szy.myapplication.UI.View.BellePhoneActivity;
 import com.szy.myapplication.UI.View.BezierDemoActivity;
+import com.szy.myapplication.UI.View.LabelsViewActivity;
 import com.szy.myapplication.UI.View.ListScrollActivity;
 import com.szy.myapplication.UI.View.LoveViewActivity;
 import com.szy.myapplication.UI.View.MessageListActivity;
@@ -90,6 +92,7 @@ public class HomeActivity extends BaseActivity {
     @Override
     protected void initViews() {
         super.initViews();
+
         grid = $(R.id.grid_main_list);
         tv_code = $(R.id.tv_home_versioncode);
         adapter = new ItemHomeMenuAdapter(mContext);
@@ -249,6 +252,12 @@ public class HomeActivity extends BaseActivity {
                 case 34://在线播放视频
                     startActivity(new Intent(mContext, PlayNetVideoActivity.class));
                     break;
+                case 35://换皮肤
+                    startActivity(new Intent(mContext, SkinDermaActivity.class));
+                    break;
+                case 36://标签view
+                    startActivity(new Intent(mContext, LabelsViewActivity.class));
+                    break;
             }
         }
     };
@@ -297,6 +306,7 @@ public class HomeActivity extends BaseActivity {
         data.add("正则表达式");
         data.add("视频的录制");
         data.add("在线播放视频");
+        data.add("换皮肤");
         adapter.setdate(data);
         setBanner();
     }

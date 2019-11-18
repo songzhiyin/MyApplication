@@ -24,7 +24,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="100dp"
                 android:scaleType="fitXY"
-                android:src="@mipmap/banner2"
+                android:src="@mipmap/banner_white"
                 app:layout_scrollFlags="scroll" />
 
             <TextView

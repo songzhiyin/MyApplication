@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/activity_backgroud"
+    android:gravity="center_horizontal"
+    android:orientation="vertical"
+    tools:context=".UI.Util.SkinDermaActivity">
+
+    <!--<include layout="@layout/include_layout_view_title_layout" />-->
+
+
+    <TextView
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/text_bacgroud"
+        android:gravity="center"
+        android:text="view1"
+        android:textColor="@color/text_color" />
+
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_marginTop="20dp"
+        android:background="@mipmap/banner" />
+
+
+    <TextView
+        android:id="@+id/tvViewStyle"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/text_bacgroud"
+        android:gravity="center"
+        android:text="默认模式"
+        android:textColor="@color/text_color" />
+    <TextView
+        android:id="@+id/tvViewStyle2"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/text_bacgroud"
+        android:gravity="center"
+        android:text="高亮模式"
+        android:textColor="@color/text_color" />
+    <TextView
+        android:id="@+id/tvViewStyle3"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="40dp"
+        android:background="@color/text_bacgroud"
+        android:gravity="center"
+        android:text="黑暗模式"
+        android:textColor="@color/text_color" />
+</LinearLayout>

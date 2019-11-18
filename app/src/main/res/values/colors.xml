@@ -15,9 +15,6 @@
     <color name="menu_text_color_normal">#e64239</color>
     <!--首页底部菜单默认的颜色-->
     <color name="menu_text_color_gray">#4d4d4d</color>
-    <!--APP的界面默认颜色-->
-    <color name="activity_backgroud">#f0f0f0</color>
-
     <!--分割线的颜色-->
     <color name="main_line_color">#f0f0f0</color>
     <!--透明度背景-->
@@ -72,4 +69,17 @@
     <color name="tab_gb">#F3F5F4</color>
     <color name="tab_normal_color">#515051</color>
     <color name="tab_selected_color">#D33D3C</color>
+    <color name="skinTxtColor">#de1098</color>
+    //默认颜色
+    <color name="activity_backgroud">#999999</color>
+    <color name="text_bacgroud">#80ceff</color>
+    <color name="text_color">#1a1a1a</color>
+    //白色模式
+    <color name="activity_backgroud_white">#ffffff</color>
+    <color name="text_bacgroud_white">#de1098</color>
+    <color name="text_color_white">#666666</color>
+    //黑暗模式
+    <color name="activity_backgroud_black">#000000</color>
+    <color name="text_bacgroud_black">#ffffff</color>
+    <color name="text_color_black">#de1098</color>
 </resources>
